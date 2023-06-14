@@ -1,62 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Default">
-      <UniqueIdentifier>{0e8dfd83-d5ec-4561-819b-75347b972155}</UniqueIdentifier>
+    <Filter Include="00. MainApp">
+      <UniqueIdentifier>{54072560-0ca5-4dc0-8256-18cb96e858e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Default\리소스 파일">
+    <Filter Include="99. Etc">
+      <UniqueIdentifier>{2ad4fe67-d505-4a9a-94a4-e1f6784bdc9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Etc\리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Define">
-      <UniqueIdentifier>{2e1ac637-94b8-49fa-8b01-9801cf0397a4}</UniqueIdentifier>
+    <Filter Include="99. Etc\소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="00. MainApp">
-      <UniqueIdentifier>{cc18cd0b-60f6-4358-9168-d5cff590ee42}</UniqueIdentifier>
+    <Filter Include="99. Etc\헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="01. Obj">
+      <UniqueIdentifier>{ce133379-d873-4245-94f5-c22c4db9c0d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\00. Triangle">
+      <UniqueIdentifier>{cf621b79-350d-421f-855e-35bbd282a2df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Client.h">
-      <Filter>Default</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Default</Filter>
+    <ClInclude Include="stdafx.h">
+      <Filter>99. Etc\헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Default</Filter>
+      <Filter>99. Etc\헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Define</Filter>
+    <ClInclude Include="Resource.h">
+      <Filter>99. Etc\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>99. Etc\헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\MainApp.h">
       <Filter>00. MainApp</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\Obj.h">
+      <Filter>01. Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Triangle.h">
+      <Filter>99. Etc\헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Default</Filter>
+      <Filter>99. Etc\소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Client.cpp">
+      <Filter>99. Etc\소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="..\Code\MainApp.cpp">
       <Filter>00. MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Obj.cpp">
+      <Filter>01. Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Triangle.cpp">
+      <Filter>99. Etc\소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
-      <Filter>Default\리소스 파일</Filter>
+      <Filter>99. Etc\리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
-      <Filter>Default\리소스 파일</Filter>
+      <Filter>99. Etc\리소스 파일</Filter>
     </Image>
     <Image Include="Client.ico">
-      <Filter>Default\리소스 파일</Filter>
+      <Filter>99. Etc\리소스 파일</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt">
-      <Filter>Default</Filter>
+      <Filter>99. Etc\리소스 파일</Filter>
     </Text>
   </ItemGroup>
 </Project>

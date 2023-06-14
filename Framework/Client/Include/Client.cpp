@@ -4,6 +4,9 @@
 #include "stdafx.h"
 #include "Client.h"
 #include "MainApp.h"
+#include "Export_Function.h"
+
+using namespace Engine;
 
 #define MAX_LOADSTRING 100
 
@@ -26,7 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	UNREFERENCED_PARAMETER(hPrevInstance);
+    UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
@@ -44,16 +47,23 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
+
 	CMainApp*		pMainApp = CMainApp::Create();
-	
+
 	if (nullptr == pMainApp)
 		return FALSE;
 
     MSG msg;
+	msg.message = WM_NULL;
 
-	// 기본 메시지 루프입니다.
-	while (true)
-	{
+	FAILED_CHECK_RETURN(Engine::Ready_Timer(L"Timer_Immediate"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Timer(L"Timer_FPS60"), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Frame(L"Frame60", 60.f), E_FAIL);
+
+    // 기본 메시지 루프입니다.
+    while (true)
+    {
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
 			if (WM_QUIT == msg.message)
@@ -67,17 +77,28 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		}
 		else
 		{
-			pMainApp->Update_MainApp(0.f);
-			pMainApp->LateUpdate_MainApp();
-			pMainApp->Render_MainApp();
-		}
+			Engine::Set_TimeDelta(L"Timer_Immediate");
 
-	}
+			_float	fTimer_Immediate = Engine::Get_TimeDelta(L"Timer_Immediate");
+
+			if (Engine::Ispermit_Call(L"Frame60", fTimer_Immediate))
+			{
+				Engine::Set_TimeDelta(L"Timer_FPS60");
+				_float	fTimer60 = Engine::Get_TimeDelta(L"Timer_FPS60");
+
+				pMainApp->Update_MainApp(fTimer60);
+				pMainApp->LateUpdate_MainApp();
+				pMainApp->Render_MainApp();
+			}			
+		}
+        
+    }
 
 	if (nullptr != pMainApp)
 	{
-		return FALSE;
+		pMainApp->Release();
 	}
+
 
     return (int) msg.wParam;
 }
@@ -103,7 +124,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CLIENT));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_CLIENT);
+    wcex.lpszMenuName   = NULL;
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -126,10 +147,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    RECT	rc{ 0, 0, 800, 600 };
 
+
    AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-	   CW_USEDEFAULT, 0,
+      CW_USEDEFAULT, 0,
 	   rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
@@ -176,6 +198,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+	case WM_KEYDOWN:
+
+		switch (wParam)
+		{
+		case VK_ESCAPE:
+			DestroyWindow(g_hWnd);
+			break;
+		}
+
+		break;
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
