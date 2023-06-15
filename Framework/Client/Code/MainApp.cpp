@@ -31,7 +31,7 @@ HRESULT CMainApp::Ready_MainApp(void)
 
 	m_vEye.x = 0.f;
 	m_vEye.y = 0.f;
-	m_vEye.z = 1.f;
+	m_vEye.z = -5.f;
 
 	m_vAt.x = 0.f;
 	m_vAt.y = 0.f;
@@ -61,18 +61,17 @@ void CMainApp::LateUpdate_MainApp()
 void CMainApp::Render_MainApp()
 {
 	Engine::Render_Begin(D3DXCOLOR(0.f, 0.f, 1.f, 1.f));
+	
 	Engine::Get_Device()->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
-	//D3DXMatrixLookAtLH(&m_matView, &m_vEye, &m_vAt, &m_vUp);
-	//Engine::Get_Device()->SetTransform(D3DTS_VIEW, &m_matView);
+	D3DXMatrixLookAtLH(&m_matView, &m_vEye, &m_vAt, &m_vUp);
+	Engine::Get_Device()->SetTransform(D3DTS_VIEW, &m_matView);
 
-	//D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / 4.f, 800 / 600, 1.f, 100.f);
-	//Engine::Get_Device()->SetTransform(D3DTS_PROJECTION, &m_matProj);
+	D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / 4.f, 800 / 600, 1.f, 1000.f);
+	Engine::Get_Device()->SetTransform(D3DTS_PROJECTION, &m_matProj);
 	
 	m_pTriangle->Render_Obj();
 	
-
-
 	Engine::Render_End();
 }
 

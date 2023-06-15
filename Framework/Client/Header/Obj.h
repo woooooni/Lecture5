@@ -23,12 +23,12 @@ protected:
 	LPDIRECT3DVERTEXBUFFER9		m_pVB;
 
 protected:
-	vector<VTXCOL>	m_vecVertices;
+	vector<VTXCOL*>	m_vecVertices;
 	_matrix			m_matWolrd;
 
 	_vec3			m_vPos;
 	_vec3			m_vSize;
-	_vec3			m_vRoation;
+	_vec3			m_vRotation;
 
 
 public:

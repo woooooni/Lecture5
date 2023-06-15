@@ -15,6 +15,10 @@ public:
 	virtual void Late_Update_Obj() override;
 	virtual void Render_Obj() override;
 
+
+private:
+	void Input();
+
 public:
 	virtual void Free() override;
 
