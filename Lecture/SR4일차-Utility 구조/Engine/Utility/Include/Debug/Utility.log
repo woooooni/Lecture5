@@ -1,0 +1,9 @@
+﻿  Scene.cpp
+  Management.cpp
+  Layer.cpp
+  GameObject.cpp
+  Component.cpp
+  코드를 생성하고 있습니다...
+     ../Bin\Utility.lib 라이브러리 및 ../Bin\Utility.exp 개체를 생성하고 있습니다.
+  Utility.vcxproj -> C:\Users\xodnj\Downloads\SR4일차-Utility 구조\Engine\Utility\Include\../Bin\Utility.dll
+  Utility.vcxproj -> ../Bin\Utility.pdb (Full PDB)
