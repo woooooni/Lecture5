@@ -18,9 +18,9 @@ HRESULT CTriangle::Ready_Obj(void)
 
 	VTXCOL vertices[] =
 	{
-		{ D3DXVECTOR3{ -1.f,	-1.f,	1.f }, D3DCOLOR_RGBA(0, 255, 0, 255) },
-		{ D3DXVECTOR3{ 0.f,		1.f,	1.f }, D3DCOLOR_RGBA(255, 0, 0, 255) },
-		{ D3DXVECTOR3{ 1.f,		-1.f,	1.f }, D3DCOLOR_RGBA(0, 0, 255, 255) }
+		{ D3DXVECTOR3{ -.5f,	-.5f,	0.f }, D3DCOLOR_RGBA(0, 255, 0, 255) },
+		{ D3DXVECTOR3{ 0.f,		.5f,	0.f }, D3DCOLOR_RGBA(255, 0, 0, 255) },
+		{ D3DXVECTOR3{ .5f,		-.5f,	0.f }, D3DCOLOR_RGBA(0, 0, 255, 255) }
 	};
 
 	for (UINT i = 0; i < sizeof(vertices) / sizeof(VTXCOL); ++i)
@@ -32,9 +32,7 @@ HRESULT CTriangle::Ready_Obj(void)
 	m_pVB->Lock(0, sizeof(vertices), &pVertices, 0);
 	memcpy(pVertices, vertices, sizeof(vertices));
 	m_pVB->Unlock();
-
-	pDevice->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
-
+	
 	m_vPos = { 0.f, 0.f, 0.f };
 	return S_OK;
 }
@@ -53,22 +51,21 @@ void CTriangle::Render_Obj()
 {
 
 	LPDIRECT3DDEVICE9 pDevice = Engine::Get_Device();
-	_matrix matTrans, matRot, matScale;
 
 	pDevice->SetStreamSource(0, m_pVB, 0, sizeof(VTXCOL));
+	pDevice->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
 
-	D3DXMatrixIdentity(&m_matWolrd);
+
+	_matrix matTrans, matRot, matScale;
+
+	D3DXMatrixIdentity(&m_matWorld);
 
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
 	D3DXMatrixRotationYawPitchRoll(&matRot, m_vRotation.y, m_vRotation.x, m_vRotation.z);
 	D3DXMatrixTranslation(&matTrans, m_vPos.x, m_vPos.y, m_vPos.z);
 
-	m_matWolrd = matScale * matRot *  matTrans;
-
-	for (UINT i = 0; i < m_vecVertices.size(); ++i)
-		D3DXVec3TransformCoord(&m_vecVertices[i]->vPosition, &m_vecVertices[i]->vPosition, &m_matWolrd);
-
-	pDevice->SetTransform(D3DTS_WORLD, &m_matWolrd);
+	m_matWorld = matScale * matRot * matTrans;
+	pDevice->SetTransform(D3DTS_WORLD, &m_matWorld);
 
 	pDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
 }

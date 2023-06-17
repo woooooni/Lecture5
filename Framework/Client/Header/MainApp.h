@@ -10,6 +10,7 @@ class CGraphicDev;
 END
 
 class CTriangle;
+class CCube;
 class CMainApp : public CBase 
 {
 private:		// 持失切, 社瑚切
@@ -33,6 +34,7 @@ public:
 private:
 	CGraphicDev*	m_pDeviceClass;
 	CTriangle*		m_pTriangle;
+	CCube*			m_pCube;
 
 	_vec3			m_vEye;
 	_vec3			m_vAt;

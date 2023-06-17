@@ -25,6 +25,9 @@
     <Filter Include="01. Obj\00. Triangle">
       <UniqueIdentifier>{cf621b79-350d-421f-855e-35bbd282a2df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\01. Cube">
+      <UniqueIdentifier>{6bad0c67-44bd-4f4a-95cb-d0aa07df3a8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -46,7 +49,10 @@
       <Filter>01. Obj</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\Triangle.h">
-      <Filter>99. Etc\헤더 파일</Filter>
+      <Filter>01. Obj\00. Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Cube.h">
+      <Filter>01. Obj\01. Cube</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +69,10 @@
       <Filter>01. Obj</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\Triangle.cpp">
-      <Filter>99. Etc\소스 파일</Filter>
+      <Filter>01. Obj\00. Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Cube.cpp">
+      <Filter>01. Obj\01. Cube</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

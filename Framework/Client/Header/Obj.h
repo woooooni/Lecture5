@@ -21,14 +21,16 @@ public:
 
 protected:
 	LPDIRECT3DVERTEXBUFFER9		m_pVB;
+	LPDIRECT3DINDEXBUFFER9		m_pIB;
 
 protected:
-	vector<VTXCOL*>	m_vecVertices;
-	_matrix			m_matWolrd;
+	vector<VTXCOL*>		m_vecVertices;
+	vector<DWORD>		m_vecIndices;
+	_matrix				m_matWorld;
 
-	_vec3			m_vPos;
-	_vec3			m_vSize;
-	_vec3			m_vRotation;
+	_vec3				m_vPos;
+	_vec3				m_vSize;
+	_vec3				m_vRotation;
 
 
 public:
