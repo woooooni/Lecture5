@@ -19,14 +19,23 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="01. Obj">
-      <UniqueIdentifier>{ce133379-d873-4245-94f5-c22c4db9c0d7}</UniqueIdentifier>
+    <Filter Include="01. Scene">
+      <UniqueIdentifier>{daf89680-9697-4e5e-bd4e-7436051cfbbf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Obj\00. Triangle">
-      <UniqueIdentifier>{cf621b79-350d-421f-855e-35bbd282a2df}</UniqueIdentifier>
+    <Filter Include="01. Scene\00. Logo">
+      <UniqueIdentifier>{06dc1b76-8beb-4d64-8e1c-41231208a3d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Obj\01. Cube">
-      <UniqueIdentifier>{6bad0c67-44bd-4f4a-95cb-d0aa07df3a8e}</UniqueIdentifier>
+    <Filter Include="01. Scene\01. Stage">
+      <UniqueIdentifier>{4a6f84dc-73b6-43fb-80a1-6b14c92a3ca7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject">
+      <UniqueIdentifier>{9c45403b-7aaa-4a2a-b325-b8d24758c2f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\00. BackGround">
+      <UniqueIdentifier>{82461e52-4280-4c90-94fb-6fb6e85c9d17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Player">
+      <UniqueIdentifier>{bcb82cd7-d112-42d5-9965-3adcec6923e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,14 +54,14 @@
     <ClInclude Include="..\Header\MainApp.h">
       <Filter>00. MainApp</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\Obj.h">
-      <Filter>01. Obj</Filter>
+    <ClInclude Include="..\Header\Logo.h">
+      <Filter>01. Scene\00. Logo</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\Triangle.h">
-      <Filter>01. Obj\00. Triangle</Filter>
+    <ClInclude Include="..\Header\BackGround.h">
+      <Filter>02. GameObject\00. BackGround</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\Cube.h">
-      <Filter>01. Obj\01. Cube</Filter>
+    <ClInclude Include="..\Header\Player.h">
+      <Filter>02. GameObject\01. Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,14 +74,14 @@
     <ClCompile Include="..\Code\MainApp.cpp">
       <Filter>00. MainApp</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Obj.cpp">
-      <Filter>01. Obj</Filter>
+    <ClCompile Include="..\Code\Logo.cpp">
+      <Filter>01. Scene\00. Logo</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Triangle.cpp">
-      <Filter>01. Obj\00. Triangle</Filter>
+    <ClCompile Include="..\Code\BackGround.cpp">
+      <Filter>02. GameObject\00. BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Cube.cpp">
-      <Filter>01. Obj\01. Cube</Filter>
+    <ClCompile Include="..\Code\Player.cpp">
+      <Filter>02. GameObject\01. Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

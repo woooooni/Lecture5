@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="00. Management">
+      <UniqueIdentifier>{fb0c6a72-63a0-49ce-9728-7f92b7ec6644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Scene">
+      <UniqueIdentifier>{c910fbdc-35cd-46e7-a407-e3d6e36101eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Layer">
+      <UniqueIdentifier>{b6e12877-48e4-48fc-9179-83c3718bedcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. GameObject">
+      <UniqueIdentifier>{ead62817-8cb1-4359-82c0-2693290c8bb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component">
+      <UniqueIdentifier>{a166cce1-ad56-4431-8be2-6f59659a1a9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Export">
+      <UniqueIdentifier>{254f8fb1-1e58-4868-8f35-a3c2bdcbdc4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer">
+      <UniqueIdentifier>{71c8fe85-b634-4c60-b3ac-7ac5d6d10c19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\00. TriCol">
+      <UniqueIdentifier>{9bfb612b-62b0-4b43-9232-2b625080af00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ProtoMgr">
+      <UniqueIdentifier>{2c66c4e1-444a-4a44-a451-e6c6a86c5a42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\02. RcCol">
+      <UniqueIdentifier>{306bc3f8-0fce-4597-aac7-687a976ec7aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\01. Transform">
+      <UniqueIdentifier>{76c08284-ce15-40f4-a58c-183c10c9d7b5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Header\Scene.h">
+      <Filter>01. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Layer.h">
+      <Filter>02. Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\GameObject.h">
+      <Filter>03. GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Component.h">
+      <Filter>04. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Management.h">
+      <Filter>00. Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Export_Utility.h">
+      <Filter>99. Export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\VIBuffer.h">
+      <Filter>04. Component\00. VIBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\TriCol.h">
+      <Filter>04. Component\00. VIBuffer\00. TriCol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\ProtoMgr.h">
+      <Filter>05. ProtoMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\RcCol.h">
+      <Filter>04. Component\00. VIBuffer\02. RcCol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Transform.h">
+      <Filter>04. Component\01. Transform</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Code\Scene.cpp">
+      <Filter>01. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Layer.cpp">
+      <Filter>02. Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\GameObject.cpp">
+      <Filter>03. GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Component.cpp">
+      <Filter>04. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Management.cpp">
+      <Filter>00. Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\VIBuffer.cpp">
+      <Filter>04. Component\00. VIBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\TriCol.cpp">
+      <Filter>04. Component\00. VIBuffer\00. TriCol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\ProtoMgr.cpp">
+      <Filter>05. ProtoMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RcCol.cpp">
+      <Filter>04. Component\00. VIBuffer\02. RcCol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Transform.cpp">
+      <Filter>04. Component\01. Transform</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Header\Export_Utility.inl">
+      <Filter>99. Export</Filter>
+    </None>
+  </ItemGroup>
+</Project>

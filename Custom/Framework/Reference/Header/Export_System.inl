@@ -1,4 +1,3 @@
-#include "Export_System.h"
 HRESULT		Ready_GraphicDev(HWND hWnd, WINMODE eMode, const _uint& iSizeX, const _uint& iSizeY, CGraphicDev** ppGraphicDev)
 {
 	return CGraphicDev::GetInstance()->Ready_GraphicDev(hWnd, eMode, iSizeX, iSizeY, ppGraphicDev);
@@ -10,11 +9,6 @@ void			Render_Begin(D3DXCOLOR Color)
 void			Render_End()
 {
 	CGraphicDev::GetInstance()->Render_End();
-}
-
-inline LPDIRECT3DDEVICE9 Get_Device()
-{
-	return CGraphicDev::GetInstance()->Get_Device();
 }
 
 _float		Get_TimeDelta(const _tchar* pTimerTag)
