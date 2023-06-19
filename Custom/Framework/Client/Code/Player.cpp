@@ -95,70 +95,70 @@ void CPlayer::Input()
 	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
 	{
 		_vec3 vPos = m_pTransformCom->GetPosition();
-		vPos.x -= 100.f * 0.00016f;
+		vPos.x -= 100.f * 0.0016f;
 		m_pTransformCom->SetPosition(vPos);
 	}
 
 	if (GetAsyncKeyState(VK_UP) & 0x8001)
 	{
 		_vec3 vPos = m_pTransformCom->GetPosition();
-		vPos.y += 100.f * 0.00016f;
+		vPos.y += 100.f * 0.0016f;
 		m_pTransformCom->SetPosition(vPos);
 	}
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
 	{
 		_vec3 vPos = m_pTransformCom->GetPosition();
-		vPos.x += 100.f * 0.00016f;
+		vPos.x += 100.f * 0.0016f;
 		m_pTransformCom->SetPosition(vPos);
 	}
 
 	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
 	{
 		_vec3 vPos = m_pTransformCom->GetPosition();
-		vPos.y -= 100.f * 0.00016f;
+		vPos.y -= 100.f * 0.0016f;
 		m_pTransformCom->SetPosition(vPos);
 	}
 
 	if (GetAsyncKeyState('Q') & 0x8001)
 	{
 		_vec3 vRot = m_pTransformCom->GetRotation();
-		vRot.y -= 100.f * 0.00016f;
+		vRot.y -= 100.f * 0.0016f;
 		m_pTransformCom->SetRotation(vRot);
 	}
 
 	if (GetAsyncKeyState('E') & 0x8001)
 	{
 		_vec3 vRot = m_pTransformCom->GetRotation();
-		vRot.y += 100.f * 0.00016f;
+		vRot.y += 100.f * 0.0016f;
 		m_pTransformCom->SetRotation(vRot);
 	}
 
 	if (GetAsyncKeyState('W') & 0x8001)
 	{
 		_vec3 vRot = m_pTransformCom->GetRotation();
-		vRot.x += 100.f * 0.00016f;
+		vRot.x += 100.f * 0.0016f;
 		m_pTransformCom->SetRotation(vRot);
 	}
 
 	if (GetAsyncKeyState('S') & 0x8001)
 	{
 		_vec3 vRot = m_pTransformCom->GetRotation();
-		vRot.x -= 100.f * 0.00016f;
+		vRot.x -= 100.f * 0.0016f;
 		m_pTransformCom->SetRotation(vRot);
 	}
 
 	if (GetAsyncKeyState('A') & 0x8001)
 	{
 		_vec3 vRot = m_pTransformCom->GetRotation();
-		vRot.z -= 100.f * 0.00016f;
+		vRot.z -= 100.f * 0.0016f;
 		m_pTransformCom->SetRotation(vRot);
 	}
 
 	if (GetAsyncKeyState('D') & 0x8001)
 	{
 		_vec3 vRot = m_pTransformCom->GetRotation();
-		vRot.z += 100.f * 0.00016f;
+		vRot.z += 100.f * 0.0016f;
 		m_pTransformCom->SetRotation(vRot);
 	}
 }

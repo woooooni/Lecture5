@@ -74,10 +74,15 @@ HRESULT CLogo::Ready_Layer_Environment(const _tchar* pLayerTag)
 
 	Engine::CGameObject*		pGameObject = nullptr;
 
-	// BackGround
+	// Player
 	pGameObject = CPlayer::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Player", pGameObject), E_FAIL);
+
+	CMonster* pMonster = CMonster::Create(m_pGraphicDev);
+	pMonster->SetTarget(pGameObject);
+	NULL_CHECK_RETURN(pMonster, E_FAIL);
+	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Monster", pMonster), E_FAIL);
 
 	m_mapLayer.insert({ pLayerTag, pLayer });
 

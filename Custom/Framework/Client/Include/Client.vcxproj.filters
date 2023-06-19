@@ -37,6 +37,9 @@
     <Filter Include="02. GameObject\01. Player">
       <UniqueIdentifier>{bcb82cd7-d112-42d5-9965-3adcec6923e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\02. Monster">
+      <UniqueIdentifier>{7cef0a4f-28d7-4494-afb8-42413b849a42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="..\Header\Player.h">
       <Filter>02. GameObject\01. Player</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\Monster.h">
+      <Filter>02. GameObject\02. Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -82,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Player.cpp">
       <Filter>02. GameObject\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Monster.cpp">
+      <Filter>02. GameObject\02. Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
