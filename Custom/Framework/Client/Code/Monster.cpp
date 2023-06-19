@@ -108,11 +108,10 @@ void CMonster::TraceTarget()
 	if (fDist < 0.1f)
 		return;
 	
-
-	D3DXVec3Normalize(&vDir, &vDir);
-
-	vPos -= vDir * 50.f * 0.0016f;
 	
+	D3DXVec3Normalize(&vDir, &vDir);
+	vPos -= vDir * 50.f * 0.0016f;
 	m_pTransformCom->SetPosition(vPos);
+	m_pTransformCom->SetRotation(pTargetTrans->GetRotation());
 }
 
