@@ -99,7 +99,6 @@ void CMonster::TraceTarget()
 	const CTransform* pTargetTrans = dynamic_cast<CTransform*>(m_pTarget->Get_Component(L"Com_Transform", COMPONENTID::ID_DYNAMIC));
 
 	_vec3 vPos = m_pTransformCom->GetPosition();
-	_vec3 vRot = m_pTransformCom->GetRotation();
 
 	const _vec3& vTargetPos = pTargetTrans->GetPosition();
 
@@ -112,12 +111,8 @@ void CMonster::TraceTarget()
 
 	D3DXVec3Normalize(&vDir, &vDir);
 
-	float fAngle = D3DXVec3Dot(&vDir, &_vec3{0.f, 1.f, 0.f});
-	vRot.x = cosf(fAngle);
-	vRot.y = -sinf(fAngle);
-	
+	vPos -= vDir * 50.f * 0.0016f;
 	
 	m_pTransformCom->SetPosition(vPos);
-	m_pTransformCom->SetRotation(vRot);
 }
 

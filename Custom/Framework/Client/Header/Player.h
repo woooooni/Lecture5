@@ -31,7 +31,7 @@ public:
 	virtual void		Free();
 
 private:
-	void				Input();
+	void				Input(const _float& fTimeDelta);
 
 private:
 	CTriCol*			m_pBufferCom = nullptr;

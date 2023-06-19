@@ -15,6 +15,7 @@ CTransform::CTransform(const CTransform & rhs)
 	, m_vPos(rhs.m_vPos)
 	, m_vRot(rhs.m_vRot)
 	, m_vScale(rhs.m_vScale)
+	, m_vLookAt(rhs.m_vLookAt)
 	, m_matWorld(rhs.m_matWorld)
 {
 }
@@ -26,9 +27,10 @@ CTransform::~CTransform()
 
 HRESULT CTransform::Ready_Transform()
 {
-	m_vPos = {0.f, 0.f, 0.f};
-	m_vRot = {0.f, 0.f, 0.f};
-	m_vScale = {1.f, 1.f, 1.f};
+	m_vPos = _vec3{0.f, 0.f, 0.f };
+	m_vRot = _vec3{0.f, 0.f, 0.f };
+	m_vScale = _vec3{1.f, 1.f, 1.f };
+	m_vLookAt = _vec3{ 0.f, 1.f, 0.f };
 
 	D3DXMatrixIdentity(&m_matWorld);
 	

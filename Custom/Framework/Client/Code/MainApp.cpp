@@ -21,17 +21,7 @@ HRESULT CMainApp::Ready_MainApp(void)
 	FAILED_CHECK_RETURN(Ready_Scene(m_pGraphicDev, &m_pManagementClass), E_FAIL);
 		
 
-	_matrix	matView, matProj;
-
-	D3DXMatrixLookAtLH(&matView,
-		&_vec3(0.f, 0.f, -10.f),
-		&_vec3(0.f, 0.f, 1.f),
-		&_vec3(0.f, 1.f, 0.f));
-
-	m_pGraphicDev->SetTransform(D3DTS_VIEW, &matView);
-
-	D3DXMatrixPerspectiveFovLH(&matProj, D3DXToRadian(60.f), (_float)WINCX / WINCY, 0.1f, 1000.f);
-	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &matProj);
+	
 
 	return S_OK;
 }
@@ -55,6 +45,18 @@ void CMainApp::Render_MainApp()
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	Engine::Render_Begin(D3DXCOLOR(0.f, 0.f, 1.f, 1.f));
+
+	_matrix	matView, matProj;
+
+	D3DXMatrixLookAtLH(&matView,
+		&_vec3(0.f, 0.f, -10.f),
+		&_vec3(0.f, 0.f, 1.f),
+		&_vec3(0.f, 1.f, 0.f));
+
+	m_pGraphicDev->SetTransform(D3DTS_VIEW, &matView);
+
+	D3DXMatrixPerspectiveFovLH(&matProj, D3DXToRadian(60.f), (_float)(WINCX / WINCY), 0.1f, 1000.f);
+	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &matProj);
 
 	m_pManagementClass->Render_Scene(m_pGraphicDev);
 
