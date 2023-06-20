@@ -8,11 +8,13 @@ CBackGround::CBackGround(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 
 }
+
 CBackGround::CBackGround(const CBackGround& rhs)
 	: Engine::CGameObject(rhs)
 {
 
 }
+
 CBackGround::~CBackGround()
 {
 }

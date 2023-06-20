@@ -81,4 +81,14 @@ namespace Engine
 		}
 }
 
+#define SINGLETON(type) public:\
+						static type* GetInst()\
+						{\
+							static type manager;\
+							return &manager;\
+						}\
+						private:\
+							type();\
+							~type();
+
 #endif // Engine_Macro_h__

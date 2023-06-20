@@ -1,50 +1,56 @@
 #pragma once
+
 #include "Component.h"
 
 BEGIN(Engine)
 
-class ENGINE_DLL CTransform : public CComponent
+class ENGINE_DLL CTransform :	public CComponent
 {
 private:
 	explicit CTransform();
-	explicit CTransform(LPDIRECT3DDEVICE9 pDevice);
+	explicit CTransform(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CTransform(const CTransform& rhs);
 	virtual ~CTransform();
 
 public:
-	virtual HRESULT			Ready_Transform();
+	const _matrix*		Get_WorldMatrix() { return &m_matWorld; }
+	void				Get_Info(MATRIX_INFO eType, _vec3* pInfo)
+	{
+		memcpy(pInfo, &m_matWorld.m[eType][0], sizeof(_vec3));
+	}
+	void				Set_Info(MATRIX_INFO eType, _vec3* pInfo)
+	{
+		memcpy(&m_matWorld.m[eType][0], pInfo, sizeof(_vec3));
+	}
+	void				Move_Pos(const _vec3* const pDir, const _float& fTimeDelta, const _float& fSpeed)
+	{
+		m_vInfo[INFO_POS] += *pDir * fTimeDelta * fSpeed;
+	}
+	void				Rotation(ROTATION eType, const _float& fAngle)
+	{
+		*(((_float*)&m_vAngle) + eType) += fAngle;
+	}
+
+	void	Chase_Target(const _vec3* pTargetPos, const _float& fTimeDelta, const _float& fSpeed);
+	const _matrix*		Compute_LookAtTarget(const _vec3* pTargetPos);
+
 
 public:
-	virtual	_int Update_Component(const _float& fTimeDelta);
-	virtual void LateUpdate_Component(void);
+	HRESULT			Ready_Transform();
+	virtual _int	Update_Component(const _float& fTimeDelta);
 
 public:
-	const _matrix&	GetWorldMat() const { return m_matWorld; }
-	const _vec3&	GetPosition() const	{ return m_vPos; }
-	const _vec3&	GetRotation() const { return m_vRot; }
-	const _vec3&	GetScale()	const	{ return m_vScale; }
-	const _vec3&	GetLookAt() const	{ return m_vLookAt; }
-
-	void SetPosition(const _vec3& _vPos)		{ m_vPos = _vPos; }
-	void SetRotation(const _vec3& _vRotation)	{ m_vRot = _vRotation; }
-	void SetScale(const _vec3& _vScale)			{ m_vScale = _vScale; }
-	void SetLookAt(const _vec3& _vLookAt)		{ m_vLookAt = _vLookAt; }
+	_vec3			m_vInfo[INFO_END];
+	_vec3			m_vScale;
+	_vec3			m_vAngle;
+	_matrix			m_matWorld;
 
 public:
-	// CComponent을(를) 통해 상속됨
-	virtual CComponent * Clone(void) override;
-	virtual void Free() override;
-
-public:
-	static CTransform* Create(LPDIRECT3DDEVICE9 _pDevice);
-
+	static CTransform*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	virtual CComponent*		Clone(void);
 private:
-	_vec3		m_vPos;
-	_vec3		m_vRot;
-	_vec3		m_vScale;
-	_vec3		m_vLookAt;
+	virtual void			Free();
 
-	_matrix		m_matWorld;
 };
 
 END

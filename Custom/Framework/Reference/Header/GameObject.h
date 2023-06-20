@@ -27,14 +27,6 @@ protected:
 	map<const _tchar*, CComponent*>		m_mapComponent[ID_END];
 	LPDIRECT3DDEVICE9					m_pGraphicDev;
 
-protected:
-	_matrix								m_matWolrd;
-	_vec3								m_vLook;
-
-	_vec3								m_vPos;
-	_vec3								m_vScale;
-	_vec3								m_vRot;
-
 public:
 	virtual void		Free();
 };
