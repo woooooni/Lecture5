@@ -15,6 +15,7 @@ public:
 									 const _tchar* pObjTag, 
 									 const _tchar* pComponentTag, 
 									 COMPONENTID eID);
+	CLayer*				Get_Layer(const _tchar* pLayerTag);
 
 public:
 	virtual HRESULT		Ready_Scene();

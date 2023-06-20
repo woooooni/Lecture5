@@ -34,6 +34,15 @@
     <Filter Include="04. Component\01. Transform">
       <UniqueIdentifier>{bb29c6d4-4195-4298-8275-dba0a89a8e20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Component\02. Collider">
+      <UniqueIdentifier>{56d56389-83bb-43d9-8895-7d56db62d38f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\02. Collider\BoxCollider">
+      <UniqueIdentifier>{2a497733-a43f-4cdf-836d-c8f923f69e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\02. Collider\SphereCollider">
+      <UniqueIdentifier>{e65e3f5e-aa93-423c-b6e2-64869a3873b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\Scene.h">
@@ -69,6 +78,12 @@
     <ClInclude Include="..\..\Header\Transform.h">
       <Filter>04. Component\01. Transform</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Header\Collider.h">
+      <Filter>04. Component\02. Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\BoxCollider.h">
+      <Filter>04. Component\02. Collider\BoxCollider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Scene.cpp">
@@ -100,6 +115,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\Transform.cpp">
       <Filter>04. Component\01. Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Collider.cpp">
+      <Filter>04. Component\02. Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BoxCollider.cpp">
+      <Filter>04. Component\02. Collider\BoxCollider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

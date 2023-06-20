@@ -40,6 +40,9 @@
     <Filter Include="02. GameObject\02. Monster">
       <UniqueIdentifier>{acc0d059-900d-4485-8f0e-b7cd0bbc5293}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\03. Bullet">
+      <UniqueIdentifier>{d146b7ca-43ec-4474-8ec5-5823cc1d879b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -69,6 +72,9 @@
     <ClInclude Include="..\Header\Monster.h">
       <Filter>02. GameObject\02. Monster</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\Bullet.h">
+      <Filter>02. GameObject\03. Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Monster.cpp">
       <Filter>02. GameObject\02. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Bullet.cpp">
+      <Filter>02. GameObject\03. Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

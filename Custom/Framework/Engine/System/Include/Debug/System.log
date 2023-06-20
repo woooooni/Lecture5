@@ -1,11 +1,13 @@
-﻿     ../Bin\System.lib 라이브러리 및 ../Bin\System.exp 개체를 생성하고 있습니다.
+﻿  GraphicDev.cpp
   System.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\System\Include\../Bin\System.dll
   System.vcxproj -> ../Bin\System.pdb (Full PDB)
   .\Engine\System\Code\*.h 
-  지정된 파일을 찾을 수 없습니다.
           0개 파일이 복사되었습니다.
+  지정된 파일을 찾을 수 없습니다.
           1개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
+  .\Engine\Header\BoxCollider.h
+  .\Engine\Header\Collider.h
   .\Engine\Header\Component.h
   .\Engine\Header\Engine_Define.h
   .\Engine\Header\Engine_Enum.h
@@ -31,7 +33,7 @@
   .\Engine\Header\Transform.h
   .\Engine\Header\TriCol.h
   .\Engine\Header\VIBuffer.h
-         25개 파일이 복사되었습니다.
+         27개 파일이 복사되었습니다.
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl
           2개 파일이 복사되었습니다.

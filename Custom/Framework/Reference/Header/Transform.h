@@ -26,12 +26,20 @@ public:
 	{
 		m_vInfo[INFO_POS] += *pDir * fTimeDelta * fSpeed;
 	}
+
+	void				Set_Pos(const _vec3* const pPos)
+	{
+		m_vInfo[INFO_POS] = *pPos;
+	}
+
 	void				Rotation(ROTATION eType, const _float& fAngle)
 	{
 		*(((_float*)&m_vAngle) + eType) += fAngle;
 	}
 
-	void	Chase_Target(const _vec3* pTargetPos, const _float& fTimeDelta, const _float& fSpeed);
+	const _vec3&		GetRotation()						{ return m_vAngle; }
+	void				SetRotation(const _vec3& _vAngle)	{ m_vAngle = _vAngle; }
+	void				Chase_Target(const _vec3* pTargetPos, const _float& fTimeDelta, const _float& fSpeed);
 	const _matrix*		Compute_LookAtTarget(const _vec3* pTargetPos);
 
 

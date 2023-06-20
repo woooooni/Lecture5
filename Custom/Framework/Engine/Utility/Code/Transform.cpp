@@ -95,7 +95,7 @@ _int CTransform::Update_Component(const _float & fTimeDelta)
 	for (_int i = 0; i < INFO_POS; ++i)
 	{
 		D3DXVec3Normalize(&m_vInfo[i], &m_vInfo[i]);
-		m_vInfo[i] *= *(((_float*)&m_vScale) + i);
+		m_vInfo[i] *= *(((_float*)&m_vScale) + i);	//m_vScale의 각 원소를 추출해 곱해줌.
 	}
 	
 	// 회전 변환
@@ -114,9 +114,18 @@ _int CTransform::Update_Component(const _float & fTimeDelta)
 	}
 
 	// 월드 행렬 구성
+	
+	/*
+		rx	ry	rz	0		-> right
+		ux	uy	uz	0		-> up
+		lx	ly	lz	0		-> look
+		px	py	pz	1		-> position
+	*/ // 이거 맞음?
 
 	for (_int i = 0; i < INFO_END; ++i)
 		memcpy(&m_matWorld.m[i][0], &m_vInfo[i], sizeof(_vec3));
+
+
 
 	return 0;
 }

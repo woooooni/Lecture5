@@ -6,6 +6,7 @@ BEGIN(Engine)
 
 class CRcCol;
 class CTransform;
+class CCollider;
 
 END
 
@@ -25,10 +26,12 @@ public:
 private:
 	HRESULT		Add_Component(void);
 	void		Key_Input(const _float& fTimeDelta);
+	void		Shoot();
 
 private:
 	CRcCol*			m_pBufferCom = nullptr;
 	CTransform*		m_pTransformCom = nullptr;
+	CCollider*		m_pColliderCom = nullptr;
 
 	_vec3			m_vDir;
 	_float			m_fSpeed;

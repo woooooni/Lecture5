@@ -7,11 +7,13 @@ CTriCol::CTriCol()
 CTriCol::CTriCol(LPDIRECT3DDEVICE9 pGraphicDev)
 	:  CVIBuffer(pGraphicDev)
 {
+
 }
 
 CTriCol::CTriCol(const CTriCol & rhs)
 	: CVIBuffer(rhs)
 {
+	
 }
 
 

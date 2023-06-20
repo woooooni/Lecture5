@@ -7,6 +7,7 @@
 #include "TriCol.h"
 #include "RcCol.h"
 #include "Transform.h"
+#include "Collider.h"
 
 BEGIN(Engine)
 
@@ -21,6 +22,9 @@ inline HRESULT			Set_Scene(CScene* pScene);
 inline _int				Update_Scene(const _float& fTimeDelta);
 inline void				LateUpdate_Scene();
 inline void				Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev);
+
+inline CScene*			GetCurrScene();
+inline CLayer*			Get_Layer(const _tchar* pLayerTag);
 
 // ProtoMgr
 inline HRESULT			Ready_Proto(const _tchar* pProtoTag, CComponent* pComponent);

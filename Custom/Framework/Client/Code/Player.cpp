@@ -2,6 +2,10 @@
 #include "..\Header\Player.h"
 
 #include "Export_Function.h"
+#include "Export_Utility.h"
+#include "Bullet.h"
+
+#include "Scene.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -60,11 +64,18 @@ HRESULT CPlayer::Add_Component(void)
 /*	pComponent = m_pBufferCom = dynamic_cast<CTriCol*>(Engine::Clone_Proto(L"Proto_TriCol"));*/
 	pComponent = m_pBufferCom = dynamic_cast<CRcCol*>(Engine::Clone_Proto(L"Proto_RcCol"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	pComponent->SetOwner(this);
 	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);
 
 	pComponent = m_pTransformCom = dynamic_cast<CTransform*>(Engine::Clone_Proto(L"Proto_Transform"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	pComponent->SetOwner(this);
 	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Transform", pComponent);
+
+	//pComponent = m_pColliderCom = dynamic_cast<CCollider*>(Engine::Clone_Proto(L"Proto_Collider"));
+	//NULL_CHECK_RETURN(pComponent, E_FAIL);
+	//pComponent->SetOwner(this);
+	//m_mapComponent[ID_DYNAMIC].emplace(L"Com_Collider", pComponent);
 
 	return S_OK;
 }
@@ -83,7 +94,11 @@ void CPlayer::Key_Input(const _float& fTimeDelta)
 	{
 		D3DXVec3Normalize(&m_vDir, &m_vDir);
 		m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, -m_fSpeed);
+	}
 
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+	{
+		Shoot();
 	}
 
 	if (GetAsyncKeyState('Q'))
@@ -104,6 +119,20 @@ void CPlayer::Key_Input(const _float& fTimeDelta)
 	if (GetAsyncKeyState('D'))
 		m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(-180.f * fTimeDelta));
 
+}
+
+void CPlayer::Shoot()
+{
+	CBullet* pBullet = CBullet::Create(m_pGraphicDev);
+	CTransform* pBulletTransform = dynamic_cast<CTransform*>(pBullet->Get_Component(L"Com_Transform", ID_DYNAMIC));
+
+	_vec3 vPos;
+	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
+	pBulletTransform->Set_Pos(&vPos);
+	pBulletTransform->SetRotation(m_pTransformCom->GetRotation());
+	pBullet->SetDir(m_vDir);
+
+	Engine::GetCurrScene()->Get_Layer(L"Environment")->Add_GameObject(L"Bullet", pBullet);
 }
 
 void CPlayer::Free()

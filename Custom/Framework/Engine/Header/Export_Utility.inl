@@ -1,3 +1,4 @@
+#include "Export_Utility.h"
 CComponent*			Get_Component(const _tchar* pLayerTag,
 									const _tchar* pObjTag,
 									const _tchar* pComponentTag,
@@ -31,6 +32,16 @@ void			LateUpdate_Scene()
 void			Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 	CManagement::GetInstance()->Render_Scene(pGraphicDev);
+}
+
+inline CScene * GetCurrScene()
+{
+	return CManagement::GetInstance()->GetCurrScene();
+}
+
+inline CLayer * Get_Layer(const _tchar * pLayerTag)
+{
+	return CManagement::GetInstance()->GetCurrScene()->Get_Layer(pLayerTag);
 }
 
 HRESULT			Ready_Proto(const _tchar* pProtoTag, CComponent* pComponent)

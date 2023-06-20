@@ -27,6 +27,9 @@ public:
 	void			LateUpdate_Scene();
 	void			Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev);
 
+public:
+	CScene*			GetCurrScene() { return m_pScene; }
+
 private:
 	CScene*			m_pScene;
 

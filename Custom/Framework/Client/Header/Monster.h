@@ -6,6 +6,7 @@ BEGIN(Engine)
 
 class CTriCol;
 class CTransform;
+class CCollider;
 
 END
 
@@ -27,8 +28,9 @@ private:
 
 private:
 	CTriCol*			m_pBufferCom = nullptr;
-	CTransform*		m_pTransformCom = nullptr;
-	_float			m_fSpeed = 5.f;
+	CTransform*			m_pTransformCom = nullptr;
+	CCollider*			m_pColliderCom = nullptr;
+	_float				m_fSpeed = 5.f;
 	
 public:
 	static CMonster*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
