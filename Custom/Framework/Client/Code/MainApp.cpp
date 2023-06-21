@@ -24,9 +24,9 @@ HRESULT CMainApp::Ready_MainApp(void)
 	_matrix	matView, matProj;
 
 	D3DXMatrixLookAtLH(&matView,
-		&_vec3(0.f, 0.f, -10.f),
-		&_vec3(0.f, 0.f, 1.f),
-		&_vec3(0.f, 1.f, 0.f));
+		&_vec3(0.f, 0.f, -10.f),	// eye
+		&_vec3(0.f, 0.f, 1.f),	// at
+		&_vec3(0.f, 1.f, 0.f));		// up
 
 	m_pGraphicDev->SetTransform(D3DTS_VIEW, &matView);
 

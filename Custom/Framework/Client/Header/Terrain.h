@@ -4,9 +4,10 @@
 
 BEGIN(Engine)
 
-class CTriCol;
+class CRcTex;
+class CTexture;
 class CTransform;
-class CCollider;
+class CRcTerrain;
 
 END
 
@@ -20,11 +21,19 @@ private:
 private:
 	HRESULT		Add_Component(void);
 
+public:
+	virtual HRESULT Ready_Object(void) override;
+	virtual _int Update_Object(const _float& fTimeDelta) override;
+	virtual void LateUpdate_Object(void) override;
+	virtual void Render_Object(void) override;
+
 private:
-	CTriCol*			m_pBufferCom = nullptr;
-	CTransform*			m_pTransformCom = nullptr;
-	CCollider*			m_pColliderCom = nullptr;
-	_float				m_fSpeed = 5.f;
+	void		Key_Input(const _float& fTimeDelta);
+
+private:
+	CRcTerrain*		m_pBufferCom = nullptr;
+	CTexture*		m_pTextureCom = nullptr;
+	CTransform*		m_pTransformCom = nullptr;
 
 public:
 	static CTerrain*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

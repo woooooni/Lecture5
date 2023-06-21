@@ -7,6 +7,7 @@
 CBullet::CBullet(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_vDir(0.f, 0.f, 0.f)
+	, m_fSpeed(5.f)
 {
 
 }
@@ -14,6 +15,7 @@ CBullet::CBullet(LPDIRECT3DDEVICE9 pGraphicDev)
 CBullet::CBullet(const CBullet & rhs)
 	: Engine::CGameObject(rhs)
 	, m_fSpeed(rhs.m_fSpeed)
+	, m_vDir(0.f, 0.f, 0.f)
 {
 	m_vDir = rhs.m_vDir;
 	//m_pBufferCom	= rhs.m_pBufferCom->Clone();

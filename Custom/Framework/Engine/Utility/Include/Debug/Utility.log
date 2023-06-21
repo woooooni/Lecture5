@@ -1,29 +1,47 @@
-﻿  VIBuffer.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  TriCol.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  Transform.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  Texture.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  Scene.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  RcTex.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  RcCol.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  ProtoMgr.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  Management.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  Layer.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  GameObject.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  Component.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  Collider.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  BoxCollider.cpp
-c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
-  Generating Code...
+﻿  RcTerrain.cpp
+c:\users\xodnj\desktop\lecture5\custom\framework\engine\utility\code\rcterrain.cpp(101): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\xodnj\desktop\lecture5\custom\framework\engine\utility\code\rcterrain.cpp(103): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Utility.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\Utility\Include\../Bin\Utility.dll
+  Utility.vcxproj -> ../Bin\Utility.pdb (Full PDB)
+  .\Engine\Utility\Code\*.h 
+  지정된 파일을 찾을 수 없습니다.
+          0개 파일이 복사되었습니다.
+  .\Engine\Utility\Code\*.hpp 
+  지정된 파일을 찾을 수 없습니다.
+          0개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.
+  .\Engine\Header\BoxCollider.h
+  .\Engine\Header\Collider.h
+  .\Engine\Header\Component.h
+  .\Engine\Header\Engine_Define.h
+  .\Engine\Header\Engine_Enum.h
+  .\Engine\Header\Engine_Function.h
+  .\Engine\Header\Engine_Macro.h
+  .\Engine\Header\Engine_Struct.h
+  .\Engine\Header\Engine_Typedef.h
+  .\Engine\Header\Export_Function.h
+  .\Engine\Header\Export_System.h
+  .\Engine\Header\Export_Utility.h
+  .\Engine\Header\Frame.h
+  .\Engine\Header\FrameMgr.h
+  .\Engine\Header\GameObject.h
+  .\Engine\Header\GraphicDev.h
+  .\Engine\Header\ImGuiMgr.h
+  .\Engine\Header\Layer.h
+  .\Engine\Header\Management.h
+  .\Engine\Header\ProtoMgr.h
+  .\Engine\Header\RcCol.h
+  .\Engine\Header\RcTerrain.h
+  .\Engine\Header\RcTex.h
+  .\Engine\Header\Scene.h
+  .\Engine\Header\Texture.h
+  .\Engine\Header\Timer.h
+  .\Engine\Header\TimerMgr.h
+  .\Engine\Header\Transform.h
+  .\Engine\Header\TriCol.h
+  .\Engine\Header\VIBuffer.h
+         30개 파일이 복사되었습니다.
+  .\Engine\Header\Export_System.inl
+  .\Engine\Header\Export_Utility.inl
+          2개 파일이 복사되었습니다.

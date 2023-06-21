@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Base.h"
 #include "Component.h"
 
 BEGIN(Engine)

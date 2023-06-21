@@ -7,10 +7,12 @@
 #include "TriCol.h"
 #include "RcCol.h"
 #include "RcTex.h"
+#include "RcTerrain.h"
 
 #include "Transform.h"
 #include "Collider.h"
 #include "Texture.h"
+
 
 BEGIN(Engine)
 
