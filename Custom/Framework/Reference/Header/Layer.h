@@ -25,6 +25,7 @@ private:
 	map<const _tchar*, CGameObject*>		m_mapObject;
 
 public:
+
 	static		CLayer*		Create();
 	virtual		void		Free();
 };

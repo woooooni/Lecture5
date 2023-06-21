@@ -28,9 +28,6 @@
     <Filter Include="05. ProtoMgr">
       <UniqueIdentifier>{2c66c4e1-444a-4a44-a451-e6c6a86c5a42}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. Component\00. VIBuffer\02. RcCol">
-      <UniqueIdentifier>{306bc3f8-0fce-4597-aac7-687a976ec7aa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. Component\01. Transform">
       <UniqueIdentifier>{bb29c6d4-4195-4298-8275-dba0a89a8e20}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,15 @@
     </Filter>
     <Filter Include="04. Component\02. Collider\SphereCollider">
       <UniqueIdentifier>{e65e3f5e-aa93-423c-b6e2-64869a3873b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\01. RcCol">
+      <UniqueIdentifier>{306bc3f8-0fce-4597-aac7-687a976ec7aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\02. RcTex">
+      <UniqueIdentifier>{ca226440-7f75-4918-987d-4f7a40d0d358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\03. Texture">
+      <UniqueIdentifier>{832ff2e2-37a5-40b5-b58e-c396606f19a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +79,7 @@
       <Filter>05. ProtoMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Header\RcCol.h">
-      <Filter>04. Component\00. VIBuffer\02. RcCol</Filter>
+      <Filter>04. Component\00. VIBuffer\01. RcCol</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Header\Transform.h">
       <Filter>04. Component\01. Transform</Filter>
@@ -83,6 +89,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Header\BoxCollider.h">
       <Filter>04. Component\02. Collider\BoxCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\RcTex.h">
+      <Filter>04. Component\00. VIBuffer\02. RcTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Texture.h">
+      <Filter>04. Component\03. Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -111,7 +123,7 @@
       <Filter>05. ProtoMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\RcCol.cpp">
-      <Filter>04. Component\00. VIBuffer\02. RcCol</Filter>
+      <Filter>04. Component\00. VIBuffer\01. RcCol</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\Transform.cpp">
       <Filter>04. Component\01. Transform</Filter>
@@ -121,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\BoxCollider.cpp">
       <Filter>04. Component\02. Collider\BoxCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RcTex.cpp">
+      <Filter>04. Component\00. VIBuffer\02. RcTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Texture.cpp">
+      <Filter>04. Component\03. Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

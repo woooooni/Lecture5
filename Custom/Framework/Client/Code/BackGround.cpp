@@ -40,6 +40,7 @@ void CBackGround::Render_Object(void)
 {
 	// m_pGraphicDev->SetTransform(D3DTS_WORLD, ? );
 
+	m_pTextureCom->Render_Texture(0);
 	m_pBufferCom->Render_Buffer();
 
 	__super::Render_Object();
@@ -48,11 +49,18 @@ void CBackGround::Render_Object(void)
 HRESULT CBackGround::Add_Component(void)
 {
 	CComponent*			pComponent = nullptr;
-
-/*	pComponent = m_pBufferCom = dynamic_cast<CTriCol*>(Engine::Clone_Proto(L"Proto_TriCol"));*/
-	pComponent = m_pBufferCom = dynamic_cast<CRcCol*>(Engine::Clone_Proto(L"Proto_RcCol"));
+	
+	pComponent = m_pBufferCom = dynamic_cast<CRcTex*>(Engine::Clone_Proto(L"Proto_RcTex"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);
+
+	pComponent = m_pTextureCom = dynamic_cast<CTexture*>(Engine::Clone_Proto(L"Proto_Texture_Logo"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_mapComponent[ID_STATIC].emplace(L"Com_Texture_Logo", pComponent);
+
+
+
+
 
 	return S_OK;
 }

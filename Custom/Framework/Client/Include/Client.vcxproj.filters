@@ -43,6 +43,9 @@
     <Filter Include="02. GameObject\03. Bullet">
       <UniqueIdentifier>{d146b7ca-43ec-4474-8ec5-5823cc1d879b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\04. Terrain">
+      <UniqueIdentifier>{cd4f1474-ab3d-4e8e-bef4-881d3d8ee9ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -75,6 +78,9 @@
     <ClInclude Include="..\Header\Bullet.h">
       <Filter>02. GameObject\03. Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\Terrain.h">
+      <Filter>02. GameObject\04. Terrain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -100,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Bullet.cpp">
       <Filter>02. GameObject\03. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Terrain.cpp">
+      <Filter>02. GameObject\04. Terrain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
