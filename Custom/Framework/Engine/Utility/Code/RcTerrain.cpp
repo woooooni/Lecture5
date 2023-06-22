@@ -48,8 +48,6 @@ HRESULT CRcTerrain::Ready_Buffer(void)
 	m_dwVtxCnt = m_iVertexCountRow * m_iVertexCountCol;
 	m_dwTriCnt = m_iCellCountRow * m_iCellCountCol * 2;
 
-
-
 	m_dwVtxSize = sizeof(VTXTEX);
 	m_dwIdxSize = sizeof(INDEX32);
 	m_IdxFmt = D3DFMT_INDEX32;

@@ -81,6 +81,9 @@
     <ClInclude Include="..\Header\Terrain.h">
       <Filter>02. GameObject\04. Terrain</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\Stage.h">
+      <Filter>01. Scene\01. Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Terrain.cpp">
       <Filter>02. GameObject\04. Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Stage.cpp">
+      <Filter>01. Scene\01. Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

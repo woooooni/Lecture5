@@ -14,6 +14,8 @@
 #include "Texture.h"
 
 
+
+
 BEGIN(Engine)
 
 inline CComponent*		Get_Component(const _tchar* pLayerTag,

@@ -16,9 +16,7 @@ public:
 	virtual HRESULT			Ready_Buffer();
 	virtual void			Render_Buffer(void);
 
-public:
-	static CRcTerrain*		Create(LPDIRECT3DDEVICE9 pGraphicDev, _uint iVertexRow, _uint iVertexCol, _uint iCellSpacing);
-	virtual CComponent*		Clone(void);
+
 
 public:
 	_uint m_iVertexCountRow; 
@@ -34,8 +32,14 @@ public:
 
 	list<VTXTEX> m_listVertex;
 	list<INDEX32> m_listIndex;
+
 private:
 	virtual	void	Free(void);
+
+public:
+	static CRcTerrain*		Create(LPDIRECT3DDEVICE9 pGraphicDev, _uint iVertexRow, _uint iVertexCol, _uint iCellSpacing);
+	virtual CComponent*		Clone(void);
+
 
 
 };

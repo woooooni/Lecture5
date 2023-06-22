@@ -33,6 +33,29 @@ HRESULT Ready_Frame(const _tchar* pFrameTag, const _float& fCallLimit)
 	return CFrameMgr::GetInstance()->Ready_Frame(pFrameTag, fCallLimit);
 }
 
+
+_byte	Get_DIKeyState(_ubyte byKeyID)
+{
+	return CInputDevice::GetInstance()->Get_DIKeyState(byKeyID);
+}
+_byte	Get_DIMouseState(MOUSEKEYSTATE eMouse)
+{
+	return CInputDevice::GetInstance()->Get_DIMouseState(eMouse);
+}
+_long	Get_DIMouseMove(MOUSEMOVESTATE eMouseState)
+{
+	return CInputDevice::GetInstance()->Get_DIMouseMove(eMouseState);
+}
+HRESULT	Ready_InputDev(HINSTANCE hInst, HWND hWnd)
+{
+	return CInputDevice::GetInstance()->Ready_InputDev(hInst, hWnd);
+}
+void		Update_InputDev(void)
+{
+	CInputDevice::GetInstance()->Update_InputDev();
+}
+
+
 void			Release_System()
 {
 	CFrameMgr::GetInstance()->DestroyInstance();

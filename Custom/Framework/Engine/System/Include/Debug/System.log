@@ -1,4 +1,4 @@
-﻿  FrameMgr.cpp
+﻿     Creating library ../Bin\System.lib and object ../Bin\System.exp
   System.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\System\Include\../Bin\System.dll
   System.vcxproj -> ../Bin\System.pdb (Full PDB)
   .\Engine\System\Code\*.h 
@@ -23,6 +23,7 @@
   .\Engine\Header\GameObject.h
   .\Engine\Header\GraphicDev.h
   .\Engine\Header\ImGuiMgr.h
+  .\Engine\Header\InputDevice.h
   .\Engine\Header\Layer.h
   .\Engine\Header\Management.h
   .\Engine\Header\ProtoMgr.h
@@ -36,7 +37,7 @@
   .\Engine\Header\Transform.h
   .\Engine\Header\TriCol.h
   .\Engine\Header\VIBuffer.h
-         30개 파일이 복사되었습니다.
+         31개 파일이 복사되었습니다.
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl
           2개 파일이 복사되었습니다.

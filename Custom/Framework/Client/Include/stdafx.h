@@ -33,7 +33,7 @@
 #include <process.h>
 
 extern HWND g_hWnd;
-
+extern HINSTANCE g_hInstance;
 
 #ifdef _DEBUG
 

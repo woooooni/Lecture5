@@ -19,8 +19,17 @@
     <Filter Include="02. Frame\Manager">
       <UniqueIdentifier>{3f2641a0-a958-4db9-ab12-93b39ff210e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. ImGui">
+    <Filter Include="98. ImGui">
       <UniqueIdentifier>{ecb18418-d9ab-4c5c-961f-1a0548abba06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Camera">
+      <UniqueIdentifier>{49073fcd-6338-4994-898f-0e9243d29236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Camera\Manager">
+      <UniqueIdentifier>{3fdc30e3-8167-4da9-8d6e-4eae6366dc07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. InputDevice">
+      <UniqueIdentifier>{5c3e7fd6-05db-434e-b76c-9146195c1775}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Header\FrameMgr.h">
       <Filter>02. Frame\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\InputDevice.h">
+      <Filter>04. InputDevice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\FrameMgr.cpp">
       <Filter>02. Frame\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\InputDevice.cpp">
+      <Filter>04. InputDevice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

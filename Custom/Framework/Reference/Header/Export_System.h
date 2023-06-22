@@ -4,6 +4,7 @@
 #include "GraphicDev.h"
 #include "TimerMgr.h"
 #include "FrameMgr.h"
+#include "InputDevice.h"
 
 BEGIN(Engine)
 
@@ -21,6 +22,17 @@ inline	HRESULT		Ready_Timer(const _tchar* pTimerTag);
 inline _bool	Ispermit_Call(const _tchar* pFrameTag, const _float& fTimeDelta);
 inline HRESULT Ready_Frame(const _tchar* pFrameTag, const _float& fCallLimit);
 
+//InputDevice
+inline _byte	Get_DIKeyState(_ubyte byKeyID);
+inline _byte	Get_DIMouseState(MOUSEKEYSTATE eMouse);
+inline _long	Get_DIMouseMove(MOUSEMOVESTATE eMouseState);
+inline HRESULT	Ready_InputDev(HINSTANCE hInst, HWND hWnd);
+inline void		Update_InputDev(void);
+
+//CameraMgr
+
+
+// Release
 inline void			Release_System();
 
 #include "Export_System.inl"

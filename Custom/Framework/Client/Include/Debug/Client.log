@@ -1,3 +1,15 @@
-﻿  Terrain.cpp
+﻿  Client.cpp
+  MainApp.cpp
+  BackGround.cpp
+  Generating Code...
+  Compiling...
+  Terrain.cpp
+  Stage.cpp
+  Player.cpp
+  Monster.cpp
+  Logo.cpp
+  Bullet.cpp
+  Generating Code...
+     Creating library ../Bin\Client.lib and object ../Bin\Client.exp
   Client.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Client\Include\../Bin\Client.exe
   Client.vcxproj -> ../Bin\Client.pdb (Full PDB)
