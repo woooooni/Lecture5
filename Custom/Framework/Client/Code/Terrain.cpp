@@ -26,7 +26,7 @@ CTerrain::~CTerrain()
 HRESULT CTerrain::Ready_Object(void)
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
-
+	m_pTransformCom->Set_Pos(&_vec3(0.f, 0.f, 0.f));
 	return S_OK;
 }
 
@@ -59,39 +59,39 @@ void CTerrain::Render_Object(void)
 
 void CTerrain::Key_Input(const _float & fTimeDelta)
 {
-	if (GetAsyncKeyState(VK_UP) & 0x8001)
-	{
-		_vec3 vPos;
-		m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
-		vPos.z -= 10.f * fTimeDelta;
-		m_pTransformCom->Set_Pos(&vPos);
-	}
+	//if (GetAsyncKeyState(VK_UP) & 0x8001)
+	//{
+	//	_vec3 vPos;
+	//	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
+	//	vPos.z -= 10.f * fTimeDelta;
+	//	m_pTransformCom->Set_Pos(&vPos);
+	//}
 
-	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
-	{
-		_vec3 vPos;
-		m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
-		vPos.z += 10.f * fTimeDelta;
-		m_pTransformCom->Set_Pos(&vPos);
-	}
+	//if (GetAsyncKeyState(VK_DOWN) & 0x8001)
+	//{
+	//	_vec3 vPos;
+	//	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
+	//	vPos.z += 10.f * fTimeDelta;
+	//	m_pTransformCom->Set_Pos(&vPos);
+	//}
 
-	if (GetAsyncKeyState('Q'))
-		m_pTransformCom->Rotation(ROT_X, D3DXToRadian(180.f * fTimeDelta));
+	//if (GetAsyncKeyState('Q'))
+	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('A'))
-		m_pTransformCom->Rotation(ROT_X, D3DXToRadian(-180.f * fTimeDelta));
+	//if (GetAsyncKeyState('A'))
+	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(-180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('W'))
-		m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f * fTimeDelta));
+	//if (GetAsyncKeyState('W'))
+	//	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('S'))
-		m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(-180.f * fTimeDelta));
+	//if (GetAsyncKeyState('S'))
+	//	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(-180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('E'))
-		m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(180.f * fTimeDelta));
+	//if (GetAsyncKeyState('E'))
+	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('D'))
-		m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(-180.f * fTimeDelta));
+	//if (GetAsyncKeyState('D'))
+	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(-180.f * fTimeDelta));
 }
 
 HRESULT CTerrain::Add_Component(void)
@@ -112,7 +112,7 @@ HRESULT CTerrain::Add_Component(void)
 	pComponent = m_pTransformCom = dynamic_cast<CTransform*>(Engine::Clone_Proto(L"Proto_Transform"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_pTransformCom->SetOwner(this);
-	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Transform", pComponent);
+	m_mapComponent[ID_STATIC].emplace(L"Com_Transform", pComponent);
 
 	return S_OK;
 }

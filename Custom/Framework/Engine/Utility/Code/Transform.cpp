@@ -76,11 +76,21 @@ const _matrix * CTransform::Compute_LookAtTarget(const _vec3 * pTargetPos)
 														 D3DXVec3Normalize(&vUp, &m_vInfo[INFO_UP]))));
 }
 
+_vec3 CTransform::Get_Scale()
+{
+	_vec3 vRight, vUp, vLook;
+	Get_Info(INFO_RIGHT, &vRight);
+	Get_Info(INFO_UP, &vUp);
+	Get_Info(INFO_LOOK, &vLook);
+
+	return _vec3(D3DXVec3Length(&vRight),
+		D3DXVec3Length(&vUp),
+		D3DXVec3Length(&vLook));
+}
+
 void CTransform::RotationAxis(const _vec3 & vAxis, const _float & fAngle)
 {
-
 	_vec3		vRight, vUp, vLook;
-
 
 	Get_Info(INFO_RIGHT, &vRight);
 	Get_Info(INFO_UP, &vUp);
@@ -106,54 +116,10 @@ HRESULT CTransform::Ready_Transform()
 	for (_int i = 0; i < INFO_END; ++i)
 		memcpy(&m_vInfo[i], &m_matWorld.m[i][0], sizeof(_vec3));
 
+
 	return S_OK;
 }
 
-_int CTransform::Update_Component(const _float & fTimeDelta)
-{
-	D3DXMatrixIdentity(&m_matWorld);
-
-	for (_int i = 0; i < INFO_POS; ++i)
-		memcpy(&m_vInfo[i], &m_matWorld.m[i][0], sizeof(_vec3));
-
-	// 크기 변환
-	for (_int i = 0; i < INFO_POS; ++i)
-	{
-		D3DXVec3Normalize(&m_vInfo[i], &m_vInfo[i]);
-		m_vInfo[i] *= *(((_float*)&m_vScale) + i);	//m_vScale의 각 원소를 추출해 곱해줌.
-	}
-
-	// 회전 변환
-	_matrix			matRot[ROT_END];
-
-	D3DXMatrixRotationX(&matRot[ROT_X], m_vAngle.x);
-	D3DXMatrixRotationY(&matRot[ROT_Y], m_vAngle.y);
-	D3DXMatrixRotationZ(&matRot[ROT_Z], m_vAngle.z);
-
-	for (_int i = 0; i < INFO_POS; ++i)
-	{
-		for (_int j = 0; j < ROT_END; ++j)
-		{
-			D3DXVec3TransformNormal(&m_vInfo[i], &m_vInfo[i], &matRot[j]);
-		}
-	}
-
-	// 월드 행렬 구성
-
-	/*
-	rx	ry	rz	0		-> right
-	ux	uy	uz	0		-> up
-	lx	ly	lz	0		-> look
-	px	py	pz	1		-> position
-	*/ // 이거 맞음?
-
-	for (_int i = 0; i < INFO_END; ++i)
-		memcpy(&m_matWorld.m[i][0], &m_vInfo[i], sizeof(_vec3));
-
-
-
-	return 0;
-}
 
 CTransform * CTransform::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {

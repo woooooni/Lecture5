@@ -83,42 +83,42 @@ HRESULT CPlayer::Add_Component(void)
 
 void CPlayer::Key_Input(const _float& fTimeDelta)
 {
-	m_pTransformCom->Get_Info(INFO_UP, &m_vDir);
+	//m_pTransformCom->Get_Info(INFO_UP, &m_vDir);
 
-	if (GetAsyncKeyState(VK_UP))
-	{
-		D3DXVec3Normalize(&m_vDir, &m_vDir);
-		m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, m_fSpeed);
-	}
+	//if (GetAsyncKeyState(VK_UP))
+	//{
+	//	D3DXVec3Normalize(&m_vDir, &m_vDir);
+	//	m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, m_fSpeed);
+	//}
 
-	if (GetAsyncKeyState(VK_DOWN))
-	{
-		D3DXVec3Normalize(&m_vDir, &m_vDir);
-		m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, -m_fSpeed);
-	}
+	//if (GetAsyncKeyState(VK_DOWN))
+	//{
+	//	D3DXVec3Normalize(&m_vDir, &m_vDir);
+	//	m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, -m_fSpeed);
+	//}
 
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
-	{
-		Shoot();
-	}
+	//if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+	//{
+	//	Shoot();
+	//}
 
-	if (GetAsyncKeyState('Q'))
-		m_pTransformCom->Rotation(ROT_X, D3DXToRadian(180.f * fTimeDelta));
+	//if (GetAsyncKeyState('Q'))
+	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('A'))
-		m_pTransformCom->Rotation(ROT_X, D3DXToRadian(-180.f * fTimeDelta));
-	
-	if (GetAsyncKeyState('W'))
-		m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f * fTimeDelta));
+	//if (GetAsyncKeyState('A'))
+	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(-180.f * fTimeDelta));
+	//
+	//if (GetAsyncKeyState('W'))
+	//	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('S'))
-		m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(-180.f * fTimeDelta));
+	//if (GetAsyncKeyState('S'))
+	//	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(-180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('E'))
-		m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(180.f * fTimeDelta));
+	//if (GetAsyncKeyState('E'))
+	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(180.f * fTimeDelta));
 
-	if (GetAsyncKeyState('D'))
-		m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(-180.f * fTimeDelta));
+	//if (GetAsyncKeyState('D'))
+	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(-180.f * fTimeDelta));
 
 }
 
@@ -130,7 +130,7 @@ void CPlayer::Shoot()
 	_vec3 vPos;
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
 	pBulletTransform->Set_Pos(&vPos);
-	pBulletTransform->SetRotation(m_pTransformCom->GetRotation());
+//	pBulletTransform->SetRotation(m_pTransformCom->GetRotation());
 	pBullet->SetDir(m_vDir);
 
 	Engine::GetCurrScene()->Get_Layer(L"Environment")->Add_GameObject(L"Bullet", pBullet);

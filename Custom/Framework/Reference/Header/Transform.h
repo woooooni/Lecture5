@@ -14,8 +14,6 @@ private:
 
 public:
 	const _matrix*		Get_WorldMatrix() { return &m_matWorld; }
-
-
 	const _matrix		Get_WorldInverseMatrix() 
 	{
 		_matrix		matWorldInv;
@@ -34,29 +32,25 @@ public:
 	void				Move_Pos(const _vec3* const pDir, const _float& fTimeDelta, const _float& fSpeed)
 	{
 		m_vInfo[INFO_POS] += *pDir * fTimeDelta * fSpeed;
+		Set_Info(INFO_POS, &m_vInfo[INFO_POS]);
 	}
 
 	void				Set_Pos(const _vec3* const pPos)
 	{
 		m_vInfo[INFO_POS] = *pPos;
+		Set_Info(INFO_POS, &m_vInfo[INFO_POS]);
 	}
 
-	void				Rotation(ROTATION eType, const _float& fAngle)
-	{
-		*(((_float*)&m_vAngle) + eType) += fAngle;
-	}
+	_vec3 Get_Scale();
+	
 
 	void				RotationAxis(const _vec3& vAxis, const _float& fAngle);
-
-	const _vec3&		GetRotation()						{ return m_vAngle; }
-	void				SetRotation(const _vec3& _vAngle)	{ m_vAngle = _vAngle; }
 	void				Chase_Target(const _vec3* pTargetPos, const _float& fTimeDelta, const _float& fSpeed);
 	const _matrix*		Compute_LookAtTarget(const _vec3* pTargetPos);
 
 
 public:
 	HRESULT			Ready_Transform();
-	virtual _int	Update_Component(const _float& fTimeDelta);
 
 public:
 	_vec3			m_vInfo[INFO_END];
