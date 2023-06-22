@@ -5,6 +5,9 @@ CCamera::CCamera(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CGameObject(pGraphicDev)
 	, m_pTransformCom(nullptr)
 	, m_fFov(4.f)
+	, m_pTargetObj(nullptr)
+	, m_fDist(10.f)
+	, m_fFollowSpeed(5.f)
 {
 
 }
@@ -12,6 +15,9 @@ CCamera::CCamera(LPDIRECT3DDEVICE9 pGraphicDev)
 CCamera::CCamera(const CCamera & rhs)
 	: CGameObject(rhs)
 	, m_fFov(4.f)
+	, m_fDist(rhs.m_fDist)
+	, m_pTargetObj(rhs.m_pTargetObj)
+	, m_fFollowSpeed(rhs.m_fFollowSpeed)
 {
 
 }
@@ -30,6 +36,7 @@ HRESULT CCamera::Ready_Object(void)
 _int CCamera::Update_Object(const _float& fTimeDelta)
 {
 	_int iExit = __super::Update_Object(fTimeDelta);
+
 	Key_Input(fTimeDelta);
 
 	_vec3 vPos, vLook, vRight, vUp;
@@ -41,7 +48,6 @@ _int CCamera::Update_Object(const _float& fTimeDelta)
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_RIGHT, &vRight);
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_UP, &vUp);
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_LOOK, &vLook);
-	
 
 	m_matView = m_pTransformCom->Get_WorldInverseMatrix();
 	D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
@@ -74,7 +80,42 @@ HRESULT CCamera::Add_Component(void)
 	return S_OK;
 }
 
+void CCamera::Follow(const _float& fTimeDelta)
+{
+	if (m_pTargetObj == nullptr)
+		return;
+
+	CTransform* pTargetTransform = dynamic_cast<CTransform*>(m_pTargetObj->Get_Component(L"Com_Transform", COMPONENTID::ID_DYNAMIC));
+	if (pTargetTransform == nullptr)
+		return;
+
+	_vec3 vTargetPos, vCameraPos, vDir;
+
+	m_pTransformCom->Get_Info(INFO_POS, &vCameraPos);
+	pTargetTransform->Get_Info(INFO_POS, &vTargetPos);
+
+	vDir = vTargetPos - vCameraPos;
+
+	if (D3DXVec3Length(&vDir) < m_fDist)
+		return;
+	
+	vCameraPos += vDir * m_fFollowSpeed * fTimeDelta;
+}
+
 void CCamera::Key_Input(const _float & fTimeDelta)
+{
+	if (m_pTargetObj == nullptr)
+		CameraMove(fTimeDelta);
+	
+	CameraRotation(fTimeDelta);
+	
+	POINT pt = { WINCX / 2, WINCY / 2 };
+	ShowCursor(false);
+	ClientToScreen(m_hWnd, &pt);
+	SetCursorPos(pt.x, pt.y);
+}
+
+void CCamera::CameraMove(const _float& fTimeDelta)
 {
 	_vec3 vLook, vDir, vRight, vPos;
 	m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
@@ -103,7 +144,22 @@ void CCamera::Key_Input(const _float & fTimeDelta)
 	{
 		m_pTransformCom->Move_Pos(&vRight, fTimeDelta, 20.f);
 	}
-	
+
+
+	if (Engine::Get_DIKeyState(DIK_Q) & 0x8000)
+	{		
+		m_pTransformCom->RotationAxis(vLook, D3DXToRadian(60.f * fTimeDelta));
+	}
+
+
+	if (Engine::Get_DIKeyState(DIK_E) & 0x8000)
+	{
+		m_pTransformCom->RotationAxis(vLook, D3DXToRadian(60.f * -fTimeDelta));
+	}
+}
+
+void CCamera::CameraRotation(const _float & fTimeDelta)
+{
 	if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_X) > 0)
 	{
 		m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(60.f * fTimeDelta));
@@ -130,7 +186,7 @@ void CCamera::Key_Input(const _float & fTimeDelta)
 
 		if (m_fFov > D3DX_PI)
 			m_fFov = D3DX_PI;
-	
+
 	}
 
 	else if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Z) < 0)
@@ -139,13 +195,15 @@ void CCamera::Key_Input(const _float & fTimeDelta)
 		if (m_fFov < 1.f)
 			m_fFov = 1.f;
 	}
-
 }
 
-CCamera* CCamera::Create(LPDIRECT3DDEVICE9 pGraphicDev, _float fNear, _float fFar)
+
+
+CCamera* CCamera::Create(HWND _hWnd, LPDIRECT3DDEVICE9 pGraphicDev, _float fNear, _float fFar)
 {
 	CCamera*	pInstance = new CCamera(pGraphicDev);
 
+	pInstance->Set_Handle(_hWnd);
 	pInstance->Set_Near(fNear);
 	pInstance->Set_Far(fFar);
 	

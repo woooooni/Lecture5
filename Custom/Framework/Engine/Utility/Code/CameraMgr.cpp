@@ -14,10 +14,10 @@ CCameraMgr::~CCameraMgr()
 }
 
 
-CCamera * CCameraMgr::CreateCamera(LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar)
+CCamera * CCameraMgr::CreateCamera(HWND _hWnd, LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar)
 {
 	CCamera* pCamera = nullptr; 
-	pCamera = CCamera::Create(_pDevice, _fNear, _fFar);
+	pCamera = CCamera::Create(_hWnd, _pDevice, _fNear, _fFar);
 	
 	NULL_CHECK_RETURN(pCamera, nullptr);
 

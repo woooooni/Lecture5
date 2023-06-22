@@ -112,10 +112,11 @@ HRESULT CLogo::Ready_Layer_Environment(const _tchar* pLayerTag)
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Terrain", pGameObject), E_FAIL);
 
 	// Camera
-	pGameObject = Engine::CreateCamera(m_pGraphicDev, 1.f, 1000.f);
+	pGameObject = Engine::CreateCamera(g_hWnd, m_pGraphicDev, 1.f, 1000.f);
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"MainCamera", pGameObject), E_FAIL);
 		
+
 	//// Player
 	//pGameObject = CPlayer::Create(m_pGraphicDev);
 	//NULL_CHECK_RETURN(pGameObject, E_FAIL);

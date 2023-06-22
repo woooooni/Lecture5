@@ -52,6 +52,7 @@ void CPlayer::Render_Object(void)
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_WorldMatrix());
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
+
 	m_pBufferCom->Render_Buffer();
 
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
@@ -62,7 +63,7 @@ HRESULT CPlayer::Add_Component(void)
 	CComponent*			pComponent = nullptr;
 
 /*	pComponent = m_pBufferCom = dynamic_cast<CTriCol*>(Engine::Clone_Proto(L"Proto_TriCol"));*/
-	pComponent = m_pBufferCom = dynamic_cast<CRcCol*>(Engine::Clone_Proto(L"Proto_RcCol"));
+	pComponent = m_pBufferCom = dynamic_cast<CRcTex*>(Engine::Clone_Proto(L"Proto_RcPlayer"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
 	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);

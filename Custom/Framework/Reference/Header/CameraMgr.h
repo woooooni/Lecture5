@@ -14,7 +14,7 @@ private:
 	virtual ~CCameraMgr();
 
 public:
-	CCamera* CreateCamera(LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar);
+	CCamera* CreateCamera(HWND _hWnd, LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar);
 
 
 public:

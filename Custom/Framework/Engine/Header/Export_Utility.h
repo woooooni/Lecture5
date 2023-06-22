@@ -39,7 +39,7 @@ inline HRESULT			Ready_Proto(const _tchar* pProtoTag, CComponent* pComponent);
 inline CComponent*		Clone_Proto(const _tchar* pProtoTag);
 
 // CameraMgr
-inline CCamera* CreateCamera(LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar);
+inline CCamera* CreateCamera(HWND _hWnd, LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar);
 
 
 inline void				Release_Utility();

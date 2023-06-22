@@ -21,13 +21,20 @@ public:
 	const _matrix&	GetViewMatrix() { return m_matView; }
 	const _matrix&	GetProjectionMatrix() { return m_matProj; }
 
+	void		Set_Handle(HWND _hWnd) { m_hWnd = _hWnd; }
 	void		Set_Near(_float _f) { m_fNear = _f; }
 	void		Set_Far(_float _f)	{ m_fFar = _f; }
-
 	void		Set_Fov(_float _f) { m_fFov = _f; }
+
+	void		Set_TargetObj(CGameObject* _pTarget) { m_pTargetObj = _pTarget; }
+
 private:
 	HRESULT		Add_Component(void);
 	void		Key_Input(const _float& fTimeDelta);
+	void		CameraMove(const _float& fTimeDelta);
+	void		CameraRotation(const _float& fTimeDelta);
+	void		Follow(const _float& fTimeDelta);
+
 
 private:
 	CTransform*	m_pTransformCom = nullptr;
@@ -37,9 +44,15 @@ private:
 	_float		m_fNear;
 	_float		m_fFar;
 	_float		m_fFov;
+	_float		m_fDist;
+	_float		m_fFollowSpeed;
+
+	CGameObject* m_pTargetObj;
+
+	HWND		m_hWnd;
 
 public:
-	static CCamera*		Create(LPDIRECT3DDEVICE9 pGraphicDev, _float fNear, _float fFar);
+	static CCamera*		Create(HWND _hWnd, LPDIRECT3DDEVICE9 pGraphicDev, _float fNear, _float fFar);
 	virtual void		Free()	override;
 };
 

@@ -4,9 +4,10 @@
 
 BEGIN(Engine)
 
-class CRcCol;
+class CRcTex;
 class CTransform;
 class CCollider;
+class CTexture;
 
 END
 
@@ -29,9 +30,10 @@ private:
 	void		Shoot();
 
 private:
-	CRcCol*			m_pBufferCom = nullptr;
+	CRcTex*			m_pBufferCom = nullptr;
 	CTransform*		m_pTransformCom = nullptr;
 	CCollider*		m_pColliderCom = nullptr;
+	CTexture*		m_pTex = nullptr;
 
 	_vec3			m_vDir;
 	_float			m_fSpeed;

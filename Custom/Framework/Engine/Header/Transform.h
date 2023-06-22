@@ -15,6 +15,7 @@ private:
 public:
 	const _matrix*		Get_WorldMatrix() { return &m_matWorld; }
 
+
 	const _matrix		Get_WorldInverseMatrix() 
 	{
 		_matrix		matWorldInv;
@@ -44,6 +45,8 @@ public:
 	{
 		*(((_float*)&m_vAngle) + eType) += fAngle;
 	}
+
+	void				RotationAxis(const _vec3& vAxis, const _float& fAngle);
 
 	const _vec3&		GetRotation()						{ return m_vAngle; }
 	void				SetRotation(const _vec3& _vAngle)	{ m_vAngle = _vAngle; }
