@@ -56,17 +56,17 @@ const _matrix * CTransform::Compute_LookAtTarget(const _vec3 * pTargetPos)
 	_matrix		matRot;
 	_vec3		vAxis, vUp;
 
-	/*_vec3		vAxis = *D3DXVec3Cross(&vAxis, &m_vInfo[INFO_UP], &vDir);
+	//_vec3		vAxis = *D3DXVec3Cross(&vAxis, &m_vInfo[INFO_UP], &vDir);
 
-	_matrix		matRot;
-	_vec3		vUp = m_vInfo[INFO_UP];
-	D3DXVec3Normalize(&vUp, &vUp);
-	D3DXVec3Normalize(&vDir, &vDir);
+	//_matrix		matRot;
+	//_vec3		vUp = m_vInfo[INFO_UP];
+	//D3DXVec3Normalize(&vUp, &vUp);
+	//D3DXVec3Normalize(&vDir, &vDir);
 
-	_float		fDot = D3DXVec3Dot(&vUp, &vDir);
-	_float		fAngle = acosf(fDot);
+	//_float		fDot = D3DXVec3Dot(&vUp, &vDir);
+	//_float		fAngle = acosf(fDot);
 
-	D3DXMatrixRotationAxis(&matRot, &vAxis, fAngle);*/
+	//D3DXMatrixRotationAxis(&matRot, &vAxis, fAngle);
 
 	return D3DXMatrixRotationAxis(&matRot, 
 										 D3DXVec3Cross(&vAxis, &m_vInfo[INFO_UP], &vDir),

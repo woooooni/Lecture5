@@ -14,6 +14,13 @@ private:
 
 public:
 	const _matrix*		Get_WorldMatrix() { return &m_matWorld; }
+
+	const _matrix		Get_WorldInverseMatrix() 
+	{
+		_matrix		matWorldInv;
+		return	*D3DXMatrixInverse(&matWorldInv, nullptr, &m_matWorld);
+	}
+
 	void				Get_Info(MATRIX_INFO eType, _vec3* pInfo)
 	{
 		memcpy(pInfo, &m_matWorld.m[eType][0], sizeof(_vec3));
@@ -22,6 +29,7 @@ public:
 	{
 		memcpy(&m_matWorld.m[eType][0], pInfo, sizeof(_vec3));
 	}
+
 	void				Move_Pos(const _vec3* const pDir, const _float& fTimeDelta, const _float& fSpeed)
 	{
 		m_vInfo[INFO_POS] += *pDir * fTimeDelta * fSpeed;

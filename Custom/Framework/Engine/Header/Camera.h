@@ -22,8 +22,9 @@ public:
 	const _matrix&	GetProjectionMatrix() { return m_matProj; }
 
 	void		Set_Near(_float _f) { m_fNear = _f; }
-	void		Set_Far(float _f)	{ m_fFar = _f; }
+	void		Set_Far(_float _f)	{ m_fFar = _f; }
 
+	void		Set_Fov(_float _f) { m_fFov = _f; }
 private:
 	HRESULT		Add_Component(void);
 	void		Key_Input(const _float& fTimeDelta);
@@ -35,7 +36,7 @@ private:
 	
 	_float		m_fNear;
 	_float		m_fFar;
-
+	_float		m_fFov;
 
 public:
 	static CCamera*		Create(LPDIRECT3DDEVICE9 pGraphicDev, _float fNear, _float fFar);
