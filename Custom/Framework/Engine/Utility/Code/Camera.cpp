@@ -108,6 +108,7 @@ void CCamera::Key_Input(const _float & fTimeDelta)
 	{
 		m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(60.f * fTimeDelta));
 	}
+
 	else if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_X) < 0)
 	{
 		m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(60.f * -fTimeDelta));
@@ -117,6 +118,7 @@ void CCamera::Key_Input(const _float & fTimeDelta)
 	{
 		m_pTransformCom->Rotation(ROT_X, D3DXToRadian(60.f * fTimeDelta));
 	}
+
 	else if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Y) < 0)
 	{
 		m_pTransformCom->Rotation(ROT_X, D3DXToRadian(60.f * -fTimeDelta));
@@ -124,18 +126,18 @@ void CCamera::Key_Input(const _float & fTimeDelta)
 
 	if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Z) > 0)
 	{
-		m_fFov += 10.f * fTimeDelta;
+		m_fFov += 5.f * fTimeDelta;
 
-		if (m_fFov <= 1.f)
-			m_fFov = 1.f;
+		if (m_fFov > D3DX_PI)
+			m_fFov = D3DX_PI;
+	
 	}
 
 	else if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Z) < 0)
 	{
-		m_fFov -= 10.f * fTimeDelta;
-
-		if (m_fFov >= D3DX_PI)
-			m_fFov = D3DX_PI;
+		m_fFov -= 5.f * fTimeDelta;
+		if (m_fFov < 1.f)
+			m_fFov = 1.f;
 	}
 
 }

@@ -1,4 +1,4 @@
-﻿     ../Bin\Utility.lib 라이브러리 및 ../Bin\Utility.exp 개체를 생성하고 있습니다.
+﻿  Camera.cpp
   Utility.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\Utility\Include\../Bin\Utility.dll
   Utility.vcxproj -> ../Bin\Utility.pdb (Full PDB)
   .\Engine\Utility\Code\*.h 
