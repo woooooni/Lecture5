@@ -17,8 +17,16 @@ HRESULT CLogo::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_Prototype(), E_FAIL);
 
 	FAILED_CHECK_RETURN(Ready_Layer_Environment(L"Environment"), E_FAIL);
-	
 
+	D3DVIEWPORT9 vp;
+	vp.X = 0;
+	vp.Y = 0;
+	vp.Width = WINCX;
+	vp.Height = WINCY;
+	vp.MinZ = 0.0f;
+	vp.MaxZ = 1.0f;
+
+	m_pGraphicDev->SetViewport(&vp);
 
 	return S_OK;
 }
@@ -38,6 +46,16 @@ void CLogo::LateUpdate_Scene()
 
 void CLogo::Render_Scene()
 {
+	CLayer* pLayer = m_mapLayer[L"Environment"];
+
+	CCamera* pCamera = nullptr;
+	 pCamera = dynamic_cast<CCamera*>(pLayer->Get_GameObject(L"MainCamera"));
+
+	if (pCamera != nullptr)
+	{
+		m_pGraphicDev->SetTransform(D3DTS_VIEW, &pCamera->GetViewMatrix());
+		m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &pCamera->GetProjectionMatrix());
+	}
 	__super::Render_Scene();
 }
 
@@ -92,6 +110,11 @@ HRESULT CLogo::Ready_Layer_Environment(const _tchar* pLayerTag)
 	pGameObject = CTerrain::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Terrain", pGameObject), E_FAIL);
+
+	// Camera
+	pGameObject = Engine::CreateCamera(m_pGraphicDev, 1.f, 1000.f);
+	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"MainCamera", pGameObject), E_FAIL);
 		
 	//// Player
 	//pGameObject = CPlayer::Create(m_pGraphicDev);

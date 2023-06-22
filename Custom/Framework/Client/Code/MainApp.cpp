@@ -38,6 +38,8 @@ HRESULT CMainApp::Ready_MainApp(void)
 
 int CMainApp::Update_MainApp(const float & fTimeDelta)
 {
+	Engine::Update_InputDev();
+
 	NULL_CHECK_RETURN(m_pManagementClass, -1);
 	m_pManagementClass->Update_Scene(fTimeDelta);
 

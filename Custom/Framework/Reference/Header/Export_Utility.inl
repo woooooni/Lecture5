@@ -53,8 +53,13 @@ CComponent*		Clone_Proto(const _tchar* pProtoTag)
 	return CProtoMgr::GetInstance()->Clone_Proto(pProtoTag);
 }
 
+inline CCamera * CreateCamera(LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar)
+{
+	return CCameraMgr::GetInstance()->CreateCamera(_pDevice, _fNear, _fFar);
+}
 void			Release_Utility()
 {
+	CCameraMgr::GetInstance()->DestroyInstance();
 	CProtoMgr::GetInstance()->DestroyInstance();
 	CManagement::GetInstance()->DestroyInstance();
 }

@@ -34,7 +34,7 @@ _int CTerrain::Update_Object(const _float & fTimeDelta)
 {
 	
 	_int iResult = __super::Update_Object(fTimeDelta);
-	Key_Input(fTimeDelta);
+	//Key_Input(fTimeDelta);
 	return iResult;
 }
 

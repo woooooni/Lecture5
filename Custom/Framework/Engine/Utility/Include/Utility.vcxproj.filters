@@ -52,6 +52,12 @@
     <Filter Include="04. Component\00. VIBuffer\03. RcTerrain">
       <UniqueIdentifier>{5badb914-767d-4638-aeb9-779c924fe7c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. GameObject\Camera">
+      <UniqueIdentifier>{af23ff82-dbe5-48c8-a064-952c59dd355e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. GameObject\Camera\Manager">
+      <UniqueIdentifier>{b785da74-7930-4e8b-ae9d-6cf41fb0671d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\Scene.h">
@@ -102,6 +108,12 @@
     <ClInclude Include="..\..\Header\RcTerrain.h">
       <Filter>04. Component\00. VIBuffer\03. RcTerrain</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Header\CameraMgr.h">
+      <Filter>03. GameObject\Camera\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Camera.h">
+      <Filter>03. GameObject\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Scene.cpp">
@@ -148,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\RcTerrain.cpp">
       <Filter>04. Component\00. VIBuffer\03. RcTerrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CameraMgr.cpp">
+      <Filter>03. GameObject\Camera\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Camera.cpp">
+      <Filter>03. GameObject\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

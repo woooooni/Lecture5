@@ -3,6 +3,7 @@
 
 #include "Management.h"
 #include "ProtoMgr.h"
+#include "CameraMgr.h"
 
 #include "TriCol.h"
 #include "RcCol.h"
@@ -36,6 +37,10 @@ inline CLayer*			Get_Layer(const _tchar* pLayerTag);
 // ProtoMgr
 inline HRESULT			Ready_Proto(const _tchar* pProtoTag, CComponent* pComponent);
 inline CComponent*		Clone_Proto(const _tchar* pProtoTag);
+
+// CameraMgr
+inline CCamera* CreateCamera(LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar);
+
 
 inline void				Release_Utility();
 

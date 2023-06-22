@@ -15,7 +15,9 @@ public:
 
 public:
 	HRESULT			Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject);
+	CGameObject*	Get_GameObject(const _tchar* pObjTag);
 
+public:
 	HRESULT			Ready_Layer();
 	_int			Update_Layer(const _float& fTimeDelta);
 	void			LateUpdate_Layer();

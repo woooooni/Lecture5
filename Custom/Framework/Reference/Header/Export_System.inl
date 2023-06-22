@@ -58,6 +58,7 @@ void		Update_InputDev(void)
 
 void			Release_System()
 {
+	CInputDevice::GetInstance()->DestroyInstance();
 	CFrameMgr::GetInstance()->DestroyInstance();
 	CTimerMgr::GetInstance()->DestroyInstance();
 	CGraphicDev::GetInstance()->DestroyInstance();
