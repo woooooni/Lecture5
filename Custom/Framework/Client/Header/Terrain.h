@@ -29,12 +29,21 @@ public:
 
 private:
 	void		Key_Input(const _float& fTimeDelta);
+	void		Load_HeightMapInfo(const wstring& _strFilePath);
+	int			GetHeightMapEntry(int iRow, int iCol);
+	void		SetHeightMapEntry(int iRow, int iCol, int value);
 
 private:
-	CRcTerrain*		m_pBufferCom = nullptr;
-	CTexture*		m_pTextureCom = nullptr;
-	CTransform*		m_pTransformCom = nullptr;
+	CRcTerrain*				m_pBufferCom = nullptr;
+	CTexture*				m_pTextureCom = nullptr;
+	CTransform*				m_pTransformCom = nullptr;
+	LPDIRECT3DTEXTURE9      m_pTexHeightMap = nullptr;
 
+	vector<int>		m_vecHeightInfo;
+
+	_float			m_fAccRandom;
+	_float			m_fCoolTime;
+	
 public:
 	static CTerrain*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

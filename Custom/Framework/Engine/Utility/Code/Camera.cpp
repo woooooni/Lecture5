@@ -39,6 +39,9 @@ _int CCamera::Update_Object(const _float& fTimeDelta)
 
 	Key_Input(fTimeDelta);
 
+	if(m_pTargetObj == nullptr)
+		Follow(fTimeDelta);
+
 	_vec3 vPos, vLook, vRight, vUp;
 	ZeroMemory(&vPos, sizeof(_vec3));
 	ZeroMemory(&vLook, sizeof(_vec3));

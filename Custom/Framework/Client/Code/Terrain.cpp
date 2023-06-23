@@ -7,6 +7,8 @@
 
 CTerrain::CTerrain(LPDIRECT3DDEVICE9 _pDevice)
 	: CGameObject(_pDevice)
+	, m_fAccRandom(0.f)
+	, m_fCoolTime(1.f)
 {
 }
 
@@ -27,6 +29,9 @@ HRESULT CTerrain::Ready_Object(void)
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 	m_pTransformCom->Set_Pos(&_vec3(0.f, 0.f, 0.f));
+	Load_HeightMapInfo(L"../Bin/Resource/Texture/Terrain/Height.bmp");
+	m_pBufferCom->ReBuildHeightMap(m_pTexHeightMap, 10.f, false);
+	
 	return S_OK;
 }
 
@@ -35,6 +40,13 @@ _int CTerrain::Update_Object(const _float & fTimeDelta)
 	
 	_int iResult = __super::Update_Object(fTimeDelta);
 	//Key_Input(fTimeDelta);
+	
+	m_fAccRandom += fTimeDelta;
+	if (m_fAccRandom >= m_fCoolTime)
+	{
+		m_fAccRandom = 0.f;
+		//m_pBufferCom->ReBuildHeightMap(m_vecHeightInfo, 4.f, true);
+	}
 	return iResult;
 }
 
@@ -55,6 +67,8 @@ void CTerrain::Render_Object(void)
 
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+
+	
 }
 
 void CTerrain::Key_Input(const _float & fTimeDelta)
@@ -92,6 +106,37 @@ void CTerrain::Key_Input(const _float & fTimeDelta)
 
 	//if (GetAsyncKeyState('D'))
 	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(-180.f * fTimeDelta));
+}
+
+void CTerrain::Load_HeightMapInfo(const wstring& _strFilePath)
+{
+	_uint iWidth = m_pBufferCom->m_iCellCountRow;
+	_uint iHeight = m_pBufferCom->m_iCellCountCol;
+
+	if (FAILED(D3DXCreateTextureFromFileEx(m_pGraphicDev,
+		_strFilePath.c_str(), D3DX_DEFAULT, D3DX_DEFAULT,
+		D3DX_DEFAULT, 0,
+		D3DFMT_X8R8G8B8, D3DPOOL_MANAGED,
+		D3DX_DEFAULT, D3DX_DEFAULT, 0,
+		NULL, NULL, &m_pTexHeightMap
+	)))
+	{
+		MSG_BOX("HeightMap Load Failed");
+		return;
+	}
+	
+	//m_pBufferCom->ReBuildHeightMap()
+	return;
+}
+
+int CTerrain::GetHeightMapEntry(int iRow, int iCol)
+{
+	return m_vecHeightInfo[iRow * m_pBufferCom->m_iVertexCountRow + iCol];
+}
+
+void CTerrain::SetHeightMapEntry(int iRow, int iCol, int value)
+{
+	m_vecHeightInfo[iRow * m_pBufferCom->m_iVertexCountRow + iCol] = value;
 }
 
 HRESULT CTerrain::Add_Component(void)
@@ -133,6 +178,7 @@ CTerrain * CTerrain::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CTerrain::Free()
 {
+	Safe_Release(m_pTexHeightMap);
 	__super::Free();
 }
 

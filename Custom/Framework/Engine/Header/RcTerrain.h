@@ -16,6 +16,8 @@ public:
 	virtual HRESULT			Ready_Buffer();
 	virtual void			Render_Buffer(void);
 
+public:
+	void	ReBuildHeightMap(LPDIRECT3DTEXTURE9& _pHeighMapTex, float _fScale, bool _bRandom);
 
 
 public:

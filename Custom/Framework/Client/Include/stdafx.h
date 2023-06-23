@@ -32,6 +32,8 @@
 
 #include <process.h>
 
+#include <fstream>
+
 extern HWND g_hWnd;
 extern HINSTANCE g_hInstance;
 
