@@ -4,7 +4,7 @@
 #include "Export_Function.h"
 
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
-	: Engine::CScene(pGraphicDev)
+	: Engine::CScene(pGraphicDev, SCENE_TYPE::LOADING)
 {
 }
 
@@ -16,7 +16,7 @@ HRESULT CLogo::Ready_Scene()
 {
 	FAILED_CHECK_RETURN(Ready_Prototype(), E_FAIL);
 
-	FAILED_CHECK_RETURN(Ready_Layer_Environment(L"Environment"), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_Layer_Environment(LAYER_TYPE::ENVIRONMENT), E_FAIL);
 
 	D3DVIEWPORT9 vp;
 	vp.X = 0;
@@ -98,19 +98,14 @@ HRESULT CLogo::Ready_Prototype()
 	return S_OK;
 }
 
-HRESULT CLogo::Ready_Layer_Environment(const _tchar* pLayerTag)
+HRESULT CLogo::Ready_Layer_Environment(LAYER_TYPE _eType)
 {
 	Engine::CLayer*		pLayer = Engine::CLayer::Create();
 	NULL_CHECK_RETURN(pLayer, E_FAIL);
 
 	Engine::CGameObject*		pGameObject = nullptr;
 
-	
-	/*pGameObject = CBackGround::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"BackGround", pGameObject), E_FAIL);*/
-
-	// Terrain
+	//Terrain
 	pGameObject = CTerrain::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Terrain", pGameObject), E_FAIL);
@@ -126,12 +121,7 @@ HRESULT CLogo::Ready_Layer_Environment(const _tchar* pLayerTag)
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Player", pGameObject), E_FAIL);
 
-	//// Monster
-	//pGameObject = CMonster::Create(m_pGraphicDev);
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Monster", pGameObject), E_FAIL);
-
-	m_mapLayer.insert({ pLayerTag, pLayer });
+	m_mapLayer.insert({ _eType, pLayer });
 
 	return S_OK;
 }

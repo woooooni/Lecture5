@@ -1,13 +1,15 @@
 #include "..\..\Header\GameObject.h"
 
-CGameObject::CGameObject(LPDIRECT3DDEVICE9 pGraphicDev)
+CGameObject::CGameObject(LPDIRECT3DDEVICE9 pGraphicDev, OBJ_TYPE _eType)
 	: m_pGraphicDev(pGraphicDev)
+	, m_eType(_eType)
 {
 	m_pGraphicDev->AddRef();
 }
 
 CGameObject::CGameObject(const CGameObject & rhs)
 	: m_pGraphicDev(rhs.m_pGraphicDev)
+	, m_eType(rhs.m_eType)
 {
 	m_pGraphicDev->AddRef();
 }

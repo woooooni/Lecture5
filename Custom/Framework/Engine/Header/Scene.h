@@ -7,15 +7,11 @@ BEGIN(Engine)
 class ENGINE_DLL CScene : public CBase
 {
 protected:
-	explicit CScene(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CScene(LPDIRECT3DDEVICE9 pGraphicDev, SCENE_TYPE _eType);
 	virtual ~CScene();
 
 public:
-	CComponent*			Get_Component(const _tchar* pLayerTag, 
-									 const _tchar* pObjTag, 
-									 const _tchar* pComponentTag, 
-									 COMPONENTID eID);
-	CLayer*				Get_Layer(const _tchar* pLayerTag);
+	CLayer*				Get_Layer(LAYER_TYPE _eLayerType);
 
 public:
 	virtual HRESULT		Ready_Scene();
@@ -25,7 +21,8 @@ public:
 
 protected:
 	LPDIRECT3DDEVICE9					m_pGraphicDev;
-	map<const _tchar*, CLayer*>			m_mapLayer;
+	map<LAYER_TYPE, CLayer*>			m_mapLayer;
+	SCENE_TYPE							m_eType;
 
 public:
 	virtual void	Free();

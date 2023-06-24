@@ -5,7 +5,7 @@
 #include "Transform.h"
 
 CBullet::CBullet(LPDIRECT3DDEVICE9 pGraphicDev)
-	: Engine::CGameObject(pGraphicDev)
+	: Engine::CGameObject(pGraphicDev, OBJ_TYPE::OBJ_ENVIRONMENT)
 	, m_vDir(0.f, 0.f, 0.f)
 	, m_fSpeed(5.f)
 {

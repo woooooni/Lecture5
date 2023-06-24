@@ -11,14 +11,6 @@ CManagement::~CManagement()
 	Free();
 }
 
-CComponent * CManagement::Get_Component(const _tchar * pLayerTag, const _tchar * pObjTag, const _tchar * pComponentTag, COMPONENTID eID)
-{
-	if (nullptr == m_pScene)
-		return nullptr;
-
-	return m_pScene->Get_Component(pLayerTag, pObjTag, pComponentTag, eID);
-}
-
 HRESULT CManagement::Set_Scene(CScene * pScene)
 {
 	Safe_Release(m_pScene);

@@ -2,7 +2,7 @@
 #include "Export_Function.h"
 
 CCamera::CCamera(LPDIRECT3DDEVICE9 pGraphicDev)
-	: CGameObject(pGraphicDev)
+	: CGameObject(pGraphicDev, OBJ_TYPE::OBJ_CAMERA)
 	, m_pTransformCom(nullptr)
 	, m_fFov(4.f)
 	, m_pTargetObj(nullptr)

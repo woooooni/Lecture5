@@ -1,7 +1,8 @@
 #include "..\..\Header\Scene.h"
 
-CScene::CScene(LPDIRECT3DDEVICE9 pGraphicDev)
+CScene::CScene(LPDIRECT3DDEVICE9 pGraphicDev, SCENE_TYPE _eType)
 	: m_pGraphicDev(pGraphicDev)
+	, m_eType(_eType)
 {
 	m_pGraphicDev->AddRef();
 }
@@ -10,19 +11,9 @@ CScene::~CScene()
 {
 }
 
-CComponent * CScene::Get_Component(const _tchar * pLayerTag, const _tchar * pObjTag, const _tchar * pComponentTag, COMPONENTID eID)
+CLayer * CScene::Get_Layer(LAYER_TYPE _eType)
 {
-	auto		iter = find_if(m_mapLayer.begin(), m_mapLayer.end(), CTag_Finder(pLayerTag));
-
-	if (iter == m_mapLayer.end())
-		return nullptr;
-	
-	return iter->second->Get_Component(pObjTag, pComponentTag, eID);
-}
-
-CLayer * CScene::Get_Layer(const _tchar* pLayerTag)
-{
-	auto		iter = find_if(m_mapLayer.begin(), m_mapLayer.end(), CTag_Finder(pLayerTag));
+	auto		iter = m_mapLayer.find(_eType);
 
 	if (iter == m_mapLayer.end())
 		return nullptr;
@@ -55,13 +46,6 @@ void CScene::LateUpdate_Scene()
 	for (auto& iter : m_mapLayer)
 		iter.second->LateUpdate_Layer();
 }
-
-//void CScene::Render_Scene()
-//{
-//	for (auto& iter : m_mapLayer)
-//		iter.second->Render_Layer();
-//}
-
 void CScene::Free()
 {
 	for_each(m_mapLayer.begin(), m_mapLayer.end(), CDeleteMap());

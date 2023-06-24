@@ -3,7 +3,7 @@
 #include "Export_Function.h"
 
 CMonster::CMonster(LPDIRECT3DDEVICE9 pGraphicDev)
-	: Engine::CGameObject(pGraphicDev)
+	: Engine::CGameObject(pGraphicDev, OBJ_TYPE::OBJ_MONSTER)
 {
 
 }
@@ -27,13 +27,6 @@ Engine::_int CMonster::Update_Object(const _float& fTimeDelta)
 {
 	_int iExit = __super::Update_Object(fTimeDelta);
 
-	CTransform*	pPlayerTransform = dynamic_cast<CTransform*>(Engine::Get_Component(L"Environment", L"Player", L"Com_Transform", ID_DYNAMIC));
-	NULL_CHECK_RETURN(pPlayerTransform, -1);
-	
-	_vec3		vPlayerPos;
-	pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
-
-	m_pTransformCom->Chase_Target(&vPlayerPos, fTimeDelta, m_fSpeed);
 
 	return iExit;
 }

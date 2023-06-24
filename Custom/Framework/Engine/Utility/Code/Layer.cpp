@@ -2,42 +2,29 @@
 
 CLayer::CLayer()
 {
+	m_vecObject.reserve(100);
 }
 
 CLayer::~CLayer()
 {
 }
 
-CComponent * CLayer::Get_Component(const _tchar * pObjTag, const _tchar * pComponentTag, COMPONENTID eID)
+HRESULT CLayer::Add_GameObject(const wstring & _strObjName, CGameObject * pGameObject)
 {
-	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
-
-	if (iter == m_mapObject.end())
-		return nullptr;
-	
-	return iter->second->Get_Component(pComponentTag, eID);
-}
-
-
-HRESULT CLayer::Add_GameObject(const _tchar * pObjTag, CGameObject * pGameObject)
-{
-	if (nullptr == pGameObject)
-		return E_FAIL;
-
-	m_mapObject.insert({ pObjTag, pGameObject });
-
+	pGameObject->Set_Name(_strObjName);
+	m_vecObject.push_back(pGameObject);
 	return S_OK;
 }
 
-
-CGameObject * CLayer::Get_GameObject(const _tchar * pObjTag)
+CGameObject * CLayer::Find_GameObject(const wstring& _strObjName)
 {
-	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
+	for (_uint i = 0; i < m_vecObject.size(); ++i)
+	{
+		if (m_vecObject[i]->Get_Name() == _strObjName)
+			return m_vecObject[i];
+	}
 
-	if (iter == m_mapObject.end())
-		return nullptr;
-
-	return iter->second;
+	return nullptr;
 }
 
 HRESULT CLayer::Ready_Layer()
@@ -49,9 +36,9 @@ _int CLayer::Update_Layer(const _float & fTimeDelta)
 {
 	_int		iResult = 0;
 
-	for (auto& iter : m_mapObject)
+	for (auto& iter : m_vecObject)
 	{
-		iResult = iter.second->Update_Object(fTimeDelta);
+		iResult = iter->Update_Object(fTimeDelta);
 
 		if (iResult & 0x80000000)
 			return iResult;
@@ -62,15 +49,9 @@ _int CLayer::Update_Layer(const _float & fTimeDelta)
 
 void CLayer::LateUpdate_Layer()
 {
-	for (auto& iter : m_mapObject)
-		iter.second->LateUpdate_Object();
+	for (auto& iter : m_vecObject)
+		iter->LateUpdate_Object();
 }
-
-//void CLayer::Render_Layer()
-//{
-//	for (auto& iter : m_mapObject)
-//		iter.second->Render_Object();
-//}
 
 CLayer * CLayer::Create()
 {
@@ -89,6 +70,7 @@ CLayer * CLayer::Create()
 
 void CLayer::Free()
 {
-	for_each(m_mapObject.begin(), m_mapObject.end(), CDeleteMap());
-	m_mapObject.clear();
+	for_each(m_vecObject.begin(), m_vecObject.end(), CDeleteObj());
+	m_vecObject.clear();
+	m_vecObject.shrink_to_fit();
 }

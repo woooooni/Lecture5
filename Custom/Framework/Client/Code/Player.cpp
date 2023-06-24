@@ -8,7 +8,7 @@
 #include "Scene.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
-	: Engine::CGameObject(pGraphicDev)
+	: Engine::CGameObject(pGraphicDev, OBJ_TYPE::OBJ_PLAYER)
 {
 
 }

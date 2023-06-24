@@ -1,11 +1,4 @@
 #include "Export_Utility.h"
-CComponent*			Get_Component(const _tchar* pLayerTag,
-									const _tchar* pObjTag,
-									const _tchar* pComponentTag,
-									COMPONENTID eID)
-{
-	return CManagement::GetInstance()->Get_Component(pLayerTag, pObjTag, pComponentTag, eID);
-}
 
 HRESULT		Create_Management(LPDIRECT3DDEVICE9 pGraphicDev, CManagement** ppInstance)
 {
@@ -39,9 +32,9 @@ inline CScene * GetCurrScene()
 	return CManagement::GetInstance()->GetCurrScene();
 }
 
-inline CLayer * Get_Layer(const _tchar * pLayerTag)
+inline CLayer * Get_Layer(LAYER_TYPE eLayerType)
 {
-	return CManagement::GetInstance()->GetCurrScene()->Get_Layer(pLayerTag);
+	return CManagement::GetInstance()->GetCurrScene()->Get_Layer(eLayerType);
 }
 
 HRESULT			Ready_Proto(const _tchar* pProtoTag, CComponent* pComponent)

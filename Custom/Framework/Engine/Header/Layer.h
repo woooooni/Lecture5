@@ -11,11 +11,11 @@ private:
 	virtual ~CLayer();
 
 public:
-	CComponent*			Get_Component(const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID);
+	//CComponent*			Get_Component(const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID);
 
 public:
-	HRESULT			Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject);
-	CGameObject*	Get_GameObject(const _tchar* pObjTag);
+	HRESULT			Add_GameObject(const wstring& _strObjName, CGameObject* pGameObject);
+	CGameObject*	Find_GameObject(const wstring& _strObjName);
 
 public:
 	HRESULT			Ready_Layer();
@@ -24,10 +24,9 @@ public:
 	//void			Render_Layer();
 
 private:
-	map<const _tchar*, CGameObject*>		m_mapObject;
+	vector<CGameObject*>		m_vecObject;
 
 public:
-
 	static		CLayer*		Create();
 	virtual		void		Free();
 };
