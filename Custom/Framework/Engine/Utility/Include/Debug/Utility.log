@@ -1,14 +1,13 @@
-﻿  RcTerrain.cpp
-c:\users\xodnj\desktop\lecture5\custom\framework\engine\utility\code\rcterrain.cpp(102): warning C4018: '<': signed/unsigned mismatch
-c:\users\xodnj\desktop\lecture5\custom\framework\engine\utility\code\rcterrain.cpp(104): warning C4018: '<': signed/unsigned mismatch
+﻿  Camera.cpp
+c:\users\xodnj\desktop\lecture5\custom\framework\engine\header\camera.h(21): warning C4172: 지역 변수 또는 임시의 주소를 반환하고 있습니다.
   Utility.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\Utility\Include\../Bin\Utility.dll
   Utility.vcxproj -> ../Bin\Utility.pdb (Full PDB)
   .\Engine\Utility\Code\*.h 
   지정된 파일을 찾을 수 없습니다.
           0개 파일이 복사되었습니다.
   .\Engine\Utility\Code\*.hpp 
-  지정된 파일을 찾을 수 없습니다.
           0개 파일이 복사되었습니다.
+  지정된 파일을 찾을 수 없습니다.
           1개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
   .\Engine\Header\BoxCollider.h

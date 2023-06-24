@@ -52,8 +52,8 @@ _int CCamera::Update_Object(const _float& fTimeDelta)
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_UP, &vUp);
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_LOOK, &vLook);
 
-	m_matView = m_pTransformCom->Get_WorldInverseMatrix();
-	D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
+	CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
+	CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
 
 	m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matView);
 	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matProj);
@@ -103,6 +103,42 @@ void CCamera::Follow(const _float& fTimeDelta)
 		return;
 	
 	vCameraPos += vDir * m_fFollowSpeed * fTimeDelta;
+}
+
+void CCamera::CustomLookAtLH(_matrix * pOut, const _vec3 * pEye, const _vec3 * pAt, const _vec3 * pUp)
+{
+	const _matrix& matWorld = *m_pTransformCom->Get_WorldMatrix();
+
+	_vec3 xAxis, yAxis, zAxis;
+	
+	zAxis = *pAt - *pEye;
+
+	D3DXVec3Normalize(&xAxis, &xAxis);
+	D3DXVec3Normalize(&zAxis, &zAxis);
+	
+	D3DXVec3Cross(&xAxis, pUp, &zAxis);
+
+	D3DXVec3Cross(&yAxis, &zAxis, &xAxis);
+
+	*pOut = _matrix(
+		xAxis.x,					yAxis.x,					zAxis.x,					0,
+		xAxis.y,					yAxis.y,					zAxis.y,					0,
+		xAxis.z,					yAxis.z,					zAxis.z,					0,
+		-D3DXVec3Dot(&xAxis, pEye), -D3DXVec3Dot(&yAxis, pEye), -D3DXVec3Dot(&zAxis, pEye), 1
+	);
+}
+
+void CCamera::CustomPerspectiveLH(_matrix * pOut, const _float _fov, const _float _fAspect, const _float _fNear, const _float _fFar)
+{
+
+	float h = 1.0f / tanf(_fov / 2.0f);
+	float w = h / _fAspect;
+
+
+	(*pOut)(0, 0) = w;      (*pOut)(0, 1) = 0.0f;      (*pOut)(0, 2) = 0.0f;              (*pOut)(0, 3) = 0.0f;
+	(*pOut)(1, 0) = 0.0f;   (*pOut)(1, 1) = h;         (*pOut)(1, 2) = 0.0f;              (*pOut)(1, 3) = 0.0f;
+	(*pOut)(2, 0) = 0.0f;   (*pOut)(2, 1) = 0.0f;      (*pOut)(2, 2) = _fFar / (_fFar - _fNear);        (*pOut)(2, 3) = 1.0f;
+	(*pOut)(3, 0) = 0.0f;   (*pOut)(3, 1) = 0.0f;      (*pOut)(3, 2) = -(_fNear*_fFar / (_fFar - _fNear));  (*pOut)(3, 3) = 0.0f;
 }
 
 void CCamera::Key_Input(const _float & fTimeDelta)
