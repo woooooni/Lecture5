@@ -158,32 +158,31 @@ void CCamera::Key_Input(const _float & fTimeDelta)
 
 void CCamera::CameraMove(const _float& fTimeDelta)
 {
-	_vec3 vLook, vRight, vPos, vDirX, vDirLook;
+	_vec3 vLook, vRight, vDirX, vDirLook;
 	m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
 	m_pTransformCom->Get_Info(INFO_RIGHT, &vRight);
-	m_pTransformCom->Get_Info(INFO_POS, &vPos);
 
 	D3DXVec3Normalize(&vDirX, &vRight);
 	D3DXVec3Normalize(&vDirLook, &vLook);
 
 	if (Engine::Get_DIKeyState(DIK_W) & 0x8000)
 	{
-		m_pTransformCom->Move_Pos(&vDirLook, fTimeDelta, 20.f);
+		m_pTransformCom->Move_Pos(&vDirLook, fTimeDelta, 50.f);
 	}
 
 	if (Engine::Get_DIKeyState(DIK_S) & 0x8000)
 	{
-		m_pTransformCom->Move_Pos(&vDirLook, fTimeDelta, -20.f);
+		m_pTransformCom->Move_Pos(&vDirLook, fTimeDelta, -50.f);
 	}
 
 	if (Engine::Get_DIKeyState(DIK_A) & 0x8000)
 	{
-		m_pTransformCom->Move_Pos(&vDirX, fTimeDelta, -20.f);
+		m_pTransformCom->Move_Pos(&vDirX, fTimeDelta, -50.f);
 	}
 
 	if (Engine::Get_DIKeyState(DIK_D) & 0x8000)
 	{
-		m_pTransformCom->Move_Pos(&vDirX, fTimeDelta, 20.f);
+		m_pTransformCom->Move_Pos(&vDirX, fTimeDelta, 50.f);
 	}
 
 	if (Engine::Get_DIKeyState(DIK_Q) & 0x8000)
@@ -200,6 +199,7 @@ void CCamera::CameraMove(const _float& fTimeDelta)
 
 void CCamera::CameraRotation(const _float & fTimeDelta)
 {
+
 	_vec3 vUp, vRight, vLook, vDirRight, vDirLook, vDirUp;
 	m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
 	m_pTransformCom->Get_Info(INFO_RIGHT, &vRight);
@@ -210,39 +210,23 @@ void CCamera::CameraRotation(const _float & fTimeDelta)
 	D3DXVec3Normalize(&vDirUp, &vUp);
 
 
-	if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Y) > 0)
+	if (_long dwMouseMove = Engine::Get_DIMouseMove(DIMS_Y))
 	{
-		m_pTransformCom->RotationAxis(vDirRight, D3DXToRadian(60.f * fTimeDelta));
+		m_pTransformCom->RotationAxis(vDirRight, D3DXToRadian(dwMouseMove * 5.f * fTimeDelta));
 	}
 
-	else if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Y) < 0)
+	if (_long dwMouseMove = Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_X))
 	{
-		m_pTransformCom->RotationAxis(vDirRight, D3DXToRadian(60.f * -fTimeDelta));
+		m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(dwMouseMove * 5.f * fTimeDelta));
 	}
 
-	if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_X) > 0)
+	if (_long dwMouseMove = Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Z))
 	{
-		m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(60.f * fTimeDelta));
-	}
-
-	else if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_X) < 0)
-	{
-		m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(60.f * -fTimeDelta));
-	}
-
-
-
-	if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Z) > 0)
-	{
-		m_fFov += 5.f * fTimeDelta;
+		m_fFov += dwMouseMove * fTimeDelta;
 
 		if (m_fFov > D3DX_PI)
 			m_fFov = D3DX_PI;
-	}
 
-	else if (Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Z) < 0)
-	{
-		m_fFov -= 5.f * fTimeDelta;
 		if (m_fFov < 1.f)
 			m_fFov = 1.f;
 	}

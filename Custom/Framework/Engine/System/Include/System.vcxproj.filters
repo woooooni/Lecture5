@@ -25,11 +25,11 @@
     <Filter Include="03. Camera">
       <UniqueIdentifier>{49073fcd-6338-4994-898f-0e9243d29236}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Camera\Manager">
-      <UniqueIdentifier>{3fdc30e3-8167-4da9-8d6e-4eae6366dc07}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. InputDevice">
       <UniqueIdentifier>{5c3e7fd6-05db-434e-b76c-9146195c1775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Collision">
+      <UniqueIdentifier>{56024076-1795-471b-8ec5-d538de338c73}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Header\InputDevice.h">
       <Filter>04. InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\CollisionMgr.h">
+      <Filter>05. Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\InputDevice.cpp">
       <Filter>04. InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CollisionMgr.cpp">
+      <Filter>05. Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

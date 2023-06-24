@@ -37,6 +37,7 @@ private:
 	_byte					m_byKeyState[256];		// 키보드에 있는 모든 키값을 저장하기 위한 변수
 	DIMOUSESTATE			m_tMouseState;
 
+
 public:
 	virtual void	Free(void);
 

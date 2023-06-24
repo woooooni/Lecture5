@@ -14,6 +14,7 @@ c:\users\xodnj\desktop\lecture5\custom\framework\engine\header\camera.h(21): war
   .\Engine\Header\Camera.h
   .\Engine\Header\CameraMgr.h
   .\Engine\Header\Collider.h
+  .\Engine\Header\CollisionMgr.h
   .\Engine\Header\Component.h
   .\Engine\Header\Engine_Define.h
   .\Engine\Header\Engine_Enum.h
@@ -34,6 +35,7 @@ c:\users\xodnj\desktop\lecture5\custom\framework\engine\header\camera.h(21): war
   .\Engine\Header\Management.h
   .\Engine\Header\ProtoMgr.h
   .\Engine\Header\RcCol.h
+  .\Engine\Header\RcCube.h
   .\Engine\Header\RcTerrain.h
   .\Engine\Header\RcTex.h
   .\Engine\Header\Scene.h
@@ -43,7 +45,7 @@ c:\users\xodnj\desktop\lecture5\custom\framework\engine\header\camera.h(21): war
   .\Engine\Header\Transform.h
   .\Engine\Header\TriCol.h
   .\Engine\Header\VIBuffer.h
-         33개 파일이 복사되었습니다.
+         35개 파일이 복사되었습니다.
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl
           2개 파일이 복사되었습니다.

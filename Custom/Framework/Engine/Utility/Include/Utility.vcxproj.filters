@@ -58,6 +58,9 @@
     <Filter Include="03. GameObject\Camera\Manager">
       <UniqueIdentifier>{b785da74-7930-4e8b-ae9d-6cf41fb0671d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Component\00. VIBuffer\04. RcCube">
+      <UniqueIdentifier>{50189642-0abd-4df6-87bf-f391434e7f51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\Scene.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="..\..\Header\Camera.h">
       <Filter>03. GameObject\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Header\RcCube.h">
+      <Filter>04. Component\00. VIBuffer\04. RcCube</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Scene.cpp">
@@ -166,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Camera.cpp">
       <Filter>03. GameObject\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RcCube.cpp">
+      <Filter>04. Component\00. VIBuffer\04. RcCube</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

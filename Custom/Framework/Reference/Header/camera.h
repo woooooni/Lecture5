@@ -18,7 +18,7 @@ public:
 	virtual void		Render_Object(void);
 
 public:
-	const _matrix&	GetViewMatrix() { return m_matView; }
+	const _matrix&	GetViewMatrix() { return m_pTransformCom->Get_WorldInverseMatrix(); }
 	const _matrix&	GetProjectionMatrix() { return m_matProj; }
 
 	void		Set_Handle(HWND _hWnd) { m_hWnd = _hWnd; }
@@ -35,6 +35,9 @@ private:
 	void		CameraRotation(const _float& fTimeDelta);
 	void		Follow(const _float& fTimeDelta);
 
+private:
+	void		CustomLookAtLH(_matrix* pOut, const _vec3* pEye, const _vec3* pAt, const _vec3* pUp);
+	void		CustomPerspectiveLH(_matrix* pOut, const _float _fov, const _float _fAspect, const _float _fNear, const _float _fFar);
 
 private:
 	CTransform*	m_pTransformCom = nullptr;
