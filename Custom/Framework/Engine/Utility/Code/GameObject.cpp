@@ -14,6 +14,7 @@ CGameObject::CGameObject(const CGameObject & rhs)
 
 CGameObject::~CGameObject()
 {
+
 }
 
 CComponent * CGameObject::Get_Component(const _tchar * pComponentTag, COMPONENTID eID)
@@ -46,7 +47,8 @@ void CGameObject::LateUpdate_Object(void)
 
 void CGameObject::Render_Object(void)
 {
-
+	for (auto& iter : m_mapComponent[ID_DYNAMIC])
+		iter.second->Render_Component();
 }
 
 CComponent * CGameObject::Find_Component(const _tchar * pComponentTag, COMPONENTID eID)

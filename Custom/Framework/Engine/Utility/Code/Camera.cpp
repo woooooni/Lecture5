@@ -35,11 +35,9 @@ HRESULT CCamera::Ready_Object(void)
 
 _int CCamera::Update_Object(const _float& fTimeDelta)
 {
-	_int iExit = __super::Update_Object(fTimeDelta);
-
 	Key_Input(fTimeDelta);
 
-	if(m_pTargetObj == nullptr)
+	if(m_pTargetObj != nullptr)
 		Follow(fTimeDelta);
 
 	_vec3 vPos, vLook, vRight, vUp;
@@ -52,12 +50,16 @@ _int CCamera::Update_Object(const _float& fTimeDelta)
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_UP, &vUp);
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_LOOK, &vLook);
 
-	CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
-	CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
+	D3DXMatrixLookAtLH(&m_matView, &vPos, &vLook, &vUp);
+	D3DXMatrixPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
+
+	/*CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
+	CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);*/
 
 	m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matView);
 	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matProj);
 
+	_int iExit = __super::Update_Object(fTimeDelta);
 	return iExit;
 }
 
@@ -168,11 +170,17 @@ void CCamera::CameraMove(const _float& fTimeDelta)
 	if (Engine::Get_DIKeyState(DIK_W) & 0x8000)
 	{
 		m_pTransformCom->Move_Pos(&vDirLook, fTimeDelta, 50.f);
+
+		vLook += vDirLook * fTimeDelta * 50.f;
+		m_pTransformCom->Set_Info(INFO_LOOK, &vLook);
 	}
 
 	if (Engine::Get_DIKeyState(DIK_S) & 0x8000)
 	{
 		m_pTransformCom->Move_Pos(&vDirLook, fTimeDelta, -50.f);
+
+		vLook += vDirLook * fTimeDelta * 50.f;
+		m_pTransformCom->Set_Info(INFO_LOOK, &vLook);
 	}
 
 	if (Engine::Get_DIKeyState(DIK_A) & 0x8000)
@@ -190,7 +198,6 @@ void CCamera::CameraMove(const _float& fTimeDelta)
 		m_pTransformCom->RotationAxis(vLook, fTimeDelta * -10.f);
 	}
 
-
 	if (Engine::Get_DIKeyState(DIK_E) & 0x8000)
 	{
 		m_pTransformCom->RotationAxis(vLook, fTimeDelta * 10.f);
@@ -200,7 +207,9 @@ void CCamera::CameraMove(const _float& fTimeDelta)
 void CCamera::CameraRotation(const _float & fTimeDelta)
 {
 
-	_vec3 vUp, vRight, vLook, vDirRight, vDirLook, vDirUp;
+	_vec3 vUp, vRight, vLook;
+	_vec3  vDirRight, vDirLook, vDirUp;
+
 	m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
 	m_pTransformCom->Get_Info(INFO_RIGHT, &vRight);
 	m_pTransformCom->Get_Info(INFO_UP, &vUp);

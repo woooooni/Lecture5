@@ -67,18 +67,6 @@ void CVIBuffer::Render_Buffer(void)
 
 
 	m_pGraphicDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_dwVtxCnt, 0, m_dwTriCnt);
-	// 1. 삼각형을 그리는 방식
-	// 2. 버텍스의 인덱스 값(몇 번 인덱스부터 그릴 것인가, 넣은 값에 따라 기존에 저장된 인덱스 값에 더해서 그려줌)
-	// 3. 버텍스 버퍼에 들어가 있는 인덱스 중 몇 번째부터 그릴 것인가
-	// 4. 내가 사용하고자 하는 버텍스의 개수
-	// 5. 인덱브 버퍼에 들어가 있는 인덱스 중 몇 번째부터 그릴 것인가
-	// 6. 그리려는 삼각형 개수
-
-
-	//m_pGraphicDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_dwTriCnt);
-	// 1. 삼각형을 그리는 방식
-	// 2. 몇 번째 버텍스부터 그릴 것인가
-	// 3. 그리려는 삼각형 개수
 }
 
 void CVIBuffer::Free(void)

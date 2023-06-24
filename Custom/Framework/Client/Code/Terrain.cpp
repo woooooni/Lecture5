@@ -52,6 +52,7 @@ _int CTerrain::Update_Object(const _float & fTimeDelta)
 
 void CTerrain::LateUpdate_Object(void)
 {
+	Engine::Add_RenderGroup(RENDERID::RENDER_NONALPHA, this);
 	__super::LateUpdate_Object();
 }
 
@@ -67,8 +68,6 @@ void CTerrain::Render_Object(void)
 
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
-
-	
 }
 
 void CTerrain::Key_Input(const _float & fTimeDelta)

@@ -38,7 +38,7 @@ void CStage::LateUpdate_Scene()
 
 void CStage::Render_Scene()
 {
-	__super::Render_Scene();
+	
 }
 
 void CStage::Free()

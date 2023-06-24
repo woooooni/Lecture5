@@ -18,7 +18,7 @@ public:
 	virtual void		Render_Object(void);
 
 public:
-	const _matrix&	GetViewMatrix() { return m_pTransformCom->Get_WorldInverseMatrix(); }
+	const _matrix	GetViewMatrix() { return m_pTransformCom->Get_WorldInverseMatrix(); }
 	const _matrix&	GetProjectionMatrix() { return m_matProj; }
 
 	void		Set_Handle(HWND _hWnd) { m_hWnd = _hWnd; }

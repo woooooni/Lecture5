@@ -66,11 +66,11 @@ void CLayer::LateUpdate_Layer()
 		iter.second->LateUpdate_Object();
 }
 
-void CLayer::Render_Layer()
-{
-	for (auto& iter : m_mapObject)
-		iter.second->Render_Object();
-}
+//void CLayer::Render_Layer()
+//{
+//	for (auto& iter : m_mapObject)
+//		iter.second->Render_Object();
+//}
 
 CLayer * CLayer::Create()
 {

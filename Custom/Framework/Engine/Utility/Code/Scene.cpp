@@ -56,11 +56,11 @@ void CScene::LateUpdate_Scene()
 		iter.second->LateUpdate_Layer();
 }
 
-void CScene::Render_Scene()
-{
-	for (auto& iter : m_mapLayer)
-		iter.second->Render_Layer();
-}
+//void CScene::Render_Scene()
+//{
+//	for (auto& iter : m_mapLayer)
+//		iter.second->Render_Layer();
+//}
 
 void CScene::Free()
 {

@@ -1,4 +1,4 @@
-#include "..\..\Header\Management.h"
+#include "Export_Utility.h"
 
 IMPLEMENT_SINGLETON(CManagement)
 
@@ -46,6 +46,8 @@ void CManagement::LateUpdate_Scene()
 
 void CManagement::Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev)
 {
+	Engine::Render_GameObject(pGraphicDev);
+
 	if (m_pScene)
 		m_pScene->Render_Scene();
 }

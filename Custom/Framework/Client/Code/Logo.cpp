@@ -46,17 +46,16 @@ void CLogo::LateUpdate_Scene()
 
 void CLogo::Render_Scene()
 {
-	CLayer* pLayer = m_mapLayer[L"Environment"];
+	//CLayer* pLayer = m_mapLayer[L"Environment"];
 
-	CCamera* pCamera = nullptr;
-	 pCamera = dynamic_cast<CCamera*>(pLayer->Get_GameObject(L"MainCamera"));
+	//CCamera* pCamera = nullptr;
+	// pCamera = dynamic_cast<CCamera*>(pLayer->Get_GameObject(L"MainCamera"));
 
-	if (pCamera != nullptr)
-	{
-		m_pGraphicDev->SetTransform(D3DTS_VIEW, &pCamera->GetViewMatrix());
-		m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &pCamera->GetProjectionMatrix());
-	}
-	__super::Render_Scene();
+	//if (pCamera != nullptr)
+	//{
+	//	m_pGraphicDev->SetTransform(D3DTS_VIEW, &pCamera->GetViewMatrix());
+	//	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &pCamera->GetProjectionMatrix());
+	//}
 }
 
 void CLogo::Free()
@@ -85,11 +84,16 @@ HRESULT CLogo::Ready_Prototype()
 	//FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_TriCol", CTriCol::Create(m_pGraphicDev)), E_FAIL);
 	//FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcCol", CRcCol::Create(m_pGraphicDev)), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcTex", CRcTex::Create(m_pGraphicDev)), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcCube", CRcCube::Create(m_pGraphicDev)), E_FAIL);
+
 	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Transform", CTransform::Create(m_pGraphicDev)), E_FAIL);
+
 	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Texture_Logo", CTexture::Create(m_pGraphicDev, TEXTUREID::TEX_NORMAL, L"../Bin/Resource/Texture/Logo/IU.jpg")), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Texture_Terrain", CTexture::Create(m_pGraphicDev, TEXTUREID::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/Terrain0.png")), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Texture_Player", CTexture::Create(m_pGraphicDev, TEXTUREID::TEX_NORMAL, L"../Bin/Resource/Texture/Player0.png")), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcTerrain", CRcTerrain::Create(m_pGraphicDev, 257, 257, 1)), E_FAIL);
-	//FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Collider", CCollider::Create(m_pGraphicDev)), E_FAIL);
+	
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_BoxCollider", CBoxCollider::Create(m_pGraphicDev)), E_FAIL);
 
 	return S_OK;
 }
@@ -117,10 +121,10 @@ HRESULT CLogo::Ready_Layer_Environment(const _tchar* pLayerTag)
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"MainCamera", pGameObject), E_FAIL);
 		
 
-	//// Player
-	//pGameObject = CPlayer::Create(m_pGraphicDev);
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Player", pGameObject), E_FAIL);
+	// Player
+	pGameObject = CPlayer::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"Player", pGameObject), E_FAIL);
 
 	//// Monster
 	//pGameObject = CMonster::Create(m_pGraphicDev);

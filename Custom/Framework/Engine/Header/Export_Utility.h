@@ -4,16 +4,20 @@
 #include "Management.h"
 #include "ProtoMgr.h"
 #include "CameraMgr.h"
+#include "Renderer.h"
 
 #include "TriCol.h"
 #include "RcCol.h"
 #include "RcTex.h"
 #include "RcTerrain.h"
+#include "RcCube.h"
 
 #include "Transform.h"
 #include "Collider.h"
+#include "BoxCollider.h"
 #include "Texture.h"
 
+#include "GameObject.h"
 
 
 
@@ -39,10 +43,16 @@ inline HRESULT			Ready_Proto(const _tchar* pProtoTag, CComponent* pComponent);
 inline CComponent*		Clone_Proto(const _tchar* pProtoTag);
 
 // CameraMgr
-inline CCamera* CreateCamera(HWND _hWnd, LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar);
+inline CCamera*			CreateCamera(HWND _hWnd, LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar);
 
 
-inline void				Release_Utility();
+
+// Renderer
+inline void				Add_RenderGroup(RENDERID eType, CGameObject* pGameObject);
+inline void				Render_GameObject(LPDIRECT3DDEVICE9& pGraphicDev);
+inline void				Clear_RenderGroup();
+
+inline void		Release_Utility();
 
 #include "Export_Utility.inl"
 

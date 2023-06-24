@@ -61,8 +61,8 @@ void CTexture::Render_Texture(const _uint & iIndex)
 {
 	if (m_vecTexture.size() < iIndex)
 		return;
-
 	m_pGraphicDev->SetTexture(0, m_vecTexture[iIndex]);
+
 }
 
 CTexture * CTexture::Create(LPDIRECT3DDEVICE9 _pDevice, TEXTUREID eType, _tchar * pPath, const _uint & iCnt)

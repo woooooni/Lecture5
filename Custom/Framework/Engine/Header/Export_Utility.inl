@@ -57,8 +57,25 @@ inline CCamera * CreateCamera(HWND _hWnd, LPDIRECT3DDEVICE9 _pDevice, _float _fN
 {
 	return CCameraMgr::GetInstance()->CreateCamera(_hWnd, _pDevice, _fNear, _fFar);
 }
+
+void		Add_RenderGroup(RENDERID eType, CGameObject* pGameObject)
+{
+	CRenderer::GetInstance()->Add_RenderGroup(eType, pGameObject);
+}
+void		Render_GameObject(LPDIRECT3DDEVICE9& pGraphicDev)
+{
+	CRenderer::GetInstance()->Render_GameObject(pGraphicDev);
+}
+void		Clear_RenderGroup()
+{
+	CRenderer::GetInstance()->Clear_RenderGroup();
+}
+
+
+
 void			Release_Utility()
 {
+	CRenderer::GetInstance()->DestroyInstance();
 	CCameraMgr::GetInstance()->DestroyInstance();
 	CProtoMgr::GetInstance()->DestroyInstance();
 	CManagement::GetInstance()->DestroyInstance();

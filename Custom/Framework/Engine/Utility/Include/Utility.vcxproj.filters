@@ -61,6 +61,9 @@
     <Filter Include="04. Component\00. VIBuffer\04. RcCube">
       <UniqueIdentifier>{50189642-0abd-4df6-87bf-f391434e7f51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06. Renderer">
+      <UniqueIdentifier>{299251cb-9819-407d-adda-8db827d463ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\Scene.h">
@@ -120,6 +123,9 @@
     <ClInclude Include="..\..\Header\RcCube.h">
       <Filter>04. Component\00. VIBuffer\04. RcCube</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Header\Renderer.h">
+      <Filter>06. Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Scene.cpp">
@@ -175,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\RcCube.cpp">
       <Filter>04. Component\00. VIBuffer\04. RcCube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Renderer.cpp">
+      <Filter>06. Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

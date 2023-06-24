@@ -3,25 +3,37 @@
 #include "Transform.h"
 
 
+UINT CCollider::g_iNextID = 0;
+
 CCollider::CCollider()
 	: m_bEnable(true)
 	, m_bRender(true)
+	, m_iID(g_iNextID++)
 {
 }
 
-CCollider::CCollider(LPDIRECT3DDEVICE9 _pDevice)
+CCollider::CCollider(LPDIRECT3DDEVICE9 _pDevice, COLLIDER_TYPE _eColType)
 	: CComponent(_pDevice)
 	, m_bEnable(true)
 	, m_bRender(true)
+	, m_iID(g_iNextID++)
+	, m_eType(_eColType)
 {
-	
+	ZeroMemory(m_vCenterPos, sizeof(D3DXVECTOR3));
+	ZeroMemory(m_vAxisDir, 3 * sizeof(D3DXVECTOR3));
+	ZeroMemory(m_fAxisLen, 3 * sizeof(float));
 }
 
 CCollider::CCollider(const CCollider & rhs)
 	: CComponent(rhs)
 	, m_bEnable(rhs.m_bEnable)
 	, m_bRender(rhs.m_bRender)
+	, m_iID(g_iNextID++)
+	, m_eType(rhs.m_eType)
 {
+	CopyMemory(m_vCenterPos, rhs.m_vCenterPos, sizeof(D3DXVECTOR3));
+	CopyMemory(m_vAxisDir, rhs.m_vAxisDir, 3 * sizeof(D3DXVECTOR3));
+	CopyMemory(m_fAxisLen, rhs.m_fAxisLen, 3 * sizeof(float));
 }
 
 

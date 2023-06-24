@@ -25,9 +25,6 @@ HRESULT CPlayer::Ready_Object(void)
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
-	//m_pTransformCom->m_vScale = { 2.f, 1.f, 1.f };
-	m_fSpeed = 10.f;
-
 	return S_OK;
 }
 
@@ -43,16 +40,19 @@ Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 
 void CPlayer::LateUpdate_Object(void)
 {
-
 	__super::LateUpdate_Object();
+
+	Engine::Add_RenderGroup(RENDERID::RENDER_ALPHA, this);
 }
 
 void CPlayer::Render_Object(void)
 {
+	CGameObject::Render_Object();
+
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_WorldMatrix());
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
-
+	m_pTex->Render_Texture(0);
 	m_pBufferCom->Render_Buffer();
 
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
@@ -63,7 +63,7 @@ HRESULT CPlayer::Add_Component(void)
 	CComponent*			pComponent = nullptr;
 
 /*	pComponent = m_pBufferCom = dynamic_cast<CTriCol*>(Engine::Clone_Proto(L"Proto_TriCol"));*/
-	pComponent = m_pBufferCom = dynamic_cast<CRcTex*>(Engine::Clone_Proto(L"Proto_RcPlayer"));
+	pComponent = m_pBufferCom = dynamic_cast<CRcTex*>(Engine::Clone_Proto(L"Proto_RcTex"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
 	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);
@@ -71,7 +71,18 @@ HRESULT CPlayer::Add_Component(void)
 	pComponent = m_pTransformCom = dynamic_cast<CTransform*>(Engine::Clone_Proto(L"Proto_Transform"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Transform", pComponent);
+	m_mapComponent[ID_STATIC].emplace(L"Com_Transform", pComponent);
+
+	pComponent = m_pColliderCom = dynamic_cast<CBoxCollider*>(Engine::Clone_Proto(L"Proto_BoxCollider"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	pComponent->SetOwner(this);
+	m_mapComponent[ID_DYNAMIC].emplace(L"Com_BoxCollider", pComponent);
+
+	pComponent = m_pTex = dynamic_cast<CTexture*>(Engine::Clone_Proto(L"Proto_Texture_Player"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	pComponent->SetOwner(this);
+	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Texture", pComponent);
+
 
 	//pComponent = m_pColliderCom = dynamic_cast<CCollider*>(Engine::Clone_Proto(L"Proto_Collider"));
 	//NULL_CHECK_RETURN(pComponent, E_FAIL);
@@ -124,16 +135,7 @@ void CPlayer::Key_Input(const _float& fTimeDelta)
 
 void CPlayer::Shoot()
 {
-	CBullet* pBullet = CBullet::Create(m_pGraphicDev);
-	CTransform* pBulletTransform = dynamic_cast<CTransform*>(pBullet->Get_Component(L"Com_Transform", ID_DYNAMIC));
 
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
-	pBulletTransform->Set_Pos(&vPos);
-//	pBulletTransform->SetRotation(m_pTransformCom->GetRotation());
-	pBullet->SetDir(m_vDir);
-
-	Engine::GetCurrScene()->Get_Layer(L"Environment")->Add_GameObject(L"Bullet", pBullet);
 }
 
 void CPlayer::Free()

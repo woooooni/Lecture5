@@ -8,6 +8,7 @@ class CRcTex;
 class CTransform;
 class CCollider;
 class CTexture;
+class CRcCube;
 
 END
 

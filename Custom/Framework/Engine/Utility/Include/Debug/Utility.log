@@ -1,5 +1,4 @@
 ﻿  Camera.cpp
-c:\users\xodnj\desktop\lecture5\custom\framework\engine\header\camera.h(21): warning C4172: 지역 변수 또는 임시의 주소를 반환하고 있습니다.
   Utility.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\Utility\Include\../Bin\Utility.dll
   Utility.vcxproj -> ../Bin\Utility.pdb (Full PDB)
   .\Engine\Utility\Code\*.h 
@@ -38,6 +37,7 @@ c:\users\xodnj\desktop\lecture5\custom\framework\engine\header\camera.h(21): war
   .\Engine\Header\RcCube.h
   .\Engine\Header\RcTerrain.h
   .\Engine\Header\RcTex.h
+  .\Engine\Header\Renderer.h
   .\Engine\Header\Scene.h
   .\Engine\Header\Texture.h
   .\Engine\Header\Timer.h
@@ -45,7 +45,7 @@ c:\users\xodnj\desktop\lecture5\custom\framework\engine\header\camera.h(21): war
   .\Engine\Header\Transform.h
   .\Engine\Header\TriCol.h
   .\Engine\Header\VIBuffer.h
-         35개 파일이 복사되었습니다.
+         36개 파일이 복사되었습니다.
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl
           2개 파일이 복사되었습니다.

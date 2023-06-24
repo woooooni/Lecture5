@@ -33,6 +33,9 @@ public:
 	{
 		m_vInfo[INFO_POS] += *pDir * fTimeDelta * fSpeed;
 		Set_Info(INFO_POS, &m_vInfo[INFO_POS]);
+
+		//m_vInfo[INFO_LOOK] += *pDir * fTimeDelta * fSpeed;
+		//Set_Info(INFO_LOOK, &m_vInfo[INFO_LOOK]);
 	}
 
 	void				Set_Pos(const _vec3* const pPos)

@@ -17,7 +17,7 @@ protected:
 public:
 	virtual	_int Update_Component(const _float& fTimeDelta) { return 0; }
 	virtual void LateUpdate_Component(void) {}
-
+	virtual void Render_Component(void) {};
 public:
 	CGameObject*	GetOwner()						{ return m_pOwner; }
 	void			SetOwner(CGameObject* _pOwner)	{ m_pOwner = _pOwner; }
