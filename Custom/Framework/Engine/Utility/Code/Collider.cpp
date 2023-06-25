@@ -22,6 +22,9 @@ CCollider::CCollider(LPDIRECT3DDEVICE9 _pDevice, COLLIDER_TYPE _eColType)
 	ZeroMemory(m_vCenterPos, sizeof(D3DXVECTOR3));
 	ZeroMemory(m_vAxisDir, 3 * sizeof(D3DXVECTOR3));
 	ZeroMemory(m_fAxisLen, 3 * sizeof(float));
+
+	for (int i = 0; i < 3; ++i)
+		m_fAxisLen[i] = 1.f;
 }
 
 CCollider::CCollider(const CCollider & rhs)

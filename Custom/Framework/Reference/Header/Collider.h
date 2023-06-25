@@ -18,6 +18,8 @@ public:
 
 	COLLIDER_TYPE	GetColliderType()	{ return m_eType; }
 
+	void			SetAxisLen(MATRIX_INFO eInfo, _float _f) { m_fAxisLen[eInfo] = _f; }
+
 public:
 	virtual void	OnCollisionEnter(CCollider* _pOther)	PURE;
 	virtual void	OnCollisionStay(CCollider* _pOther)		PURE;

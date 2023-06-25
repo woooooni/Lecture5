@@ -83,7 +83,9 @@ HRESULT CPlayer::Add_Component(void)
 	pComponent->SetOwner(this);
 	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Texture", pComponent);
 
-
+	/*m_pColliderCom->SetAxisLen(MATRIX_INFO::INFO_UP, 0.5f);
+	m_pColliderCom->SetAxisLen(MATRIX_INFO::INFO_RIGHT, 1.f);
+	m_pColliderCom->SetAxisLen(MATRIX_INFO::INFO_LOOK, 1.f);*/
 	//pComponent = m_pColliderCom = dynamic_cast<CCollider*>(Engine::Clone_Proto(L"Proto_Collider"));
 	//NULL_CHECK_RETURN(pComponent, E_FAIL);
 	//pComponent->SetOwner(this);

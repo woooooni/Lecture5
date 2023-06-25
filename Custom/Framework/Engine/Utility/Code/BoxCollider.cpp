@@ -39,9 +39,12 @@ _int CBoxCollider::Update_Component(const _float & fTimeDelta)
 	pOwnerTransform->Get_Info(INFO_POS, &m_vCenterPos);
 	const D3DXMATRIX& matWorld = *pOwnerTransform->Get_WorldMatrix();
 	
-
+	
 	for (UINT i = 0; i < 3; ++i)
+	{
+		m_vAxisDir[i] *= m_fAxisLen[i];
 		memcpy(&m_vAxisDir[i], &matWorld.m[i][0], sizeof(_vec3));
+	}
 
 	return S_OK;
 }
@@ -59,7 +62,11 @@ void CBoxCollider::Render_Component()
 	D3DXMatrixIdentity(&matWorld);
 
 	for (int i = 0; i < 3; ++i)
+	{
+		m_vAxisDir[i] *= m_fAxisLen[i];
 		memcpy(&matWorld.m[i][0], &m_vAxisDir[i], sizeof(_vec3));
+	}
+		
 	memcpy(&matWorld.m[3][0], &m_vCenterPos, sizeof(_vec3));
 
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
