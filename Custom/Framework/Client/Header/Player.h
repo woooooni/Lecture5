@@ -31,7 +31,7 @@ private:
 	void		Shoot();
 
 private:
-	CRcTex*			m_pBufferCom = nullptr;
+	CRcCube*			m_pBufferCom = nullptr;
 	CTransform*		m_pTransformCom = nullptr;
 	CCollider*		m_pColliderCom = nullptr;
 	CTexture*		m_pTex = nullptr;

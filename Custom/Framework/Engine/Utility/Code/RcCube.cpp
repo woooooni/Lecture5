@@ -39,25 +39,17 @@ HRESULT CRcCube::Ready_Buffer(void)
 
 
 	m_pVB->Lock(0, /*m_iStride * m_iNumVertices*/0, (void**)&pVertices, 0);
-	pVertices[0].vPosition = _vec3(-0.5f, 0.5f, -0.5f);
-	pVertices[1].vPosition = _vec3(0.5f, 0.5f, -0.5f);
-	pVertices[2].vPosition = _vec3(0.5f, -0.5f, -0.5f);
-	pVertices[3].vPosition = _vec3(-0.5f, -0.5f, -0.5f);
+	pVertices[0].vPosition = pVertices[0].vTexUV = _vec3(-0.5f, 0.5f, -0.5f);
+	pVertices[1].vPosition = pVertices[1].vTexUV = _vec3(0.5f, 0.5f, -0.5f);
+	pVertices[2].vPosition = pVertices[2].vTexUV = _vec3(0.5f, -0.5f, -0.5f);
+	pVertices[3].vPosition = pVertices[3].vTexUV = _vec3(-0.5f, -0.5f, -0.5f);
 
-	pVertices[0].vTexUV = _vec3(0.f, 0.f, 0.f);
-	pVertices[1].vTexUV = _vec3(1.f, 0.f, 0.f);
-	pVertices[2].vTexUV = _vec3(1.f, 1.f, 0.f);
-	pVertices[3].vTexUV = _vec3(0.f, 1.f, 0.f);
 
-	pVertices[4].vPosition = _vec3(-0.5f, 0.5f, 0.5f);
-	pVertices[5].vPosition = _vec3(0.5f, 0.5f, 0.5f);
-	pVertices[6].vPosition = _vec3(0.5f, -0.5f, 0.5f);
-	pVertices[7].vPosition = _vec3(-0.5f, -0.5f, 0.5f);
+	pVertices[4].vPosition = pVertices[4].vTexUV = _vec3(-0.5f, 0.5f, 0.5f);
+	pVertices[5].vPosition = pVertices[5].vTexUV = _vec3(0.5f, 0.5f, 0.5f);
+	pVertices[6].vPosition = pVertices[6].vTexUV = _vec3(0.5f, -0.5f, 0.5f);
+	pVertices[7].vPosition = pVertices[7].vTexUV = _vec3(-0.5f, -0.5f, 0.5f);
 
-	pVertices[4].vTexUV = _vec3(0.f, 0.f, 0.f);
-	pVertices[5].vTexUV = _vec3(1.f, 0.f, 0.f);
-	pVertices[6].vTexUV = _vec3(1.f, 1.f, 0.f);
-	pVertices[7].vTexUV = _vec3(0.f, 1.f, 0.f);
 	// pVertices[7].vTexture = pVertices[7].vPosition;
 
 	

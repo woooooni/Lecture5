@@ -63,7 +63,7 @@ HRESULT CPlayer::Add_Component(void)
 	CComponent*			pComponent = nullptr;
 
 /*	pComponent = m_pBufferCom = dynamic_cast<CTriCol*>(Engine::Clone_Proto(L"Proto_TriCol"));*/
-	pComponent = m_pBufferCom = dynamic_cast<CRcTex*>(Engine::Clone_Proto(L"Proto_RcTex"));
+	pComponent = m_pBufferCom = dynamic_cast<CRcCube*>(Engine::Clone_Proto(L"Proto_RcCube"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
 	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);
