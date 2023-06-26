@@ -50,11 +50,11 @@ _int CCamera::Update_Object(const _float& fTimeDelta)
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_UP, &vUp);
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_LOOK, &vLook);
 
-	D3DXMatrixLookAtLH(&m_matView, &vPos, &vLook, &vUp);
-	D3DXMatrixPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
+	//D3DXMatrixLookAtLH(&m_matView, &vPos, &vLook, &vUp);
+	//D3DXMatrixPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
 
-	/*CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
-	CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);*/
+	CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
+	CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
 
 	m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matView);
 	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matProj);

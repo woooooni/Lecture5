@@ -1,14 +1,15 @@
-﻿  BoxCollider.cpp
+﻿     Creating library ../Bin\Utility.lib and object ../Bin\Utility.exp
   Utility.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\Utility\Include\../Bin\Utility.dll
   Utility.vcxproj -> ../Bin\Utility.pdb (Full PDB)
   .\Engine\Utility\Code\*.h 
-  지정된 파일을 찾을 수 없습니다.
           0개 파일이 복사되었습니다.
+  지정된 파일을 찾을 수 없습니다.
+  지정된 파일을 찾을 수 없습니다.
   .\Engine\Utility\Code\*.hpp 
           0개 파일이 복사되었습니다.
-  지정된 파일을 찾을 수 없습니다.
           1개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
+  .\Engine\Header\Animator.h
   .\Engine\Header\BoxCollider.h
   .\Engine\Header\Camera.h
   .\Engine\Header\CameraMgr.h
@@ -45,7 +46,7 @@
   .\Engine\Header\Transform.h
   .\Engine\Header\TriCol.h
   .\Engine\Header\VIBuffer.h
-         36개 파일이 복사되었습니다.
+         37개 파일이 복사되었습니다.
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl
           2개 파일이 복사되었습니다.

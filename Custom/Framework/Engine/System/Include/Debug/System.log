@@ -1,12 +1,5 @@
-﻿  TimerMgr.cpp
-  Timer.cpp
-  InputDevice.cpp
-  GraphicDev.cpp
-  FrameMgr.cpp
-  Frame.cpp
-  CollisionMgr.cpp
-  코드를 생성하고 있습니다...
-     ../Bin\System.lib 라이브러리 및 ../Bin\System.exp 개체를 생성하고 있습니다.
+﻿  LINK : ../Bin\System.dll not found or not built by the last incremental link; performing full link
+     Creating library ../Bin\System.lib and object ../Bin\System.exp
   System.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\System\Include\../Bin\System.dll
   System.vcxproj -> ../Bin\System.pdb (Full PDB)
   .\Engine\System\Code\*.h 
@@ -14,6 +7,7 @@
           0개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
+  .\Engine\Header\Animator.h
   .\Engine\Header\BoxCollider.h
   .\Engine\Header\Camera.h
   .\Engine\Header\CameraMgr.h
@@ -50,7 +44,7 @@
   .\Engine\Header\Transform.h
   .\Engine\Header\TriCol.h
   .\Engine\Header\VIBuffer.h
-         36개 파일이 복사되었습니다.
+         37개 파일이 복사되었습니다.
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl
           2개 파일이 복사되었습니다.
