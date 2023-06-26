@@ -51,7 +51,7 @@ _int CCamera::Update_Object(const _float& fTimeDelta)
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_LOOK, &vLook);
 
 	//D3DXMatrixLookAtLH(&m_matView, &vPos, &vLook, &vUp);
-	//D3DXMatrixPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
+	//D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
 
 	CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
 	CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
@@ -231,7 +231,7 @@ void CCamera::CameraRotation(const _float & fTimeDelta)
 
 	if (_long dwMouseMove = Engine::Get_DIMouseMove(MOUSEMOVESTATE::DIMS_Z))
 	{
-		m_fFov += dwMouseMove * fTimeDelta;
+		m_fFov += dwMouseMove * fTimeDelta * 0.1f;
 
 		if (m_fFov > D3DX_PI)
 			m_fFov = D3DX_PI;
