@@ -16,6 +16,10 @@ public:
 	HRESULT		Ready_Texture(TEXTUREID _eType, const _tchar* _pPath, const _uint& iCnt);
 	void		Render_Texture(const _uint& iIndex = 0);
 
+public:
+	_uint		Get_Size() { return m_vecTexture.size(); }
+
+
 private:
 	vector<IDirect3DBaseTexture9*>	m_vecTexture;
 

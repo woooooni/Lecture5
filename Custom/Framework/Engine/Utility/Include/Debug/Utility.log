@@ -1,27 +1,13 @@
-﻿  RcTerrain.cpp
-c:\users\xodnj\desktop\lecture5\custom\framework\engine\utility\code\rcterrain.cpp(102): warning C4018: '<': signed/unsigned mismatch
-c:\users\xodnj\desktop\lecture5\custom\framework\engine\utility\code\rcterrain.cpp(104): warning C4018: '<': signed/unsigned mismatch
+﻿  Texture.cpp
+  Animator.cpp
   Generating Code...
-  Skipping... (no relevant changes detected)
-  VIBuffer.cpp
-  TriCol.cpp
-  Transform.cpp
-  Texture.cpp
-  Scene.cpp
-  Renderer.cpp
-  RcTex.cpp
-  RcCube.cpp
-  RcCol.cpp
-  ProtoMgr.cpp
+c:\users\xodnj\desktop\lecture5\custom\framework\engine\utility\code\animator.cpp(51): warning C4715: 'Engine::CAnimator::Play_Animation': not all control paths return a value
+  Compiling...
   Management.cpp
-  Layer.cpp
-  GameObject.cpp
-  Component.cpp
-  Collider.cpp
-  CameraMgr.cpp
   Camera.cpp
   BoxCollider.cpp
-  Animator.cpp
+  Generating Code...
+     Creating library ../Bin\Utility.lib and object ../Bin\Utility.exp
   Utility.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\Utility\Include\../Bin\Utility.dll
   Utility.vcxproj -> ../Bin\Utility.pdb (Full PDB)
   .\Engine\Utility\Code\*.h 
