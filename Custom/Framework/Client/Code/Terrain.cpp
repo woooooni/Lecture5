@@ -87,7 +87,6 @@ HRESULT CTerrain::SetY_Terrain(CGameObject * _pTarget, _float fTimeDelta)
 
 	_int dx = fX - col;
 	_int dz = fZ - row;
-	_int height;
 
 	
 	VTXTEX* pVB;
@@ -111,15 +110,13 @@ HRESULT CTerrain::SetY_Terrain(CGameObject * _pTarget, _float fTimeDelta)
 		D3DXPlaneFromPoints(&plane, &vVertex2, &vVertex3, &vVertex4);
 	}
 
-	_float fResult = D3DXPlaneDotCoord(&plane, &vTargetPos);
-
-	/*if (fResult == 0)
-		return;*/
+	// 플레인 구해서 
+	_float fHeight = -1.f * (plane.c*vTargetPos.z + plane.a*vTargetPos.x + plane.d) / plane.b;
 
 	pBuffer->Unlock();
 
 
-	vTargetPos.y = vVertex2.y + 1.f;
+	vTargetPos.y = fHeight + 1.f;
 	pTargetTrans->Set_Info(INFO_POS, &vTargetPos);
 
 	return S_OK;
