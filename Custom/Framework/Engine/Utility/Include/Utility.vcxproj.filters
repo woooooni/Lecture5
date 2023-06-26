@@ -58,11 +58,8 @@
     <Filter Include="03. GameObject\Camera\Manager">
       <UniqueIdentifier>{b785da74-7930-4e8b-ae9d-6cf41fb0671d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. Component\00. VIBuffer\04. RcCube">
-      <UniqueIdentifier>{50189642-0abd-4df6-87bf-f391434e7f51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06. Renderer">
-      <UniqueIdentifier>{299251cb-9819-407d-adda-8db827d463ef}</UniqueIdentifier>
+    <Filter Include="04. Component\04. Animator">
+      <UniqueIdentifier>{4738203c-a686-485c-a407-7e781a1e3357}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,11 +117,8 @@
     <ClInclude Include="..\..\Header\Camera.h">
       <Filter>03. GameObject\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Header\RcCube.h">
-      <Filter>04. Component\00. VIBuffer\04. RcCube</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Header\Renderer.h">
-      <Filter>06. Renderer</Filter>
+    <ClInclude Include="..\..\Header\Animator.h">
+      <Filter>04. Component\04. Animator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,11 +173,8 @@
     <ClCompile Include="..\Code\Camera.cpp">
       <Filter>03. GameObject\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\RcCube.cpp">
-      <Filter>04. Component\00. VIBuffer\04. RcCube</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Renderer.cpp">
-      <Filter>06. Renderer</Filter>
+    <ClCompile Include="..\Code\Animator.cpp">
+      <Filter>04. Component\04. Animator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
