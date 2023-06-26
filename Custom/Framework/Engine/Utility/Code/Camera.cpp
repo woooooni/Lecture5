@@ -29,16 +29,18 @@ CCamera::~CCamera()
 HRESULT CCamera::Ready_Object(void)
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
-	m_pTransformCom->Set_Pos(&_vec3( 0.f, 10.f, -10.f ));
+	m_pTransformCom->Set_Pos(&_vec3( 0.f, 5.f, -10.f ));
 	return S_OK;
 }
 
 _int CCamera::Update_Object(const _float& fTimeDelta)
 {
-	Key_Input(fTimeDelta);
+	//Key_Input(fTimeDelta);
+	Follow(fTimeDelta);
+	//Mouse_Move(fTimeDelta);
 
-	if(m_pTargetObj != nullptr)
-		Follow(fTimeDelta);
+
+
 
 	_vec3 vPos, vLook, vRight, vUp;
 	ZeroMemory(&vPos, sizeof(_vec3));
@@ -50,11 +52,11 @@ _int CCamera::Update_Object(const _float& fTimeDelta)
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_UP, &vUp);
 	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_LOOK, &vLook);
 
-	//D3DXMatrixLookAtLH(&m_matView, &vPos, &vLook, &vUp);
-	//D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
+	D3DXMatrixLookAtLH(&m_matView, &vPos, &vLook, &vUp);
+	D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
 
-	CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
-	CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
+	//CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
+	//CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
 
 	m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matView);
 	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matProj);
@@ -90,123 +92,44 @@ void CCamera::Follow(const _float& fTimeDelta)
 	if (m_pTargetObj == nullptr)
 		return;
 
-	CTransform* pTargetTransform = dynamic_cast<CTransform*>(m_pTargetObj->Get_Component(L"Com_Transform", COMPONENTID::ID_DYNAMIC));
+	CTransform* pTargetTransform = dynamic_cast<CTransform*>(m_pTargetObj->Get_Component(L"Com_Transform", COMPONENTID::ID_STATIC));
 	if (pTargetTransform == nullptr)
 		return;
 
-	_vec3 vTargetPos, vCameraPos, vDir;
+	_vec3 vTargetPos, vCameraPos;
+	_vec3 vDir;
 
 	m_pTransformCom->Get_Info(INFO_POS, &vCameraPos);
 	pTargetTransform->Get_Info(INFO_POS, &vTargetPos);
 
+	m_pTransformCom->Set_Info(INFO_LOOK, &vTargetPos);
+
 	vDir = vTargetPos - vCameraPos;
 
-	if (D3DXVec3Length(&vDir) < m_fDist)
+	_float fLen = D3DXVec3Length(&vDir);
+	if (fLen < m_fDist)
 		return;
 	
-	vCameraPos += vDir * m_fFollowSpeed * fTimeDelta;
-}
-
-void CCamera::CustomLookAtLH(_matrix * pOut, const _vec3 * pEye, const _vec3 * pAt, const _vec3 * pUp)
-{
-	const _matrix& matWorld = *m_pTransformCom->Get_WorldMatrix();
-
-	_vec3 xAxis, yAxis, zAxis;
+	D3DXVec3Normalize(&vDir, &vDir);
+	vCameraPos.x = vTargetPos.x;
+	vCameraPos.y = vTargetPos.y + 5.f;
+	vCameraPos.z = vTargetPos.z - 10.f;
+	m_pTransformCom->Set_Info(INFO_POS, &vCameraPos);
 	
-	zAxis = *pAt - *pEye;
-
-	D3DXVec3Normalize(&xAxis, &xAxis);
-	D3DXVec3Normalize(&zAxis, &zAxis);
-	
-	D3DXVec3Cross(&xAxis, pUp, &zAxis);
-
-	D3DXVec3Cross(&yAxis, &zAxis, &xAxis);
-
-	*pOut = _matrix(
-		xAxis.x,					yAxis.x,					zAxis.x,					0,
-		xAxis.y,					yAxis.y,					zAxis.y,					0,
-		xAxis.z,					yAxis.z,					zAxis.z,					0,
-		-D3DXVec3Dot(&xAxis, pEye), -D3DXVec3Dot(&yAxis, pEye), -D3DXVec3Dot(&zAxis, pEye), 1
-	);
 }
 
-void CCamera::CustomPerspectiveLH(_matrix * pOut, const _float _fov, const _float _fAspect, const _float _fNear, const _float _fFar)
-{
 
-	float h = 1.0f / tanf(_fov / 2.0f);
-	float w = h / _fAspect;
-
-
-	(*pOut)(0, 0) = w;      (*pOut)(0, 1) = 0.0f;      (*pOut)(0, 2) = 0.0f;              (*pOut)(0, 3) = 0.0f;
-	(*pOut)(1, 0) = 0.0f;   (*pOut)(1, 1) = h;         (*pOut)(1, 2) = 0.0f;              (*pOut)(1, 3) = 0.0f;
-	(*pOut)(2, 0) = 0.0f;   (*pOut)(2, 1) = 0.0f;      (*pOut)(2, 2) = _fFar / (_fFar - _fNear);        (*pOut)(2, 3) = 1.0f;
-	(*pOut)(3, 0) = 0.0f;   (*pOut)(3, 1) = 0.0f;      (*pOut)(3, 2) = -(_fNear*_fFar / (_fFar - _fNear));  (*pOut)(3, 3) = 0.0f;
-}
 
 void CCamera::Key_Input(const _float & fTimeDelta)
-{
-	CameraRotation(fTimeDelta);
-
-	if (m_pTargetObj == nullptr)
-		CameraMove(fTimeDelta);
-	
-	
-	
+{	
 	POINT pt = { WINCX / 2, WINCY / 2 };
 	ShowCursor(false);
 	ClientToScreen(m_hWnd, &pt);
 	SetCursorPos(pt.x, pt.y);
 }
 
-void CCamera::CameraMove(const _float& fTimeDelta)
+void CCamera::Mouse_Move(const _float & fTimeDelta)
 {
-	_vec3 vLook, vRight, vDirX, vDirLook;
-	m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
-	m_pTransformCom->Get_Info(INFO_RIGHT, &vRight);
-
-	D3DXVec3Normalize(&vDirX, &vRight);
-	D3DXVec3Normalize(&vDirLook, &vLook);
-
-	if (Engine::Get_DIKeyState(DIK_W) & 0x8000)
-	{
-		m_pTransformCom->Move_Pos(&vDirLook, fTimeDelta, 50.f);
-
-		vLook += vDirLook * fTimeDelta * 50.f;
-		m_pTransformCom->Set_Info(INFO_LOOK, &vLook);
-	}
-
-	if (Engine::Get_DIKeyState(DIK_S) & 0x8000)
-	{
-		m_pTransformCom->Move_Pos(&vDirLook, fTimeDelta, -50.f);
-
-		vLook += vDirLook * fTimeDelta * 50.f;
-		m_pTransformCom->Set_Info(INFO_LOOK, &vLook);
-	}
-
-	if (Engine::Get_DIKeyState(DIK_A) & 0x8000)
-	{
-		m_pTransformCom->Move_Pos(&vDirX, fTimeDelta, -50.f);
-	}
-
-	if (Engine::Get_DIKeyState(DIK_D) & 0x8000)
-	{
-		m_pTransformCom->Move_Pos(&vDirX, fTimeDelta, 50.f);
-	}
-
-	if (Engine::Get_DIKeyState(DIK_Q) & 0x8000)
-	{		
-		m_pTransformCom->RotationAxis(vLook, fTimeDelta * -10.f);
-	}
-
-	if (Engine::Get_DIKeyState(DIK_E) & 0x8000)
-	{
-		m_pTransformCom->RotationAxis(vLook, fTimeDelta * 10.f);
-	}
-}
-
-void CCamera::CameraRotation(const _float & fTimeDelta)
-{
-
 	_vec3 vUp, vRight, vLook;
 	_vec3  vDirRight, vDirLook, vDirUp;
 
@@ -266,3 +189,40 @@ void CCamera::Free()
 {
 	CGameObject::Free();
 }
+
+
+//void CCamera::CustomLookAtLH(_matrix * pOut, const _vec3 * pEye, const _vec3 * pAt, const _vec3 * pUp)
+//{
+//	const _matrix& matWorld = *m_pTransformCom->Get_WorldMatrix();
+//
+//	_vec3 xAxis, yAxis, zAxis;
+//
+//	zAxis = *pAt - *pEye;
+//
+//	D3DXVec3Normalize(&xAxis, &xAxis);
+//	D3DXVec3Normalize(&zAxis, &zAxis);
+//
+//	D3DXVec3Cross(&xAxis, pUp, &zAxis);
+//
+//	D3DXVec3Cross(&yAxis, &zAxis, &xAxis);
+//
+//	*pOut = _matrix(
+//		xAxis.x, yAxis.x, zAxis.x, 0,
+//		xAxis.y, yAxis.y, zAxis.y, 0,
+//		xAxis.z, yAxis.z, zAxis.z, 0,
+//		-D3DXVec3Dot(&xAxis, pEye), -D3DXVec3Dot(&yAxis, pEye), -D3DXVec3Dot(&zAxis, pEye), 1
+//	);
+//}
+//
+//void CCamera::CustomPerspectiveLH(_matrix * pOut, const _float _fov, const _float _fAspect, const _float _fNear, const _float _fFar)
+//{
+//
+//	float h = 1.0f / tanf(_fov / 2.0f);
+//	float w = h / _fAspect;
+//
+//
+//	(*pOut)(0, 0) = w;      (*pOut)(0, 1) = 0.0f;      (*pOut)(0, 2) = 0.0f;								(*pOut)(0, 3) = 0.0f;
+//	(*pOut)(1, 0) = 0.0f;   (*pOut)(1, 1) = h;         (*pOut)(1, 2) = 0.0f;								(*pOut)(1, 3) = 0.0f;
+//	(*pOut)(2, 0) = 0.0f;   (*pOut)(2, 1) = 0.0f;      (*pOut)(2, 2) = _fFar / (_fFar - _fNear);			(*pOut)(2, 3) = 1.0f;
+//	(*pOut)(3, 0) = 0.0f;   (*pOut)(3, 1) = 0.0f;      (*pOut)(3, 2) = -(_fNear*_fFar / (_fFar - _fNear));  (*pOut)(3, 3) = 0.0f;
+//}

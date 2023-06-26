@@ -16,6 +16,10 @@ public:
 	virtual HRESULT			Ready_Buffer(void);
 	virtual void			Render_Buffer(void);
 
+public:
+	const LPDIRECT3DVERTEXBUFFER9& GetBuffer()	{ return m_pVB; }
+	const LPDIRECT3DINDEXBUFFER9& GetIndex()	{ return m_pIB; }
+
 protected:
 	LPDIRECT3DVERTEXBUFFER9			m_pVB;
 	LPDIRECT3DINDEXBUFFER9			m_pIB;

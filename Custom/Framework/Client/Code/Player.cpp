@@ -2,18 +2,20 @@
 #include "..\Header\Player.h"
 
 #include "Export_Function.h"
-#include "Export_Utility.h"
 #include "Bullet.h"
 
 #include "Scene.h"
+#include "Terrain.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev, OBJ_TYPE::OBJ_PLAYER)
+	, m_fSpeed(5.f)
 {
 
 }
 CPlayer::CPlayer(const CPlayer& rhs)
 	: Engine::CGameObject(rhs)
+	, m_fSpeed(rhs.m_fSpeed)
 {
 
 }
@@ -34,6 +36,8 @@ Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 	_int iExit = __super::Update_Object(fTimeDelta);
 
 	Key_Input(fTimeDelta);
+	CTerrain* pTerrain = dynamic_cast<CTerrain*>(Engine::GetCurrScene()->Get_Layer(LAYER_TYPE::ENVIRONMENT)->Find_GameObject(L"Terrain"));
+	pTerrain->SetY_Terrain(this, fTimeDelta);
 
 	return iExit;
 }
@@ -41,7 +45,6 @@ Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 void CPlayer::LateUpdate_Object(void)
 {
 	__super::LateUpdate_Object();
-
 	Engine::Add_RenderGroup(RENDERID::RENDER_ALPHA, this);
 }
 
@@ -83,37 +86,34 @@ HRESULT CPlayer::Add_Component(void)
 	pComponent->SetOwner(this);
 	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Texture", pComponent);
 
-	/*m_pColliderCom->SetAxisLen(MATRIX_INFO::INFO_UP, 0.5f);
-	m_pColliderCom->SetAxisLen(MATRIX_INFO::INFO_RIGHT, 1.f);
-	m_pColliderCom->SetAxisLen(MATRIX_INFO::INFO_LOOK, 1.f);*/
-	//pComponent = m_pColliderCom = dynamic_cast<CCollider*>(Engine::Clone_Proto(L"Proto_Collider"));
-	//NULL_CHECK_RETURN(pComponent, E_FAIL);
-	//pComponent->SetOwner(this);
-	//m_mapComponent[ID_DYNAMIC].emplace(L"Com_Collider", pComponent);
-
 	return S_OK;
 }
 
 void CPlayer::Key_Input(const _float& fTimeDelta)
 {
-	//m_pTransformCom->Get_Info(INFO_UP, &m_vDir);
+	m_pTransformCom->Get_Info(INFO_LOOK, &m_vDir);
 
-	//if (GetAsyncKeyState(VK_UP))
-	//{
-	//	D3DXVec3Normalize(&m_vDir, &m_vDir);
-	//	m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, m_fSpeed);
-	//}
+	if (GetAsyncKeyState(VK_UP))
+	{
+		D3DXVec3Normalize(&m_vDir, &m_vDir);
+		m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, m_fSpeed);
+	}
 
-	//if (GetAsyncKeyState(VK_DOWN))
-	//{
-	//	D3DXVec3Normalize(&m_vDir, &m_vDir);
-	//	m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, -m_fSpeed);
-	//}
+	if (GetAsyncKeyState(VK_DOWN))
+	{
+		D3DXVec3Normalize(&m_vDir, &m_vDir);
+		m_pTransformCom->Move_Pos(&m_vDir, fTimeDelta, -m_fSpeed);
+	}
 
-	//if (GetAsyncKeyState(VK_SPACE) & 0x8000)
-	//{
-	//	Shoot();
-	//}
+	if (GetAsyncKeyState(VK_LEFT))
+	{
+		m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(-180.f * fTimeDelta));
+	}
+
+	if (GetAsyncKeyState(VK_RIGHT))
+	{
+		m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(180.f * fTimeDelta));
+	}
 
 	//if (GetAsyncKeyState('Q'))
 	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(180.f * fTimeDelta));
@@ -122,10 +122,10 @@ void CPlayer::Key_Input(const _float& fTimeDelta)
 	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(-180.f * fTimeDelta));
 	//
 	//if (GetAsyncKeyState('W'))
-	//	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f * fTimeDelta));
+	//	m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(180.f * fTimeDelta));
 
 	//if (GetAsyncKeyState('S'))
-	//	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(-180.f * fTimeDelta));
+	//	m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(-180.f * fTimeDelta));
 
 	//if (GetAsyncKeyState('E'))
 	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(180.f * fTimeDelta));

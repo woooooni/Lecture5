@@ -1,3 +1,8 @@
-﻿     Creating library ../Bin\Client.lib and object ../Bin\Client.exp
+﻿  Terrain.cpp
+c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(85): warning C4244: 'initializing': conversion from 'float' to 'Engine::_int', possible loss of data
+c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(86): warning C4244: 'initializing': conversion from 'float' to 'Engine::_int', possible loss of data
+c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(88): warning C4244: 'initializing': conversion from 'Engine::_float' to 'Engine::_int', possible loss of data
+c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(89): warning C4244: 'initializing': conversion from 'Engine::_float' to 'Engine::_int', possible loss of data
+c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(90): warning C4101: 'height': unreferenced local variable
   Client.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Client\Include\../Bin\Client.exe
   Client.vcxproj -> ../Bin\Client.pdb (Full PDB)

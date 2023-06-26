@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "..\Header\Terrain.h"
 #include "Export_Function.h"
 
@@ -70,42 +70,61 @@ void CTerrain::Render_Object(void)
 	m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 }
 
-void CTerrain::Key_Input(const _float & fTimeDelta)
+HRESULT CTerrain::SetY_Terrain(CGameObject * _pTarget, _float fTimeDelta)
 {
-	//if (GetAsyncKeyState(VK_UP) & 0x8001)
-	//{
-	//	_vec3 vPos;
-	//	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
-	//	vPos.z -= 10.f * fTimeDelta;
-	//	m_pTransformCom->Set_Pos(&vPos);
-	//}
 
-	//if (GetAsyncKeyState(VK_DOWN) & 0x8001)
-	//{
-	//	_vec3 vPos;
-	//	m_pTransformCom->Get_Info(MATRIX_INFO::INFO_POS, &vPos);
-	//	vPos.z += 10.f * fTimeDelta;
-	//	m_pTransformCom->Set_Pos(&vPos);
-	//}
+	CTransform* pTargetTrans = dynamic_cast<CTransform*>(_pTarget->Get_Component(L"Com_Transform", ID_STATIC));
+	NULL_CHECK_RETURN(pTargetTrans, E_FAIL);
 
-	//if (GetAsyncKeyState('Q'))
-	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(180.f * fTimeDelta));
+	_vec3 vTargetPos;
+	pTargetTrans->Get_Info(INFO_POS, &vTargetPos);
+	
+	_float fX = ((_float)m_pBufferCom->m_iWidth / 2.0f) + vTargetPos.x;
+	_float fZ = ((_float)m_pBufferCom->m_iHeight / 2.0f) - vTargetPos.z;
 
-	//if (GetAsyncKeyState('A'))
-	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(-180.f * fTimeDelta));
+	_int col = floorf(fX);
+	_int row = floorf(fZ);
 
-	//if (GetAsyncKeyState('W'))
-	//	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f * fTimeDelta));
+	_int dx = fX - col;
+	_int dz = fZ - row;
+	_int height;
 
-	//if (GetAsyncKeyState('S'))
-	//	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(-180.f * fTimeDelta));
+	
+	VTXTEX* pVB;
+	LPDIRECT3DVERTEXBUFFER9 pBuffer = m_pBufferCom->GetBuffer();
 
-	//if (GetAsyncKeyState('E'))
-	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(180.f * fTimeDelta));
+	pBuffer->Lock(0, 0, (void**)&pVB, 0);
 
-	//if (GetAsyncKeyState('D'))
-	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(-180.f * fTimeDelta));
+	_vec3 vVertex1 = pVB[row * m_pBufferCom->m_iVertexCountRow + col].vPosition;			// x : 0 z : 0
+	_vec3 vVertex2 = pVB[row * m_pBufferCom->m_iVertexCountRow + col + 1].vPosition;		// x : 1 z : 0
+	_vec3 vVertex3 = pVB[(row + 1) * m_pBufferCom->m_iVertexCountRow + col].vPosition;		// x : 0 z : -1
+	_vec3 vVertex4 = pVB[(row + 1) * m_pBufferCom->m_iVertexCountRow + col + 1].vPosition;	// x : 1 z : -1
+
+	D3DXPLANE plane;
+
+	if (dz < 1.0f - dx) // 위쪽 삼각형 ABC
+	{
+		D3DXPlaneFromPoints(&plane, &vVertex1, &vVertex2, &vVertex3);
+	}
+	else
+	{
+		D3DXPlaneFromPoints(&plane, &vVertex2, &vVertex3, &vVertex4);
+	}
+
+	_float fResult = D3DXPlaneDotCoord(&plane, &vTargetPos);
+
+	/*if (fResult == 0)
+		return;*/
+
+	pBuffer->Unlock();
+
+
+	vTargetPos.y = vVertex2.y + 1.f;
+	pTargetTrans->Set_Info(INFO_POS, &vTargetPos);
+
+	return S_OK;
 }
+
 
 void CTerrain::Load_HeightMapInfo(const wstring& _strFilePath)
 {
@@ -137,6 +156,7 @@ void CTerrain::SetHeightMapEntry(int iRow, int iCol, int value)
 {
 	m_vecHeightInfo[iRow * m_pBufferCom->m_iVertexCountRow + iCol] = value;
 }
+
 
 HRESULT CTerrain::Add_Component(void)
 {

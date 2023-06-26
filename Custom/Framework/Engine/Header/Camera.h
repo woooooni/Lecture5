@@ -31,13 +31,12 @@ public:
 private:
 	HRESULT		Add_Component(void);
 	void		Key_Input(const _float& fTimeDelta);
-	void		CameraMove(const _float& fTimeDelta);
-	void		CameraRotation(const _float& fTimeDelta);
+	void		Mouse_Move(const _float& fTimeDelta);
 	void		Follow(const _float& fTimeDelta);
 
-private:
-	void		CustomLookAtLH(_matrix* pOut, const _vec3* pEye, const _vec3* pAt, const _vec3* pUp);
-	void		CustomPerspectiveLH(_matrix* pOut, const _float _fov, const _float _fAspect, const _float _fNear, const _float _fFar);
+//private:
+//	void		CustomLookAtLH(_matrix* pOut, const _vec3* pEye, const _vec3* pAt, const _vec3* pUp);
+//	void		CustomPerspectiveLH(_matrix* pOut, const _float _fov, const _float _fAspect, const _float _fNear, const _float _fFar);
 
 private:
 	CTransform*	m_pTransformCom = nullptr;

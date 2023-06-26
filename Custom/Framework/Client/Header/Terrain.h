@@ -27,8 +27,10 @@ public:
 	virtual void LateUpdate_Object(void) override;
 	virtual void Render_Object(void) override;
 
+public:
+	HRESULT		SetY_Terrain(CGameObject* _pTarget, _float fTimeDelta);
+	CRcTerrain*	GetTerrainVertex() { return m_pBufferCom; }
 private:
-	void		Key_Input(const _float& fTimeDelta);
 	void		Load_HeightMapInfo(const wstring& _strFilePath);
 	int			GetHeightMapEntry(int iRow, int iCol);
 	void		SetHeightMapEntry(int iRow, int iCol, int value);
