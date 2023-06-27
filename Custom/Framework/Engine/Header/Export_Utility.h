@@ -16,6 +16,7 @@
 #include "Collider.h"
 #include "BoxCollider.h"
 #include "Texture.h"
+#include "Animator.h"
 
 #include "GameObject.h"
 

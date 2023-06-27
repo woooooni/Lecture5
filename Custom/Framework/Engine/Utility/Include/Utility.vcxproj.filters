@@ -64,6 +64,9 @@
     <Filter Include="04. Component\00. VIBuffer\04. RcCube">
       <UniqueIdentifier>{8bb1bf93-bab2-4978-b31e-de6948f89b71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06. Renderer">
+      <UniqueIdentifier>{157f29e2-4903-474a-a17c-1135389177b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\Scene.h">
@@ -123,9 +126,11 @@
     <ClInclude Include="..\..\Header\Animator.h">
       <Filter>04. Component\04. Animator</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Header\Renderer.h" />
     <ClInclude Include="..\..\Header\RcCube.h">
       <Filter>04. Component\00. VIBuffer\04. RcCube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Header\Renderer.h">
+      <Filter>06. Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -183,9 +188,11 @@
     <ClCompile Include="..\Code\Animator.cpp">
       <Filter>04. Component\04. Animator</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Renderer.cpp" />
     <ClCompile Include="..\Code\RcCube.cpp">
       <Filter>04. Component\00. VIBuffer\04. RcCube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Renderer.cpp">
+      <Filter>06. Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

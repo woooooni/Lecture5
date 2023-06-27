@@ -50,7 +50,7 @@ HRESULT CTexture::Ready_Texture(TEXTUREID _eType, const _tchar * _pPath, const _
 			FAILED_CHECK_RETURN(D3DXCreateCubeTextureFromFile(m_pGraphicDev, szFileName, (LPDIRECT3DCUBETEXTURE9*)&pTexture), E_FAIL);
 			break;
 		}
-
+		
 		m_vecTexture.push_back(pTexture);
 	}
 

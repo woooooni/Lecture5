@@ -69,6 +69,7 @@ void CVIBuffer::Render_Buffer(void)
 	m_pGraphicDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_dwVtxCnt, 0, m_dwTriCnt);
 }
 
+
 void CVIBuffer::Free(void)
 {
 	Safe_Release(m_pVB);

@@ -17,8 +17,8 @@ public:
 	virtual void			Render_Buffer(void);
 
 public:
-	const LPDIRECT3DVERTEXBUFFER9& GetBuffer()	{ return m_pVB; }
-	const LPDIRECT3DINDEXBUFFER9& GetIndex()	{ return m_pIB; }
+	const LPDIRECT3DVERTEXBUFFER9&	GetBuffer()	{ return m_pVB; }
+	const LPDIRECT3DINDEXBUFFER9&	GetIndex()	{ return m_pIB; }
 
 protected:
 	LPDIRECT3DVERTEXBUFFER9			m_pVB;

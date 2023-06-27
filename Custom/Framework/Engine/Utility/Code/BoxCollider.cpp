@@ -32,26 +32,25 @@ HRESULT CBoxCollider::Ready_BoxCollider()
 
 _int CBoxCollider::Update_Component(const _float & fTimeDelta)
 {
-	CTransform* pOwnerTransform = dynamic_cast<CTransform*>(m_pOwner->Get_Component(L"Com_Transform", COMPONENTID::ID_STATIC));
-	NULL_CHECK_RETURN_MSG(pOwnerTransform, E_FAIL, L"BoxCollider_Get_Owner_Transform_Failed.");
-	
-	
-	pOwnerTransform->Get_Info(INFO_POS, &m_vCenterPos);
-	const D3DXMATRIX& matWorld = *pOwnerTransform->Get_WorldMatrix();
-	
-	
-	for (UINT i = 0; i < 3; ++i)
-	{
-		m_vAxisDir[i] *= m_fAxisLen[i];
-		memcpy(&m_vAxisDir[i], &matWorld.m[i][0], sizeof(_vec3));
-	}
+
 
 	return S_OK;
 }
 
 void CBoxCollider::LateUpdate_Component()
 {
-	
+	CTransform* pOwnerTransform = dynamic_cast<CTransform*>(m_pOwner->Get_Component(L"Com_Transform", COMPONENTID::ID_STATIC));
+
+
+	pOwnerTransform->Get_Info(INFO_POS, &m_vCenterPos);
+	const D3DXMATRIX& matWorld = *pOwnerTransform->Get_WorldMatrix();
+
+
+	for (UINT i = 0; i < 3; ++i)
+	{
+		m_vAxisDir[i] *= m_fAxisLen[i];
+		memcpy(&m_vAxisDir[i], &matWorld.m[i][0], sizeof(_vec3));
+	}
 }
 
 void CBoxCollider::Render_Component()

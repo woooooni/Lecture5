@@ -55,8 +55,11 @@ void CRenderer::Render_Nonalpha(LPDIRECT3DDEVICE9& pGraphicDev)
 void CRenderer::Render_Alpha(LPDIRECT3DDEVICE9& pGraphicDev)
 {
 	pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+	pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
+	/*pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);*/
+
 
 	for (auto iter : m_RenderGroup[RENDER_ALPHA])
 		iter->Render_Object();
@@ -66,6 +69,7 @@ void CRenderer::Render_Alpha(LPDIRECT3DDEVICE9& pGraphicDev)
 
 void CRenderer::Render_UI(LPDIRECT3DDEVICE9& pGraphicDev)
 {
+
 	for (auto iter : m_RenderGroup[RENDER_UI])
 		iter->Render_Object();
 }

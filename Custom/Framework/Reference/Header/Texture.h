@@ -17,8 +17,8 @@ public:
 	void		Render_Texture(const _uint& iIndex = 0);
 
 public:
-	_uint		Get_Size() { return m_vecTexture.size(); }
-
+	_uint					Get_Size()						{ return m_vecTexture.size(); }
+	LPDIRECT3DBASETEXTURE9	Get_Texture(_uint iTextNum)		{ return m_vecTexture[iTextNum]; }
 
 private:
 	vector<IDirect3DBaseTexture9*>	m_vecTexture;

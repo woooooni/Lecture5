@@ -50,6 +50,14 @@ HRESULT CRcCube::Ready_Buffer(void)
 	pVertices[6].vPosition = pVertices[6].vTexUV = _vec3(0.5f, -0.5f, 0.5f);
 	pVertices[7].vPosition = pVertices[7].vTexUV = _vec3(-0.5f, -0.5f, 0.5f);
 
+	pVertices[0].color = D3DCOLOR_RGBA(255, 255, 255, 100);
+	pVertices[1].color = D3DCOLOR_RGBA(255, 255, 255, 100);
+	pVertices[2].color = D3DCOLOR_RGBA(255, 255, 255, 100);
+	pVertices[3].color = D3DCOLOR_RGBA(255, 255, 255, 100);
+	pVertices[4].color = D3DCOLOR_RGBA(255, 255, 255, 100);
+	pVertices[5].color = D3DCOLOR_RGBA(255, 255, 255, 100);
+	pVertices[6].color = D3DCOLOR_RGBA(255, 255, 255, 100);
+	pVertices[7].color = D3DCOLOR_RGBA(255, 255, 255, 100);
 	// pVertices[7].vTexture = pVertices[7].vPosition;
 
 	
@@ -91,7 +99,25 @@ HRESULT CRcCube::Ready_Buffer(void)
 
 void CRcCube::Render_Buffer(void)
 {
+	m_pGraphicDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
+	m_pGraphicDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+	m_pGraphicDev->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+	//m_pGraphicDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
 	CVIBuffer::Render_Buffer();
+}
+
+void CRcCube::SetAlpha(_int _iAlpha)
+{
+	VTXCUBE* pVB = nullptr;
+
+	m_pVB->Lock(0, 0, (void**)&pVB, 0);
+
+	for (_uint i = 0; i < m_dwVtxCnt; ++i)
+	{
+		pVB[i].color = D3DCOLOR_RGBA(255, 255, 255, _iAlpha);
+	}
+
+	m_pVB->Unlock();
 }
 
 CRcCube * CRcCube::Create(LPDIRECT3DDEVICE9 pGraphicDev)

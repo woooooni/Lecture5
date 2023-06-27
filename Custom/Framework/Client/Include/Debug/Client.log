@@ -1,19 +1,13 @@
 ﻿  BackGround.cpp
-  Generating Code...
-  Compiling...
+  코드를 생성하고 있습니다...
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
   Client.cpp
   Terrain.cpp
-c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(85): warning C4244: 'initializing': conversion from 'float' to 'Engine::_int', possible loss of data
-c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(86): warning C4244: 'initializing': conversion from 'float' to 'Engine::_int', possible loss of data
-c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(88): warning C4244: 'initializing': conversion from 'Engine::_float' to 'Engine::_int', possible loss of data
-c:\users\xodnj\desktop\lecture5\custom\framework\client\code\terrain.cpp(89): warning C4244: 'initializing': conversion from 'Engine::_float' to 'Engine::_int', possible loss of data
   Stage.cpp
   Player.cpp
   Monster.cpp
   MainApp.cpp
   Logo.cpp
   Bullet.cpp
-  Generating Code...
-     Creating library ../Bin\Client.lib and object ../Bin\Client.exp
   Client.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Client\Include\../Bin\Client.exe
   Client.vcxproj -> ../Bin\Client.pdb (Full PDB)

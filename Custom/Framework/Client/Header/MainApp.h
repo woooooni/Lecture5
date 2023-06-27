@@ -24,6 +24,7 @@ public:
 private:
 	HRESULT				SetUp_DefaultSetting(LPDIRECT3DDEVICE9* ppGraphicDev);
 	HRESULT				Ready_Scene(LPDIRECT3DDEVICE9 pGraphicDev, Engine::CManagement** ppManagementClass);
+	HRESULT				Ready_Proto_Component(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	CGraphicDev*			m_pDeviceClass;

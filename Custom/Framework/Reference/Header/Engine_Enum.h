@@ -25,7 +25,8 @@ namespace Engine
 		COM_TRANSFORM, 
 		COM_BOX_COLLIDER, 
 		COM_CIRCLE_COLLIDER, 
-		COM_TEXTURE, 
+
+		COM_ANIMATOR,
 		COM_END 
 	};
 

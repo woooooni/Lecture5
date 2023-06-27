@@ -82,11 +82,11 @@ HRESULT CTerrain::SetY_Terrain(CGameObject * _pTarget, _float fTimeDelta)
 	_float fX = ((_float)m_pBufferCom->m_iWidth / 2.0f) + vTargetPos.x;
 	_float fZ = ((_float)m_pBufferCom->m_iHeight / 2.0f) - vTargetPos.z;
 
-	_int col = floorf(fX);
-	_int row = floorf(fZ);
+	_int col = _int(fX);
+	_int row = _int(fZ);
 
-	_int dx = fX - col;
-	_int dz = fZ - row;
+	_float dx = fX - col;
+	_float dz = fZ - row;
 
 	
 	VTXTEX* pVB;

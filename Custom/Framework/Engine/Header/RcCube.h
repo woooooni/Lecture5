@@ -15,6 +15,9 @@ public:
 	virtual void			Render_Buffer(void);
 
 public:
+	void					SetAlpha(_int _iAlpha); // 0 ~ 255
+
+public:
 	static CRcCube*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
 	virtual CComponent*	Clone(void);
 
