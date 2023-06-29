@@ -8,19 +8,18 @@ CTexture::CTexture()
 
 CTexture::CTexture(LPDIRECT3DDEVICE9 _pDevice)
 	:CComponent(_pDevice)
+	, m_iIdx(0)
 {
 }
 
 CTexture::CTexture(const CTexture & rhs)
-	:CComponent(rhs)
+	: CComponent(rhs)
+	, m_iIdx(rhs.m_iIdx)
 {
 	const _uint& iCount = rhs.m_vecTexture.size();
 	m_vecTexture.reserve(iCount);
 
 	m_vecTexture = rhs.m_vecTexture;
-
-	for (_uint i = 0; i < iCount; ++i)
-		m_vecTexture[i]->AddRef();
 }
 
 
@@ -59,10 +58,14 @@ HRESULT CTexture::Ready_Texture(TEXTUREID _eType, const _tchar * _pPath, const _
 
 void CTexture::Render_Texture(const _uint & iIndex)
 {
-	if (m_vecTexture.size() < iIndex)
-		return;
-	m_pGraphicDev->SetTexture(0, m_vecTexture[iIndex]);
+	m_pGraphicDev->SetTexture(0, m_vecTexture[m_iIdx]);
+}
 
+void CTexture::Set_Idx(_uint _iIdx)
+{
+	m_iIdx = _iIdx;
+	if (m_iIdx >= m_vecTexture.size())
+		m_iIdx = 0;
 }
 
 CTexture * CTexture::Create(LPDIRECT3DDEVICE9 _pDevice, TEXTUREID eType, _tchar * pPath, const _uint & iCnt)

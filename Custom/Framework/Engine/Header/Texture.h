@@ -18,10 +18,12 @@ public:
 
 public:
 	_uint					Get_Size()						{ return m_vecTexture.size(); }
-	LPDIRECT3DBASETEXTURE9	Get_Texture(_uint iTextNum)		{ return m_vecTexture[iTextNum]; }
-
+	LPDIRECT3DBASETEXTURE9	Get_Texture(_uint iTextNum) { return m_vecTexture[iTextNum]; }
+	void					Set_Idx(_uint _iIdx);
+	_uint					Get_Idx() { return m_iIdx; }
 private:
 	vector<IDirect3DBaseTexture9*>	m_vecTexture;
+	_uint							m_iIdx;
 
 public:
 	static CTexture* Create(LPDIRECT3DDEVICE9 _pDevice, TEXTUREID eType, _tchar * pPath, const _uint & iCnt = 1);

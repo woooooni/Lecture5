@@ -27,12 +27,15 @@ HRESULT CPlayer::Ready_Object(void)
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
+	
+	m_pAnimator->Add_Animation(L"Player", L"Proto_Texture_Player");
+	m_pAnimator->Play_Animation(L"Player");
+
 	return S_OK;
 }
 
 Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 {
-
 	_int iExit = __super::Update_Object(fTimeDelta);
 
 	Key_Input(fTimeDelta);
@@ -50,12 +53,10 @@ void CPlayer::LateUpdate_Object(void)
 
 void CPlayer::Render_Object(void)
 {
-	CGameObject::Render_Object();
-
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_WorldMatrix());
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
-	m_pTex->Render_Texture(0);
+	__super::Render_Object();
 	m_pBufferCom->Render_Buffer();
 
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
@@ -66,7 +67,7 @@ HRESULT CPlayer::Add_Component(void)
 	CComponent*			pComponent = nullptr;
 
 /*	pComponent = m_pBufferCom = dynamic_cast<CTriCol*>(Engine::Clone_Proto(L"Proto_TriCol"));*/
-	pComponent = m_pBufferCom = dynamic_cast<CRcCube*>(Engine::Clone_Proto(L"Proto_RcCube"));
+	pComponent = m_pBufferCom = dynamic_cast<CRcTex*>(Engine::Clone_Proto(L"Proto_RcTex"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
 	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);
@@ -81,10 +82,9 @@ HRESULT CPlayer::Add_Component(void)
 	pComponent->SetOwner(this);
 	m_mapComponent[ID_DYNAMIC].emplace(L"Com_BoxCollider", pComponent);
 
-	pComponent = m_pTex = dynamic_cast<CTexture*>(Engine::Clone_Proto(L"Proto_Texture_Player"));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	pComponent = m_pAnimator = dynamic_cast<CAnimator*>(Engine::Clone_Proto(L"Proto_Animator"));
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Texture", pComponent);
+	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Animator", pComponent);
 
 	return S_OK;
 }

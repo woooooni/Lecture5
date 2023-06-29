@@ -9,6 +9,7 @@ class CTransform;
 class CCollider;
 class CTexture;
 class CRcCube;
+class CAnimator;
 
 END
 
@@ -20,21 +21,21 @@ private:
 	virtual ~CPlayer();
 
 public:
-	virtual HRESULT Ready_Object(void) override;
-	virtual _int Update_Object(const _float& fTimeDelta) override;
-	virtual void LateUpdate_Object(void) override;
-	virtual void Render_Object(void) override;
+	virtual HRESULT		Ready_Object(void) override;
+	virtual _int		Update_Object(const _float& fTimeDelta) override;
+	virtual void		LateUpdate_Object(void) override;
+	virtual void		Render_Object(void) override;
 
 private:
-	HRESULT		Add_Component(void);
-	void		Key_Input(const _float& fTimeDelta);
-	void		Shoot();
+	HRESULT			Add_Component(void);
+	void			Key_Input(const _float& fTimeDelta);
+	void			Shoot();
 
 private:
-	CRcCube*			m_pBufferCom = nullptr;
+	CRcTex*			m_pBufferCom = nullptr;
 	CTransform*		m_pTransformCom = nullptr;
 	CCollider*		m_pColliderCom = nullptr;
-	CTexture*		m_pTex = nullptr;
+	CAnimator*		m_pAnimator = nullptr;
 
 	_vec3			m_vDir;
 	_float			m_fSpeed;

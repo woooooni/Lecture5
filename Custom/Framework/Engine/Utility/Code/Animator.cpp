@@ -8,11 +8,18 @@ CAnimator::CAnimator()
 
 CAnimator::CAnimator(LPDIRECT3DDEVICE9 _pDevice)
 	: CComponent(_pDevice)
+	, m_pCurAnimation(nullptr)
+	, m_fAccTime(0.f)
+	, m_fChangeTime(1.f)
+
 {
 }
 
 CAnimator::CAnimator(const CAnimator & rhs)
 	: CComponent(rhs)
+	, m_pCurAnimation(rhs.m_pCurAnimation)
+	, m_fAccTime(0.f)
+	, m_fChangeTime(rhs.m_fChangeTime)
 {
 }
 
@@ -28,11 +35,18 @@ HRESULT CAnimator::Ready_Animator()
 
 _int CAnimator::Update_Component(const _float & fTimeDelta)
 {
+	m_fAccTime += fTimeDelta;
+	if (m_fChangeTime < m_fAccTime)
+	{
+		m_fAccTime = 0;
+		m_pCurAnimation->Set_Idx(m_pCurAnimation->Get_Idx() + 1);
+	}
 	return S_OK;
 }
 
 void CAnimator::LateUpdate_Component()
 {
+
 }
 
 void CAnimator::Render_Component()
@@ -40,7 +54,7 @@ void CAnimator::Render_Component()
 	if (m_pCurAnimation == nullptr)
 		return;
 
-	// m_pCurAnimation->Play();
+	m_pCurAnimation->Render_Texture();
 }
 
 HRESULT CAnimator::Add_Animation(const wstring & _strKey, const wstring& _strProtoTexture)
@@ -60,8 +74,14 @@ HRESULT CAnimator::Play_Animation(const wstring & _strKey)
 	if (iter == m_mapTexture.end())
 		NULL_CHECK_RETURN_MSG(nullptr, E_FAIL, L"Play_Animation Failed.");
 
+	if (m_pCurAnimation == iter->second)
+		return E_FAIL;
+
 	m_bFinished = false;
+	m_pCurAnimation->Set_Idx(0);
 	m_pCurAnimation = iter->second;
+
+	return S_OK;
 }
 
 
