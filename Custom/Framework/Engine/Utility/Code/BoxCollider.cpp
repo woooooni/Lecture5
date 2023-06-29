@@ -6,7 +6,7 @@ CBoxCollider::CBoxCollider()
 }
 
 CBoxCollider::CBoxCollider(LPDIRECT3DDEVICE9 _pDevice)
-	: CCollider(_pDevice, COLLIDER_TYPE::COLLIDER_BOX)
+	: CCollider(_pDevice, COMPONENT_TYPE::COM_BOX_COLLIDER, COLLIDER_TYPE::COLLIDER_BOX)
 {
 }
 

@@ -8,8 +8,8 @@ class ENGINE_DLL CCollider :
 {
 public:
 	explicit CCollider();
-	explicit CCollider(LPDIRECT3DDEVICE9 _pDevice, COLLIDER_TYPE _eColType);
-	explicit CCollider(const CCollider& rhs);
+	explicit CCollider(LPDIRECT3DDEVICE9 _pDevice, COMPONENT_TYPE _eComType, COLLIDER_TYPE _eColType);
+	explicit CCollider(const CCollider & rhs);
 	virtual ~CCollider();
 
 public:

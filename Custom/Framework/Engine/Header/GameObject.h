@@ -1,10 +1,11 @@
 #pragma once
 
+#include "Engine_Define.h"
 #include "Base.h"
-#include "Component.h"
 
 BEGIN(Engine)
 
+class CComponent;
 class ENGINE_DLL CGameObject : public CBase
 {
 protected:

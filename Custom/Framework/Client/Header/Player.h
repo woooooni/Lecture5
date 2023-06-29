@@ -29,7 +29,8 @@ public:
 private:
 	HRESULT			Add_Component(void);
 	void			Key_Input(const _float& fTimeDelta);
-	void			Shoot();
+	void			Player_Move(_float fTimeDelta);
+
 
 private:
 	CRcTex*			m_pBufferCom = nullptr;
@@ -39,6 +40,8 @@ private:
 
 	_vec3			m_vDir;
 	_float			m_fSpeed;
+
+	_vec3			m_vDest;
 
 public:
 	static CPlayer*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

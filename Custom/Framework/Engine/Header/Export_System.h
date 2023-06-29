@@ -29,7 +29,7 @@ inline _long	Get_DIMouseMove(MOUSEMOVESTATE eMouseState);
 inline HRESULT	Ready_InputDev(HINSTANCE hInst, HWND hWnd);
 inline void		Update_InputDev(void);
 
-//CameraMgr
+
 
 
 // Release

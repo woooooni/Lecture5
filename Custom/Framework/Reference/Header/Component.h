@@ -10,7 +10,7 @@ class ENGINE_DLL CComponent : public CBase
 {
 protected:
 	explicit CComponent();
-	explicit CComponent(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CComponent(LPDIRECT3DDEVICE9 pGraphicDev, COMPONENT_TYPE _eType);
 	explicit CComponent(const CComponent& rhs);
 	virtual ~CComponent();
 
@@ -21,11 +21,13 @@ public:
 public:
 	CGameObject*	GetOwner()						{ return m_pOwner; }
 	void			SetOwner(CGameObject* _pOwner)	{ m_pOwner = _pOwner; }
-
+	COMPONENT_TYPE	GetComponentType() { return m_eType; }
 protected:
 	LPDIRECT3DDEVICE9			m_pGraphicDev;
 	_bool						m_bClone;
 	CGameObject*				m_pOwner;
+	COMPONENT_TYPE				m_eType;
+
 public:
 	virtual CComponent*		Clone(void)		PURE;
 	virtual void			Free(void)	override;

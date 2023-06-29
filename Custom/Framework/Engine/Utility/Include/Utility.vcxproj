@@ -171,11 +171,13 @@ call CopyUtility.bat</Command>
     <ClInclude Include="..\..\Header\Camera.h" />
     <ClInclude Include="..\..\Header\CameraMgr.h" />
     <ClInclude Include="..\..\Header\Collider.h" />
+    <ClInclude Include="..\..\Header\CollisionMgr.h" />
     <ClInclude Include="..\..\Header\Component.h" />
     <ClInclude Include="..\..\Header\Export_Utility.h" />
     <ClInclude Include="..\..\Header\GameObject.h" />
     <ClInclude Include="..\..\Header\Layer.h" />
     <ClInclude Include="..\..\Header\Management.h" />
+    <ClInclude Include="..\..\Header\PickingMgr.h" />
     <ClInclude Include="..\..\Header\ProtoMgr.h" />
     <ClInclude Include="..\..\Header\RcCol.h" />
     <ClInclude Include="..\..\Header\RcCube.h" />
@@ -194,10 +196,12 @@ call CopyUtility.bat</Command>
     <ClCompile Include="..\Code\Camera.cpp" />
     <ClCompile Include="..\Code\CameraMgr.cpp" />
     <ClCompile Include="..\Code\Collider.cpp" />
+    <ClCompile Include="..\Code\CollisionMgr.cpp" />
     <ClCompile Include="..\Code\Component.cpp" />
     <ClCompile Include="..\Code\GameObject.cpp" />
     <ClCompile Include="..\Code\Layer.cpp" />
     <ClCompile Include="..\Code\Management.cpp" />
+    <ClCompile Include="..\Code\PickingMgr.cpp" />
     <ClCompile Include="..\Code\ProtoMgr.cpp" />
     <ClCompile Include="..\Code\RcCol.cpp" />
     <ClCompile Include="..\Code\RcCube.cpp" />

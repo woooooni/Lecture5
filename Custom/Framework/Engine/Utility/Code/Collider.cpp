@@ -12,8 +12,8 @@ CCollider::CCollider()
 {
 }
 
-CCollider::CCollider(LPDIRECT3DDEVICE9 _pDevice, COLLIDER_TYPE _eColType)
-	: CComponent(_pDevice)
+CCollider::CCollider(LPDIRECT3DDEVICE9 _pDevice, COMPONENT_TYPE _eComType, COLLIDER_TYPE _eColType)
+	: CComponent(_pDevice, _eComType)
 	, m_bEnable(true)
 	, m_bRender(true)
 	, m_iID(g_iNextID++)

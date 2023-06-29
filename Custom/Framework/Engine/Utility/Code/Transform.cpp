@@ -9,7 +9,7 @@ CTransform::CTransform()
 }
 
 CTransform::CTransform(LPDIRECT3DDEVICE9 pGraphicDev)
-	:CComponent(pGraphicDev)
+	:CComponent(pGraphicDev, COMPONENT_TYPE::COM_TRANSFORM)
 	, m_vAngle(0.f, 0.f, 0.f)
 	, m_vScale(1.f, 1.f, 1.f)
 {

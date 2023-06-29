@@ -37,7 +37,6 @@ HRESULT CRcCube::Ready_Buffer(void)
 
 	VTXCUBE*		pVertices = nullptr;
 
-
 	m_pVB->Lock(0, /*m_iStride * m_iNumVertices*/0, (void**)&pVertices, 0);
 	pVertices[0].vPosition = pVertices[0].vTexUV = _vec3(-0.5f, 0.5f, -0.5f);
 	pVertices[1].vPosition = pVertices[1].vTexUV = _vec3(0.5f, 0.5f, -0.5f);
@@ -58,7 +57,6 @@ HRESULT CRcCube::Ready_Buffer(void)
 	pVertices[5].color = D3DCOLOR_RGBA(255, 255, 255, 100);
 	pVertices[6].color = D3DCOLOR_RGBA(255, 255, 255, 100);
 	pVertices[7].color = D3DCOLOR_RGBA(255, 255, 255, 100);
-	// pVertices[7].vTexture = pVertices[7].vPosition;
 
 	
 	m_pVB->Unlock();

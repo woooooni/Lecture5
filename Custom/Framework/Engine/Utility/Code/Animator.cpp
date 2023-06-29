@@ -7,20 +7,20 @@ CAnimator::CAnimator()
 }
 
 CAnimator::CAnimator(LPDIRECT3DDEVICE9 _pDevice)
-	: CComponent(_pDevice)
+	: CComponent(_pDevice, COMPONENT_TYPE::COM_ANIMATOR)
 	, m_pCurAnimation(nullptr)
 	, m_fAccTime(0.f)
 	, m_fChangeTime(1.f)
-
 {
 }
 
 CAnimator::CAnimator(const CAnimator & rhs)
 	: CComponent(rhs)
-	, m_pCurAnimation(rhs.m_pCurAnimation)
+	, m_pCurAnimation(nullptr)
 	, m_fAccTime(0.f)
 	, m_fChangeTime(rhs.m_fChangeTime)
 {
+	
 }
 
 
@@ -78,7 +78,10 @@ HRESULT CAnimator::Play_Animation(const wstring & _strKey)
 		return E_FAIL;
 
 	m_bFinished = false;
-	m_pCurAnimation->Set_Idx(0);
+
+	if(nullptr != m_pCurAnimation)
+		m_pCurAnimation->Set_Idx(0);
+
 	m_pCurAnimation = iter->second;
 
 	return S_OK;

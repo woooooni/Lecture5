@@ -19,6 +19,9 @@ public:
 public:
 	const LPDIRECT3DVERTEXBUFFER9&	GetBuffer()	{ return m_pVB; }
 	const LPDIRECT3DINDEXBUFFER9&	GetIndex()	{ return m_pIB; }
+	_ulong	GetVtxCount()			{ return m_dwVtxCnt; }
+	_ulong	GetTriangleCount()		{ return m_dwTriCnt; }
+	_ulong	GetFVF()				{ return m_dwVtxCnt; }
 
 protected:
 	LPDIRECT3DVERTEXBUFFER9			m_pVB;

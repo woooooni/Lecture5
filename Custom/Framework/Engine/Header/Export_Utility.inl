@@ -64,10 +64,26 @@ void		Clear_RenderGroup()
 	CRenderer::GetInstance()->Clear_RenderGroup();
 }
 
+inline HRESULT Ready_PickingMgr(LPDIRECT3DDEVICE9 _pDevice, HWND _hWnd)
+{
+	return CPickingMgr::GetInstance()->Ready_PickingMgr(_pDevice, _hWnd);
+}
+
+inline void Update_PickingMgr()
+{
+	CPickingMgr::GetInstance()->Update_PickingMgr();
+}
+
+inline BOOL RayCast(CGameObject * _pObj, _vec3 * _vHit)
+{
+	return CPickingMgr::GetInstance()->RayCast(_pObj, _vHit);
+}
+
 
 
 void			Release_Utility()
 {
+	CPickingMgr::GetInstance()->DestroyInstance();
 	CRenderer::GetInstance()->DestroyInstance();
 	CCameraMgr::GetInstance()->DestroyInstance();
 	CProtoMgr::GetInstance()->DestroyInstance();

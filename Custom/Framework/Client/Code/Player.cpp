@@ -10,12 +10,14 @@
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev, OBJ_TYPE::OBJ_PLAYER)
 	, m_fSpeed(5.f)
+	, m_vDest(0.f, 0.f, 0.f)
 {
 
 }
 CPlayer::CPlayer(const CPlayer& rhs)
 	: Engine::CGameObject(rhs)
 	, m_fSpeed(rhs.m_fSpeed)
+	, m_vDest(0.f, 0.f, 0.f)
 {
 
 }
@@ -39,8 +41,20 @@ Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 	_int iExit = __super::Update_Object(fTimeDelta);
 
 	Key_Input(fTimeDelta);
+
+
+	
+
+
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(Engine::GetCurrScene()->Get_Layer(LAYER_TYPE::ENVIRONMENT)->Find_GameObject(L"Terrain"));
+	_vec3 vDest;
+	if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && Engine::RayCast(pTerrain, &vDest))
+		m_vDest = vDest;
+
+	Player_Move(fTimeDelta);
 	pTerrain->SetY_Terrain(this, fTimeDelta);
+
+
 
 	return iExit;
 }
@@ -135,11 +149,20 @@ void CPlayer::Key_Input(const _float& fTimeDelta)
 
 }
 
-void CPlayer::Shoot()
+void CPlayer::Player_Move(_float fTimeDelta)
 {
+	_float fDist = D3DXVec3Length(&m_vDest);
+	if (fDist > 2.f)
+	{
+		_vec3 vDir, vPos;
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
 
+		vDir = m_vDest - vPos;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		m_pTransformCom->Move_Pos(&vDir, fTimeDelta, 10.f);
+	}
 }
-
 void CPlayer::Free()
 {
 	__super::Free();

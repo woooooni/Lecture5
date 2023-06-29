@@ -5,6 +5,7 @@
 #include "ProtoMgr.h"
 #include "CameraMgr.h"
 #include "Renderer.h"
+#include "PickingMgr.h"
 
 #include "TriCol.h"
 #include "RcCol.h"
@@ -41,12 +42,15 @@ inline CComponent*		Clone_Proto(const _tchar* pProtoTag);
 // CameraMgr
 inline CCamera*			CreateCamera(HWND _hWnd, LPDIRECT3DDEVICE9 _pDevice, _float _fNear, _float _fFar);
 
-
-
 // Renderer
 inline void				Add_RenderGroup(RENDERID eType, CGameObject* pGameObject);
 inline void				Render_GameObject(LPDIRECT3DDEVICE9& pGraphicDev);
 inline void				Clear_RenderGroup();
+
+// PickingMgr
+inline HRESULT			Ready_PickingMgr(LPDIRECT3DDEVICE9 _pDevice, HWND _hWnd);
+inline void				Update_PickingMgr();
+inline BOOL				RayCast(CGameObject* _pObj, _vec3* _vHit);
 
 inline void		Release_Utility();
 

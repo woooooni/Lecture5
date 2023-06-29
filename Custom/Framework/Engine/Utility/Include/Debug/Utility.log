@@ -1,10 +1,4 @@
-﻿  Texture.cpp
-  Animator.cpp
-  코드를 생성하고 있습니다...
-  건너뛰고 있습니다... (관련된 변경 내용 없음)
-  Management.cpp
-  Camera.cpp
-  BoxCollider.cpp
+﻿  PickingMgr.cpp
   Utility.vcxproj -> C:\Users\xodnj\Desktop\Lecture5\Custom\Framework\Engine\Utility\Include\../Bin\Utility.dll
   Utility.vcxproj -> ../Bin\Utility.pdb (Full PDB)
   .\Engine\Utility\Code\*.h 
@@ -39,6 +33,7 @@
   .\Engine\Header\InputDevice.h
   .\Engine\Header\Layer.h
   .\Engine\Header\Management.h
+  .\Engine\Header\PickingMgr.h
   .\Engine\Header\ProtoMgr.h
   .\Engine\Header\RcCol.h
   .\Engine\Header\RcCube.h
@@ -52,7 +47,7 @@
   .\Engine\Header\Transform.h
   .\Engine\Header\TriCol.h
   .\Engine\Header\VIBuffer.h
-         37개 파일이 복사되었습니다.
+         38개 파일이 복사되었습니다.
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl
           2개 파일이 복사되었습니다.

@@ -99,9 +99,9 @@ HRESULT CRcTerrain::Ready_Buffer(void)
 
 	int baseIdx = 0;
 
-	for (int i = 0; i < m_iCellCountCol; ++i)
+	for (_uint i = 0; i < m_iCellCountCol; ++i)
 	{
-		for (int j = 0; j < m_iCellCountRow; ++j)
+		for (_uint j = 0; j < m_iCellCountRow; ++j)
 		{
 			INDEX32 indexTri_1 
 			{ 

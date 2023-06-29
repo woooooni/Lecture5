@@ -7,7 +7,7 @@ CTexture::CTexture()
 }
 
 CTexture::CTexture(LPDIRECT3DDEVICE9 _pDevice)
-	:CComponent(_pDevice)
+	:CComponent(_pDevice, COMPONENT_TYPE::COM_TEXTURE)
 	, m_iIdx(0)
 {
 }
