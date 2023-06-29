@@ -52,7 +52,7 @@ inline HRESULT			Ready_PickingMgr(LPDIRECT3DDEVICE9 _pDevice, HWND _hWnd);
 inline void				Update_PickingMgr();
 inline BOOL				RayCast(CGameObject* _pObj, _vec3* _vHit);
 
-inline void		Release_Utility();
+inline void				Release_Utility();
 
 #include "Export_Utility.inl"
 

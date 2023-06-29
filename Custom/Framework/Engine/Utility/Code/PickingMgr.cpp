@@ -81,6 +81,7 @@ BOOL CPickingMgr::RayCast(CGameObject* _pObj, _vec3* _vHit)
 
 	BOOL bRayHit = false;
 	_float fU, fV, fDist;
+	_float fMinDistance = 999999.f;
 
 	for (_uint i = 0; i < pBuffer->GetTriangleCount(); ++i)
 	{
@@ -90,16 +91,18 @@ BOOL CPickingMgr::RayCast(CGameObject* _pObj, _vec3* _vHit)
 			&pVB[pIB[i]._2].vPosition, &vRayPos, &vRayDir, &fU, &fV, &fDist))
 		{
 			bRayHit = TRUE;
-			_vec3 vPickPos = vRayPos + vRayDir * fDist;
-			D3DXVec3TransformCoord(_vHit, &vPickPos, &matWolrd);
-			return TRUE;
+			if(fDist < fMinDistance)
+			{
+				_vec3 vPickPos = vRayPos + vRayDir * fDist;
+				D3DXVec3TransformCoord(_vHit, &vPickPos, &matWolrd);
+			}
 		}
 	}
 
 	objVB->Unlock();
 	objIB->Unlock();
 
-	return FALSE;
+	return bRayHit;
 }
 
 void CPickingMgr::Free()

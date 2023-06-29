@@ -83,6 +83,7 @@ inline BOOL RayCast(CGameObject * _pObj, _vec3 * _vHit)
 
 void			Release_Utility()
 {
+	CPickingMgr::GetInstance()->DestroyInstance();
 	CRenderer::GetInstance()->DestroyInstance();
 	CCameraMgr::GetInstance()->DestroyInstance();
 	CProtoMgr::GetInstance()->DestroyInstance();
