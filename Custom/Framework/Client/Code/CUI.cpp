@@ -23,15 +23,18 @@ HRESULT CUI::Ready_Object(void)
 
 _int CUI::Update_Object(const _float& fTimeDelta)
 {
+	CGameObject::Update_Object(fTimeDelta);
 	return S_OK;
 }
 
 void CUI::LateUpdate_Object(void)
 {
+	CGameObject::LateUpdate_Object();
 }
 
 void CUI::Render_Object(void)
 {
+	CGameObject::Ready_Object();
 }
 
 CUI* CUI::Create(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -49,4 +52,5 @@ CUI* CUI::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CUI::Free()
 {
+	
 }

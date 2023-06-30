@@ -64,8 +64,7 @@ void CTerrain::Render_Object(void)
 
 HRESULT CTerrain::SetY_Terrain(CGameObject * _pTarget, _float fTimeDelta)
 {
-
-	CTransform* pTargetTrans = dynamic_cast<CTransform*>(_pTarget->Get_Component(L"Com_Transform", ID_STATIC));
+	CTransform* pTargetTrans = dynamic_cast<CTransform*>(_pTarget->Get_Component(COMPONENT_TYPE::COM_TRANSFORM, ID_STATIC));
 	NULL_CHECK_RETURN(pTargetTrans, E_FAIL);
 
 	_vec3 vTargetPos;
@@ -154,18 +153,18 @@ HRESULT CTerrain::Add_Component(void)
 	pComponent = m_pBufferCom = dynamic_cast<CRcTerrain*>(Engine::Clone_Proto(L"Proto_RcTerrain"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_pBufferCom->SetOwner(this);
-	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);
+	m_mapComponent[ID_STATIC].emplace(COMPONENT_TYPE::COM_BUFFER, pComponent);
 
 
 	pComponent = m_pTextureCom = dynamic_cast<CTexture*>(Engine::Clone_Proto(L"Proto_Texture_Terrain"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_pTextureCom->SetOwner(this);
-	m_mapComponent[ID_STATIC].emplace(L"Com_Texture", pComponent);
+	m_mapComponent[ID_STATIC].emplace(COMPONENT_TYPE::COM_TEXTURE, pComponent);
 
 	pComponent = m_pTransformCom = dynamic_cast<CTransform*>(Engine::Clone_Proto(L"Proto_Transform"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_pTransformCom->SetOwner(this);
-	m_mapComponent[ID_STATIC].emplace(L"Com_Transform", pComponent);
+	m_mapComponent[ID_STATIC].emplace(COMPONENT_TYPE::COM_TRANSFORM, pComponent);
 
 	return S_OK;
 }

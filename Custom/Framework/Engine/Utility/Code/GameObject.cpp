@@ -1,5 +1,6 @@
 #include "..\..\Header\GameObject.h"
 #include "Component.h"
+#include "Transform.h"
 
 CGameObject::CGameObject(LPDIRECT3DDEVICE9 pGraphicDev, OBJ_TYPE _eType)
 	: m_pGraphicDev(pGraphicDev)
@@ -20,14 +21,6 @@ CGameObject::~CGameObject()
 
 }
 
-CComponent * CGameObject::Get_Component(const _tchar * pComponentTag, COMPONENTID eID)
-{
-	CComponent*		pComponent = Find_Component(pComponentTag, eID);
-
-	NULL_CHECK_RETURN(pComponent, nullptr);
-
-	return pComponent;
-}
 
 HRESULT CGameObject::Ready_Object(void)
 {
@@ -54,14 +47,44 @@ void CGameObject::Render_Object(void)
 		iter.second->Render_Component();
 }
 
-CComponent * CGameObject::Find_Component(const _tchar * pComponentTag, COMPONENTID eID)
+CComponent* CGameObject::Get_Component(COMPONENT_TYPE eType, COMPONENTID eID)
 {
-	auto	iter = find_if(m_mapComponent[eID].begin(), m_mapComponent[eID].end(), CTag_Finder(pComponentTag));
+	CComponent* pComponent = Find_Component(eType, eID);
 
-	if (iter == m_mapComponent[eID].end())
-		return nullptr;
+	NULL_CHECK_RETURN(pComponent, nullptr);
 
-	return iter->second;
+	return pComponent;
+}
+
+void CGameObject::Set_Billboard()
+{
+	if (m_pTransformCom == nullptr)
+		return;
+
+	_vec3 fScale = m_pTransformCom->Get_Scale();
+	m_pTransformCom->Get_Info(INFO_LOOK, &m_vLookTemp);
+
+	_matrix		matView;
+
+	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+
+	/* 카메라의 월드행렬이다. */
+	D3DXMatrixInverse(&matView, nullptr, &matView);
+
+
+	m_pTransformCom->Set_Info(INFO_RIGHT, &(*(_vec3*)&matView.m[0][0] * fScale.x));
+	m_pTransformCom->Set_Info(INFO_UP, &(*(_vec3*)&matView.m[1][0] * fScale.y));
+	m_pTransformCom->Set_Info(INFO_LOOK, &(*(_vec3*)&matView.m[2][0] * fScale.z));
+}
+
+CComponent * CGameObject::Find_Component(COMPONENT_TYPE eType, COMPONENTID eID)
+{
+	auto& iter = m_mapComponent[eID].find(eType);
+
+	if (iter != m_mapComponent[eID].end())
+		return iter->second;
+
+	return nullptr;
 }
 
 void CGameObject::Free()

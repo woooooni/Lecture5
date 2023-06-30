@@ -23,14 +23,6 @@ public:
 	virtual void		LateUpdate_Object(void) override;
 	virtual void		Render_Object(void) override;
 
-
-
-protected:
-	CRcTex* m_pBufferCom = nullptr;
-	CTransform* m_pTransformCom = nullptr;
-	CCollider* m_pColliderCom = nullptr;
-	CAnimator* m_pAnimator = nullptr;
-
 protected:
 	_matrix m_matProj;
 	_matrix m_matView;

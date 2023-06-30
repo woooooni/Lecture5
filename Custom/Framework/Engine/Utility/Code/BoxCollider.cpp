@@ -32,14 +32,7 @@ HRESULT CBoxCollider::Ready_BoxCollider()
 
 _int CBoxCollider::Update_Component(const _float & fTimeDelta)
 {
-
-
-	return S_OK;
-}
-
-void CBoxCollider::LateUpdate_Component()
-{
-	CTransform* pOwnerTransform = dynamic_cast<CTransform*>(m_pOwner->Get_Component(L"Com_Transform", COMPONENTID::ID_STATIC));
+	CTransform* pOwnerTransform = (CTransform*)(m_pOwner->Get_Component(COMPONENT_TYPE::COM_TRANSFORM, COMPONENTID::ID_STATIC));
 
 
 	pOwnerTransform->Get_Info(INFO_POS, &m_vCenterPos);
@@ -51,6 +44,13 @@ void CBoxCollider::LateUpdate_Component()
 		m_vAxisDir[i] *= m_fAxisLen[i];
 		memcpy(&m_vAxisDir[i], &matWorld.m[i][0], sizeof(_vec3));
 	}
+
+	return S_OK;
+}
+
+void CBoxCollider::LateUpdate_Component()
+{
+	CCollider::LateUpdate_Component();
 }
 
 void CBoxCollider::Render_Component()
@@ -63,7 +63,7 @@ void CBoxCollider::Render_Component()
 	for (int i = 0; i < 3; ++i)
 	{
 		m_vAxisDir[i] *= m_fAxisLen[i];
-		memcpy(&matWorld.m[i][0], &m_vAxisDir[i], sizeof(_vec3));
+		memcpy(&matWorld.m[i][0], &(m_vAxisDir[i]), sizeof(_vec3));
 	}
 		
 	memcpy(&matWorld.m[3][0], &m_vCenterPos, sizeof(_vec3));
@@ -72,6 +72,7 @@ void CBoxCollider::Render_Component()
 	m_pBuffer->Render_Buffer();
 
 	m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+
 }
 
 CBoxCollider * CBoxCollider::Create(LPDIRECT3DDEVICE9 _pDevice)

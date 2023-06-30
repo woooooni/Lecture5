@@ -4,7 +4,7 @@
 #include "Export_Function.h"
 #include "Logo.h"
 
-CMainApp::CMainApp() : m_pDeviceClass(nullptr), m_pManagementClass(nullptr)
+CMainApp::CMainApp() : m_pGraphicDevClass(nullptr), m_pManagementClass(nullptr)
 {
 	
 }
@@ -16,6 +16,8 @@ CMainApp::~CMainApp()
 HRESULT CMainApp::Ready_MainApp(void)
 {
 	FAILED_CHECK_RETURN(SetUp_DefaultSetting(&m_pGraphicDev), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_Default_SamplerState(), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_Default_RenderState(), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Proto_Component(m_pGraphicDev), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Scene(m_pGraphicDev, &m_pManagementClass), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_PickingMgr(m_pGraphicDev, g_hWnd), E_FAIL);
@@ -42,26 +44,62 @@ void CMainApp::LateUpdate_MainApp()
 
 void CMainApp::Render_MainApp()
 {
-	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-
 	Engine::Render_Begin(D3DXCOLOR(0.f, 0.f, 1.f, 1.f));
-
 	m_pManagementClass->Render_Scene(m_pGraphicDev);
-
 	Engine::Render_End();
-
 }
 
 HRESULT CMainApp::SetUp_DefaultSetting(LPDIRECT3DDEVICE9* ppGraphicDev)
 {
-	FAILED_CHECK_RETURN(Engine::Ready_GraphicDev(g_hWnd, MODE_WIN, WINCX, WINCY, &m_pDeviceClass), E_FAIL);
-	m_pDeviceClass->AddRef();
+	FAILED_CHECK_RETURN(Engine::Ready_GraphicDev(g_hWnd, MODE_WIN, WINCX, WINCY, &m_pGraphicDevClass), E_FAIL);
+	m_pGraphicDevClass->AddRef();
 
-	(*ppGraphicDev) = m_pDeviceClass->Get_GraphicDev();
+	(*ppGraphicDev) = m_pGraphicDevClass->Get_GraphicDev();
 	(*ppGraphicDev)->AddRef();
 
 
 	FAILED_CHECK_RETURN(Engine::Ready_InputDev(g_hInstance, g_hWnd), E_FAIL);
+	return S_OK;
+}
+
+HRESULT CMainApp::Ready_Default_SamplerState()
+{
+	m_pGraphicDev->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+	m_pGraphicDev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+	m_pGraphicDev->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
+
+	m_pGraphicDev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+	m_pGraphicDev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
+
+	return S_OK;
+}
+
+HRESULT CMainApp::Ready_Default_RenderState()
+{
+	if (nullptr == m_pGraphicDev)
+		return E_FAIL;
+
+	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+
+	return S_OK;
+}
+
+// 프로토타입 컴포넌트 추가.
+HRESULT CMainApp::Ready_Proto_Component(LPDIRECT3DDEVICE9 pGraphicDev)
+{
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcTex", CRcTex::Create(m_pGraphicDev)), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcCube", CRcCube::Create(m_pGraphicDev)), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcTerrain", CRcTerrain::Create(m_pGraphicDev, 257, 257, 1)), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Transform", CTransform::Create(m_pGraphicDev)), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Animator", CAnimator::Create(m_pGraphicDev)), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_BoxCollider", CBoxCollider::Create(m_pGraphicDev)), E_FAIL);
+
+
+	// Initialize Textures
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Texture_Terrain", CTexture::Create(m_pGraphicDev, TEXTUREID::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/Terrain0.png")), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Texture_Player", CTexture::Create(m_pGraphicDev, TEXTUREID::TEX_NORMAL, L"../Bin/Resource/Texture/Player_Test/Player_%d.png", 4)), E_FAIL);
+
 	return S_OK;
 }
 
@@ -80,21 +118,6 @@ HRESULT CMainApp::Ready_Scene(LPDIRECT3DDEVICE9 pGraphicDev, Engine::CManagement
 	return S_OK;
 }
 
-HRESULT CMainApp::Ready_Proto_Component(LPDIRECT3DDEVICE9 pGraphicDev)
-{
-	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcTex", CRcTex::Create(m_pGraphicDev)), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcCube", CRcCube::Create(m_pGraphicDev)), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_RcTerrain", CRcTerrain::Create(m_pGraphicDev, 257, 257, 1)), E_FAIL);
-
-	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Transform", CTransform::Create(m_pGraphicDev)), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Animator", CAnimator::Create(m_pGraphicDev)), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_BoxCollider", CBoxCollider::Create(m_pGraphicDev)), E_FAIL);
-
-	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Texture_Terrain", CTexture::Create(m_pGraphicDev, TEXTUREID::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/Terrain0.png")), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Proto(L"Proto_Texture_Player", CTexture::Create(m_pGraphicDev, TEXTUREID::TEX_NORMAL, L"../Bin/Resource/Texture/Player_Test/Player_%d.png", 4)), E_FAIL);
-	
-	return S_OK;
-}
 
 
 CMainApp * CMainApp::Create()
@@ -116,7 +139,7 @@ void CMainApp::Free()
 {
 	Safe_Release(m_pGraphicDev);
 
-	Safe_Release(m_pDeviceClass);
+	Safe_Release(m_pGraphicDevClass);
 	Safe_Release(m_pManagementClass);
 		
 	Engine::Release_Utility();

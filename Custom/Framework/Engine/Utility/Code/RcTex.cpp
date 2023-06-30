@@ -77,6 +77,7 @@ void CRcTex::Render_Buffer(void)
 
 void CRcTex::SetAlpha(_int _iAlpha)
 {
+
 }
 
 CRcTex * CRcTex::Create(LPDIRECT3DDEVICE9 pGraphicDev)

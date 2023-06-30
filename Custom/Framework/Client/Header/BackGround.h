@@ -2,15 +2,6 @@
 
 #include "GameObject.h"
 
-BEGIN(Engine)
-
-class CTriCol;
-class CRcCol;
-class CRcTex;
-class CTexture;
-
-END
-
 class CBackGround : public Engine::CGameObject
 {
 private:
@@ -26,11 +17,6 @@ public:
 
 private:
 	HRESULT		Add_Component(void);
-
-private:
-	//CTriCol*			m_pBufferCom = nullptr;
-	CRcTex*			m_pBufferCom = nullptr;
-	CTexture*		m_pTextureCom = nullptr;
 
 public:
 	static CBackGround*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

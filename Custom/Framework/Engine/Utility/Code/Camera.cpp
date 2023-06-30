@@ -3,7 +3,6 @@
 
 CCamera::CCamera(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CGameObject(pGraphicDev, OBJ_TYPE::OBJ_CAMERA)
-	, m_pTransformCom(nullptr)
 	, m_fFov(4.f)
 	, m_pTargetObj(nullptr)
 	, m_fDist(10.f)
@@ -35,12 +34,7 @@ HRESULT CCamera::Ready_Object(void)
 
 _int CCamera::Update_Object(const _float& fTimeDelta)
 {
-	//Key_Input(fTimeDelta);
 	Follow(fTimeDelta);
-	//Mouse_Move(fTimeDelta);
-
-
-
 
 	_vec3 vPos, vLook, vRight, vUp;
 	ZeroMemory(&vPos, sizeof(_vec3));
@@ -54,9 +48,6 @@ _int CCamera::Update_Object(const _float& fTimeDelta)
 
 	D3DXMatrixLookAtLH(&m_matView, &vPos, &vLook, &vUp);
 	D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
-
-	//CustomLookAtLH(&m_matView, &vPos, &vLook, &vUp);
-	//CustomPerspectiveLH(&m_matProj, D3DX_PI / m_fFov, WINCX / WINCY, m_fNear, m_fFar);
 
 	m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matView);
 	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matProj);
@@ -72,7 +63,7 @@ void CCamera::LateUpdate_Object(void)
 
 void CCamera::Render_Object(void)
 {
-
+	__super::Render_Object();
 }
 
 HRESULT CCamera::Add_Component(void)
@@ -82,7 +73,7 @@ HRESULT CCamera::Add_Component(void)
 	pComponent = m_pTransformCom = dynamic_cast<CTransform*>(Engine::Clone_Proto(L"Proto_Transform"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_STATIC].emplace(L"Com_Transform", pComponent);
+	m_mapComponent[ID_STATIC].emplace(COMPONENT_TYPE::COM_TRANSFORM, pComponent);
 	
 	return S_OK;
 }
@@ -92,7 +83,7 @@ void CCamera::Follow(const _float& fTimeDelta)
 	if (m_pTargetObj == nullptr)
 		return;
 
-	CTransform* pTargetTransform = dynamic_cast<CTransform*>(m_pTargetObj->Get_Component(L"Com_Transform", COMPONENTID::ID_STATIC));
+	CTransform* pTargetTransform = dynamic_cast<CTransform*>(m_pTargetObj->Get_Component(COMPONENT_TYPE::COM_TRANSFORM, COMPONENTID::ID_STATIC));
 	if (pTargetTransform == nullptr)
 		return;
 
@@ -189,40 +180,3 @@ void CCamera::Free()
 {
 	CGameObject::Free();
 }
-
-
-//void CCamera::CustomLookAtLH(_matrix * pOut, const _vec3 * pEye, const _vec3 * pAt, const _vec3 * pUp)
-//{
-//	const _matrix& matWorld = *m_pTransformCom->Get_WorldMatrix();
-//
-//	_vec3 xAxis, yAxis, zAxis;
-//
-//	zAxis = *pAt - *pEye;
-//
-//	D3DXVec3Normalize(&xAxis, &xAxis);
-//	D3DXVec3Normalize(&zAxis, &zAxis);
-//
-//	D3DXVec3Cross(&xAxis, pUp, &zAxis);
-//
-//	D3DXVec3Cross(&yAxis, &zAxis, &xAxis);
-//
-//	*pOut = _matrix(
-//		xAxis.x, yAxis.x, zAxis.x, 0,
-//		xAxis.y, yAxis.y, zAxis.y, 0,
-//		xAxis.z, yAxis.z, zAxis.z, 0,
-//		-D3DXVec3Dot(&xAxis, pEye), -D3DXVec3Dot(&yAxis, pEye), -D3DXVec3Dot(&zAxis, pEye), 1
-//	);
-//}
-//
-//void CCamera::CustomPerspectiveLH(_matrix * pOut, const _float _fov, const _float _fAspect, const _float _fNear, const _float _fFar)
-//{
-//
-//	float h = 1.0f / tanf(_fov / 2.0f);
-//	float w = h / _fAspect;
-//
-//
-//	(*pOut)(0, 0) = w;      (*pOut)(0, 1) = 0.0f;      (*pOut)(0, 2) = 0.0f;								(*pOut)(0, 3) = 0.0f;
-//	(*pOut)(1, 0) = 0.0f;   (*pOut)(1, 1) = h;         (*pOut)(1, 2) = 0.0f;								(*pOut)(1, 3) = 0.0f;
-//	(*pOut)(2, 0) = 0.0f;   (*pOut)(2, 1) = 0.0f;      (*pOut)(2, 2) = _fFar / (_fFar - _fNear);			(*pOut)(2, 3) = 1.0f;
-//	(*pOut)(3, 0) = 0.0f;   (*pOut)(3, 1) = 0.0f;      (*pOut)(3, 2) = -(_fNear*_fFar / (_fFar - _fNear));  (*pOut)(3, 3) = 0.0f;
-//}

@@ -26,7 +26,7 @@ public:
 	BOOL	IsPicking(CGameObject* _pObj, _vec3* _vHit);
 
 public:
-	LPDIRECT3DDEVICE9 m_pDevice;
+	LPDIRECT3DDEVICE9 m_pGraphicDev;
 
 	_vec3		m_vRayDir;
 	_vec3		m_vRayPos;

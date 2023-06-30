@@ -3,6 +3,7 @@
 
 
 CTexture::CTexture()
+	: m_iIdx()
 {
 }
 
@@ -16,12 +17,7 @@ CTexture::CTexture(const CTexture & rhs)
 	: CComponent(rhs)
 	, m_iIdx(rhs.m_iIdx)
 {
-	const _uint& iCount = rhs.m_vecTexture.size();
-	m_vecTexture.reserve(iCount * 2);
-	
-	for (_uint i = 0; i < iCount; ++i)
-		m_vecTexture.push_back(rhs.m_vecTexture[i]);
-
+	m_vecTexture = rhs.m_vecTexture;
 }
 
 

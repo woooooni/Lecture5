@@ -5,13 +5,13 @@ IMPLEMENT_SINGLETON(CPickingMgr)
 
 CPickingMgr::CPickingMgr()
 	: m_hWnd(nullptr)
-	, m_pDevice(nullptr)
+	, m_pGraphicDev(nullptr)
 {
 }
 
 HRESULT CPickingMgr::Ready_PickingMgr(LPDIRECT3DDEVICE9 _pDevice, HWND _hWnd)
 {
-	m_pDevice = _pDevice;
+	m_pGraphicDev = _pDevice;
 	_pDevice->AddRef();
 
 	m_hWnd = _hWnd;
@@ -32,7 +32,7 @@ void CPickingMgr::Update_PickingMgr()
 
 	_matrix matProjInv; // 프로젝션 역행렬.
 	
-	m_pDevice->GetTransform(D3DTS_PROJECTION, &matProjInv);
+	m_pGraphicDev->GetTransform(D3DTS_PROJECTION, &matProjInv);
 	D3DXMatrixInverse(&matProjInv, nullptr, &matProjInv);
 	D3DXVec3TransformCoord(&vMousePos, &vMousePos, &matProjInv);
 
@@ -40,7 +40,7 @@ void CPickingMgr::Update_PickingMgr()
 	m_vRayDir = vMousePos - m_vRayPos;
 
 	_matrix matViewInv; // 뷰 역행렬.
-	m_pDevice->GetTransform(D3DTS_VIEW, &matViewInv);
+	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matViewInv);
 	D3DXMatrixInverse(&matViewInv, nullptr, &matViewInv);
 	D3DXVec3TransformCoord(&m_vRayPos, &m_vRayPos, &matViewInv);
 	D3DXVec3TransformNormal(&m_vRayDir, &m_vRayDir, &matViewInv);
@@ -56,8 +56,8 @@ void CPickingMgr::Compute_LocalLayInfo(_vec3 * pDir, _vec3 * pRayPos, CTransform
 
 BOOL CPickingMgr::IsPicking(CGameObject* _pObj, _vec3* _vHit)
 {
-	CTransform* pTransform = dynamic_cast<CTransform*>(_pObj->Get_Component(L"Com_Transform", COMPONENTID::ID_STATIC));
-	CRcTerrain*  pBuffer = dynamic_cast<CRcTerrain*>(_pObj->Get_Component(L"Com_Buffer", COMPONENTID::ID_STATIC));
+	CTransform* pTransform = dynamic_cast<CTransform*>(_pObj->Get_Component(COMPONENT_TYPE::COM_TRANSFORM, COMPONENTID::ID_STATIC));
+	CRcTerrain*  pBuffer = dynamic_cast<CRcTerrain*>(_pObj->Get_Component(COMPONENT_TYPE::COM_BUFFER, COMPONENTID::ID_STATIC));
 
 	if (nullptr == pBuffer)
 		return FALSE;
@@ -107,7 +107,7 @@ BOOL CPickingMgr::IsPicking(CGameObject* _pObj, _vec3* _vHit)
 
 void CPickingMgr::Free()
 {
-	Safe_Release(m_pDevice);
+	Safe_Release(m_pGraphicDev);
 }
 
 

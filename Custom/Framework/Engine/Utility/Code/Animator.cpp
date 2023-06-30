@@ -21,10 +21,7 @@ CAnimator::CAnimator(const CAnimator & rhs)
 	, m_fChangeTime(rhs.m_fChangeTime)
 {
 	for (auto iter = rhs.m_mapTexture.begin(); iter != rhs.m_mapTexture.end(); ++iter)
-	{
 		m_mapTexture.insert({ iter->first, (CTexture*)(iter->second->Clone()) });
-		iter->second->AddRef();
-	}
 }
 
 

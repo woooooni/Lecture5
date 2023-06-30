@@ -27,17 +27,14 @@ public:
 	virtual void		Render_Object(void) override;
 
 private:
-	HRESULT			Add_Component(void);
+	HRESULT			Ready_Component(void);
+
+public:
 	void			Key_Input(const _float& fTimeDelta);
 	void			Player_Move(_float fTimeDelta);
 
 
 private:
-	CRcTex*			m_pBufferCom = nullptr;
-	CTransform*		m_pTransformCom = nullptr;
-	CCollider*		m_pColliderCom = nullptr;
-	CAnimator*		m_pAnimator = nullptr;
-
 	_vec3			m_vDir;
 	_float			m_fSpeed;
 

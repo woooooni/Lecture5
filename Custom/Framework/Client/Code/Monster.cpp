@@ -52,17 +52,12 @@ HRESULT CMonster::Add_Component(void)
 	pComponent = m_pBufferCom = dynamic_cast<CTriCol*>(Engine::Clone_Proto(L"Proto_TriCol"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);
+	m_mapComponent[ID_STATIC].emplace(COMPONENT_TYPE::COM_BUFFER, pComponent);
 
 	pComponent = m_pTransformCom = dynamic_cast<CTransform*>(Engine::Clone_Proto(L"Proto_Transform"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_STATIC].emplace(L"Com_Transform", pComponent);
-
-	//pComponent = m_pColliderCom = dynamic_cast<CCollider*>(Engine::Clone_Proto(L"Proto_Collider"));
-	//NULL_CHECK_RETURN(pComponent, E_FAIL);
-	//pComponent->SetOwner(this);
-	//m_mapComponent[ID_DYNAMIC].emplace(L"Com_Collider", pComponent);
+	m_mapComponent[ID_STATIC].emplace(COMPONENT_TYPE::COM_TRANSFORM, pComponent);
 
 	return S_OK;
 }

@@ -39,7 +39,6 @@ private:
 //	void		CustomPerspectiveLH(_matrix* pOut, const _float _fov, const _float _fAspect, const _float _fNear, const _float _fFar);
 
 private:
-	CTransform*	m_pTransformCom = nullptr;
 	_matrix		m_matView;
 	_matrix		m_matProj;
 	

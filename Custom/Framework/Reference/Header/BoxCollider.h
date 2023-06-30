@@ -5,7 +5,8 @@ BEGIN(Engine)
 class CRcCube;
 class ENGINE_DLL CBoxCollider : public CCollider
 {
-public:
+	
+private:
 	explicit CBoxCollider();
 	explicit CBoxCollider(LPDIRECT3DDEVICE9 _pDevice);
 	explicit CBoxCollider(const CBoxCollider& rhs);

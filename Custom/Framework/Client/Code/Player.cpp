@@ -26,9 +26,8 @@ CPlayer::~CPlayer()
 
 HRESULT CPlayer::Ready_Object(void)
 {
-	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_Component(), E_FAIL);
 
-	
 	m_pAnimator->Add_Animation(L"Player", L"Proto_Texture_Player");
 	m_pAnimator->Play_Animation(L"Player");
 
@@ -37,12 +36,13 @@ HRESULT CPlayer::Ready_Object(void)
 
 Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 {
-	_int iExit = __super::Update_Object(fTimeDelta);
+	Engine::Add_RenderGroup(RENDERID::RENDER_NONALPHA, this);
+	
 
 	Key_Input(fTimeDelta);
 
-
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(Engine::GetCurrScene()->Get_Layer(LAYER_TYPE::ENVIRONMENT)->Find_GameObject(L"Terrain"));
+
 	_vec3 vDest;
 	if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && Engine::IsPicking(pTerrain, &vDest))
 		m_vDest = vDest;
@@ -50,21 +50,21 @@ Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 	Player_Move(fTimeDelta);
 	pTerrain->SetY_Terrain(this, fTimeDelta);
 
-
-
+	_int iExit = __super::Update_Object(fTimeDelta);
 	return iExit;
 }
 
 void CPlayer::LateUpdate_Object(void)
 {
 	__super::LateUpdate_Object();
-	Engine::Add_RenderGroup(RENDERID::RENDER_ALPHA, this);
 }
 
 void CPlayer::Render_Object(void)
 {
+	//Set_Billboard();
+
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_WorldMatrix());
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+ 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 	__super::Render_Object();
 	m_pBufferCom->Render_Buffer();
@@ -72,32 +72,32 @@ void CPlayer::Render_Object(void)
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-HRESULT CPlayer::Add_Component(void)
+HRESULT CPlayer::Ready_Component(void)
 {
 	CComponent*			pComponent = nullptr;
 
-/*	pComponent = m_pBufferCom = dynamic_cast<CTriCol*>(Engine::Clone_Proto(L"Proto_TriCol"));*/
 	pComponent = m_pBufferCom = dynamic_cast<CRcTex*>(Engine::Clone_Proto(L"Proto_RcTex"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_STATIC].emplace(L"Com_Buffer", pComponent);
+	m_mapComponent[ID_STATIC].emplace(COMPONENT_TYPE::COM_BUFFER, pComponent);
 
 	pComponent = m_pTransformCom = dynamic_cast<CTransform*>(Engine::Clone_Proto(L"Proto_Transform"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_STATIC].emplace(L"Com_Transform", pComponent);
+	m_mapComponent[ID_STATIC].emplace(COMPONENT_TYPE::COM_TRANSFORM, pComponent);
 
 	pComponent = m_pColliderCom = dynamic_cast<CBoxCollider*>(Engine::Clone_Proto(L"Proto_BoxCollider"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_DYNAMIC].emplace(L"Com_BoxCollider", pComponent);
+	m_mapComponent[ID_DYNAMIC].emplace(COMPONENT_TYPE::COM_BOX_COLLIDER, pComponent);
 
 	pComponent = m_pAnimator = dynamic_cast<CAnimator*>(Engine::Clone_Proto(L"Proto_Animator"));
 	pComponent->SetOwner(this);
-	m_mapComponent[ID_DYNAMIC].emplace(L"Com_Animator", pComponent);
+	m_mapComponent[ID_DYNAMIC].emplace(COMPONENT_TYPE::COM_ANIMATOR, pComponent);
 
 	return S_OK;
 }
+
 
 void CPlayer::Key_Input(const _float& fTimeDelta)
 {
@@ -124,25 +124,6 @@ void CPlayer::Key_Input(const _float& fTimeDelta)
 	{
 		m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(180.f * fTimeDelta));
 	}
-
-	//if (GetAsyncKeyState('Q'))
-	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(180.f * fTimeDelta));
-
-	//if (GetAsyncKeyState('A'))
-	//	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(-180.f * fTimeDelta));
-	//
-	//if (GetAsyncKeyState('W'))
-	//	m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(180.f * fTimeDelta));
-
-	//if (GetAsyncKeyState('S'))
-	//	m_pTransformCom->RotationAxis({ 0.f, 1.f, 0.f }, D3DXToRadian(-180.f * fTimeDelta));
-
-	//if (GetAsyncKeyState('E'))
-	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(180.f * fTimeDelta));
-
-	//if (GetAsyncKeyState('D'))
-	//	m_pTransformCom->Rotation(ROT_Z, D3DXToRadian(-180.f * fTimeDelta));
-
 }
 
 void CPlayer::Player_Move(_float fTimeDelta)

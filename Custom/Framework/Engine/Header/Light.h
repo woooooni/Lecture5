@@ -12,7 +12,7 @@ private:
 	virtual ~CLight();
 
 private:
-	LPDIRECT3DDEVICE9	m_pDevice;
+	LPDIRECT3DDEVICE9	m_pGraphicDev;
 	D3DLIGHT9			m_tLightInfo;
 	_uint				m_iIndex;
 

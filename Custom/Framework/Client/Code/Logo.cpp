@@ -45,16 +45,7 @@ void CLogo::LateUpdate_Scene()
 
 void CLogo::Render_Scene()
 {
-	//CLayer* pLayer = m_mapLayer[L"Environment"];
-
-	//CCamera* pCamera = nullptr;
-	// pCamera = dynamic_cast<CCamera*>(pLayer->Get_GameObject(L"MainCamera"));
-
-	//if (pCamera != nullptr)
-	//{
-	//	m_pGraphicDev->SetTransform(D3DTS_VIEW, &pCamera->GetViewMatrix());
-	//	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &pCamera->GetProjectionMatrix());
-	//}
+	
 }
 
 void CLogo::Free()
@@ -105,8 +96,6 @@ HRESULT CLogo::Ready_Layer_Environment(LAYER_TYPE _eType)
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"MainCamera", pCamera), E_FAIL);
 	
 	pCamera->Set_TargetObj(pPlayer);
-
-	
 
 	m_mapLayer.insert({ _eType, pLayer });
 

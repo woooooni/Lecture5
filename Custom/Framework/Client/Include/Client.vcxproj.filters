@@ -7,18 +7,6 @@
     <Filter Include="99. Etc">
       <UniqueIdentifier>{2ad4fe67-d505-4a9a-94a4-e1f6784bdc9e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="99. Etc\리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="99. Etc\소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="99. Etc\헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="01. Scene">
       <UniqueIdentifier>{daf89680-9697-4e5e-bd4e-7436051cfbbf}</UniqueIdentifier>
     </Filter>
@@ -46,20 +34,14 @@
     <Filter Include="02. GameObject\04. UI">
       <UniqueIdentifier>{1dc885c6-a95a-455c-8051-f205df8fbfa5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Scene\02. Tutorial">
+      <UniqueIdentifier>{0e1d666b-e575-4957-831a-f9e9b3db20d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Loading">
+      <UniqueIdentifier>{ed736470-011d-4888-aca8-d5b2a2e61918}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>99. Etc\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>99. Etc\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>99. Etc\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Client.h">
-      <Filter>99. Etc\헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="..\Header\MainApp.h">
       <Filter>00. MainApp</Filter>
     </ClInclude>
@@ -84,14 +66,20 @@
     <ClInclude Include="..\Header\CUI.h">
       <Filter>02. GameObject\04. UI</Filter>
     </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>99. Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99. Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>99. Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>99. Etc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>99. Etc\소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Client.cpp">
-      <Filter>99. Etc\소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\MainApp.cpp">
       <Filter>00. MainApp</Filter>
     </ClCompile>
@@ -116,23 +104,27 @@
     <ClCompile Include="..\Code\CUI.cpp">
       <Filter>02. GameObject\04. UI</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>99. Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Client.ico">
+      <Filter>99. Etc</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>99. Etc</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
-      <Filter>99. Etc\리소스 파일</Filter>
+      <Filter>99. Etc</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>99. Etc\리소스 파일</Filter>
-    </Image>
-    <Image Include="Client.ico">
-      <Filter>99. Etc\리소스 파일</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="ReadMe.txt">
-      <Filter>99. Etc\리소스 파일</Filter>
+      <Filter>99. Etc</Filter>
     </Text>
   </ItemGroup>
 </Project>
