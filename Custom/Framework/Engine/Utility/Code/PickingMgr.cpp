@@ -54,7 +54,7 @@ void CPickingMgr::Compute_LocalLayInfo(_vec3 * pDir, _vec3 * pRayPos, CTransform
 	D3DXVec3TransformNormal(pDir, &m_vRayDir, &matWorldInv);
 }
 
-BOOL CPickingMgr::RayCast(CGameObject* _pObj, _vec3* _vHit)
+BOOL CPickingMgr::IsPicking(CGameObject* _pObj, _vec3* _vHit)
 {
 	CTransform* pTransform = dynamic_cast<CTransform*>(_pObj->Get_Component(L"Com_Transform", COMPONENTID::ID_STATIC));
 	CRcTerrain*  pBuffer = dynamic_cast<CRcTerrain*>(_pObj->Get_Component(L"Com_Buffer", COMPONENTID::ID_STATIC));

@@ -43,12 +43,9 @@ Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 	Key_Input(fTimeDelta);
 
 
-	
-
-
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(Engine::GetCurrScene()->Get_Layer(LAYER_TYPE::ENVIRONMENT)->Find_GameObject(L"Terrain"));
 	_vec3 vDest;
-	if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && Engine::RayCast(pTerrain, &vDest))
+	if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && Engine::IsPicking(pTerrain, &vDest))
 		m_vDest = vDest;
 
 	Player_Move(fTimeDelta);

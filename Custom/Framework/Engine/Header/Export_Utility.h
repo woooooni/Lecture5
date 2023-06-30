@@ -6,6 +6,7 @@
 #include "CameraMgr.h"
 #include "Renderer.h"
 #include "PickingMgr.h"
+#include "LightMgr.h"
 
 #include "TriCol.h"
 #include "RcCol.h"
@@ -50,7 +51,12 @@ inline void				Clear_RenderGroup();
 // PickingMgr
 inline HRESULT			Ready_PickingMgr(LPDIRECT3DDEVICE9 _pDevice, HWND _hWnd);
 inline void				Update_PickingMgr();
-inline BOOL				RayCast(CGameObject* _pObj, _vec3* _vHit);
+inline BOOL				IsPicking(CGameObject* _pObj, _vec3* _vHit);
+
+// LightMgr
+inline 	HRESULT		Ready_Light(LPDIRECT3DDEVICE9 pGraphicDev,
+	const D3DLIGHT9* pLightInfo,
+	const _uint& iIndex);
 
 inline void				Release_Utility();
 

@@ -37,7 +37,7 @@ HRESULT CTerrain::Ready_Object(void)
 
 _int CTerrain::Update_Object(const _float & fTimeDelta)
 {
-	
+	Engine::Add_RenderGroup(RENDERID::RENDER_NONALPHA, this);
 	_int iResult = __super::Update_Object(fTimeDelta);
 	//Key_Input(fTimeDelta);
 	
@@ -52,22 +52,15 @@ _int CTerrain::Update_Object(const _float & fTimeDelta)
 
 void CTerrain::LateUpdate_Object(void)
 {
-	Engine::Add_RenderGroup(RENDERID::RENDER_NONALPHA, this);
 	__super::LateUpdate_Object();
 }
 
 void CTerrain::Render_Object(void)
 {
-	m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_WorldMatrix());
 
 	m_pTextureCom->Render_Texture(0);
 	m_pBufferCom->Render_Buffer();
-
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 }
 
 HRESULT CTerrain::SetY_Terrain(CGameObject * _pTarget, _float fTimeDelta)

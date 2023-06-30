@@ -74,17 +74,23 @@ inline void Update_PickingMgr()
 	CPickingMgr::GetInstance()->Update_PickingMgr();
 }
 
-inline BOOL RayCast(CGameObject * _pObj, _vec3 * _vHit)
+inline BOOL IsPicking(CGameObject * _pObj, _vec3 * _vHit)
 {
-	return CPickingMgr::GetInstance()->RayCast(_pObj, _vHit);
+	return CPickingMgr::GetInstance()->IsPicking(_pObj, _vHit);
 }
 
-
+HRESULT		Ready_Light(LPDIRECT3DDEVICE9 pGraphicDev,
+	const D3DLIGHT9* pLightInfo,
+	const _uint& iIndex)
+{
+	return	CLightMgr::GetInstance()->Ready_Light(pGraphicDev, pLightInfo, iIndex);
+}
 
 void			Release_Utility()
 {
 	CPickingMgr::GetInstance()->DestroyInstance();
 	CRenderer::GetInstance()->DestroyInstance();
+	CLightMgr::GetInstance()->DestroyInstance();
 	CCameraMgr::GetInstance()->DestroyInstance();
 	CProtoMgr::GetInstance()->DestroyInstance();
 	CManagement::GetInstance()->DestroyInstance();

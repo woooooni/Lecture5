@@ -23,7 +23,7 @@ private:
 	void	Compute_LocalLayInfo(_vec3* pDir, _vec3* pRayPos, CTransform* pTransform);
 
 public:
-	BOOL	RayCast(CGameObject* _pObj, _vec3* _vHit);
+	BOOL	IsPicking(CGameObject* _pObj, _vec3* _vHit);
 
 public:
 	LPDIRECT3DDEVICE9 m_pDevice;
