@@ -36,7 +36,7 @@ HRESULT CPlayer::Ready_Object(void)
 
 Engine::_int CPlayer::Update_Object(const _float& fTimeDelta)
 {
-	Engine::Add_RenderGroup(RENDERID::RENDER_NONALPHA, this);
+	Engine::Add_RenderGroup(RENDERID::RENDER_ALPHA, this);
 	
 
 	Key_Input(fTimeDelta);
