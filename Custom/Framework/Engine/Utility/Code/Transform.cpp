@@ -36,11 +36,11 @@ CTransform::~CTransform()
 
 void CTransform::Chase_Target(const _vec3 * pTargetPos, const _float & fTimeDelta, const _float & fSpeed)
 {
-	_vec3		vDir = *pTargetPos - m_vInfo[INFO_POS];
+	_vec3 vDir = *pTargetPos - m_vInfo[INFO_POS];
 	m_vInfo[INFO_POS] += *D3DXVec3Normalize(&vDir, &vDir) * fTimeDelta * fSpeed;
 
-	_matrix			matRot = *Compute_LookAtTarget(pTargetPos);
-	_matrix			matScale, matTrans;
+	_matrix	matRot = *Compute_LookAtTarget(pTargetPos);
+	_matrix	matScale, matTrans;
 
 	D3DXMatrixScaling(&matScale, m_vScale.x, m_vScale.y, m_vScale.z);
 	D3DXMatrixTranslation(&matTrans, 
@@ -53,27 +53,14 @@ void CTransform::Chase_Target(const _vec3 * pTargetPos, const _float & fTimeDelt
 
 const _matrix * CTransform::Compute_LookAtTarget(const _vec3 * pTargetPos)
 {
-	_vec3		vDir = *pTargetPos - m_vInfo[INFO_POS];
+	_vec3 vDir = *pTargetPos - m_vInfo[INFO_POS];
 
-	_matrix		matRot;
-	_vec3		vAxis, vUp;
+	_matrix	matRot;
+	_vec3 vAxis, vUp;
 
-	//_vec3		vAxis = *D3DXVec3Cross(&vAxis, &m_vInfo[INFO_UP], &vDir);
-
-	//_matrix		matRot;
-	//_vec3		vUp = m_vInfo[INFO_UP];
-	//D3DXVec3Normalize(&vUp, &vUp);
-	//D3DXVec3Normalize(&vDir, &vDir);
-
-	//_float		fDot = D3DXVec3Dot(&vUp, &vDir);
-	//_float		fAngle = acosf(fDot);
-
-	//D3DXMatrixRotationAxis(&matRot, &vAxis, fAngle);
-
-	return D3DXMatrixRotationAxis(&matRot, 
-										 D3DXVec3Cross(&vAxis, &m_vInfo[INFO_UP], &vDir),
-										acosf(D3DXVec3Dot(D3DXVec3Normalize(&vDir, &vDir), 
-														 D3DXVec3Normalize(&vUp, &m_vInfo[INFO_UP]))));
+	return D3DXMatrixRotationAxis(&matRot, D3DXVec3Cross(&vAxis, &m_vInfo[INFO_UP], &vDir),
+											acosf(D3DXVec3Dot(D3DXVec3Normalize(&vDir, &vDir), 
+											D3DXVec3Normalize(&vUp, &m_vInfo[INFO_UP]))));
 }
 
 _vec3 CTransform::Get_Scale()

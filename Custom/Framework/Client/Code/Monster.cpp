@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "..\Header\Monster.h"
 #include "Export_Function.h"
 

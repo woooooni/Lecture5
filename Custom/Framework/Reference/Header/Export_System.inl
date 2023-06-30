@@ -57,7 +57,7 @@ void		Update_InputDev(void)
 }
 
 
-void			Release_System()
+void		Release_System()
 {
 	CInputDevice::GetInstance()->DestroyInstance();
 	CFrameMgr::GetInstance()->DestroyInstance();

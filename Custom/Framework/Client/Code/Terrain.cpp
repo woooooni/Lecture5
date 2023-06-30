@@ -1,5 +1,4 @@
-﻿#include "stdafx.h"
-#include "..\Header\Terrain.h"
+﻿#include "..\Header\Terrain.h"
 #include "Export_Function.h"
 
 #include "RcTerrain.h"

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "..\Header\MainApp.h"
 
 #include "Engine_Define.h"

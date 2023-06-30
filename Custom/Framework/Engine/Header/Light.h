@@ -20,9 +20,9 @@ public:
 	HRESULT				Ready_Light(const D3DLIGHT9* pLight, const _uint& iIndex);
 
 public:
-	static CLight* Create(LPDIRECT3DDEVICE9 _pDevice,
-							const D3DLIGHT9* pLightInfo,
-							const _uint& iIndex);
+	static CLight*		Create(LPDIRECT3DDEVICE9 _pDevice,
+								const D3DLIGHT9* pLightInfo,
+								const _uint& iIndex);
 
 private:
 	virtual void Free();

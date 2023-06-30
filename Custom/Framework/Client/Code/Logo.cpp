@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "..\Header\Logo.h"
 
 #include "Export_Function.h"

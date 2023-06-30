@@ -22,7 +22,7 @@ namespace Engine
 #ifdef	ENGINE_EXPORTS
 #define ENGINE_DLL		_declspec(dllexport)
 #else
-#define ENGINE_DLL		_declspec(dllimport)
+#define ENGINE_DLL		_declspec(dllimport) // ¡Ú Áß¿ä
 #endif
 
 #define NULL_CHECK( _ptr)	\

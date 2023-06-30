@@ -40,11 +40,11 @@
     <Filter Include="02. GameObject\02. Monster">
       <UniqueIdentifier>{acc0d059-900d-4485-8f0e-b7cd0bbc5293}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. GameObject\03. Bullet">
-      <UniqueIdentifier>{d146b7ca-43ec-4474-8ec5-5823cc1d879b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02. GameObject\04. Terrain">
+    <Filter Include="02. GameObject\03. Terrain">
       <UniqueIdentifier>{cd4f1474-ab3d-4e8e-bef4-881d3d8ee9ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\04. UI">
+      <UniqueIdentifier>{1dc885c6-a95a-455c-8051-f205df8fbfa5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,14 +75,14 @@
     <ClInclude Include="..\Header\Monster.h">
       <Filter>02. GameObject\02. Monster</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\Bullet.h">
-      <Filter>02. GameObject\03. Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="..\Header\Terrain.h">
-      <Filter>02. GameObject\04. Terrain</Filter>
+      <Filter>02. GameObject\03. Terrain</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\Stage.h">
       <Filter>01. Scene\01. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUI.h">
+      <Filter>02. GameObject\04. UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,14 +107,14 @@
     <ClCompile Include="..\Code\Monster.cpp">
       <Filter>02. GameObject\02. Monster</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Bullet.cpp">
-      <Filter>02. GameObject\03. Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\Terrain.cpp">
-      <Filter>02. GameObject\04. Terrain</Filter>
+      <Filter>02. GameObject\03. Terrain</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\Stage.cpp">
       <Filter>01. Scene\01. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUI.cpp">
+      <Filter>02. GameObject\04. UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
